@@ -13,11 +13,10 @@
 @implementation SMNetworkUpdate
 -(void)update{
     AFHTTPClient *client = [SMHttpClient sharedHTTPClient];
-    [client getPath:@"stations.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if([responseObject isKindOfClass:[NSArray class]]){
-//            SMManagedObject
-           /* SM
-            [NSManagedObject update:[NSEntityDescription entityForName:@"Station" inManagedObjectContext:context] withArray:responseObject];*/
+    [client getPath:@"issues.json?limit=0" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        LOG_INFO(@"issues requested %@",responseObject);
+        if([responseObject isKindOfClass:[NSDictionary class]]){
+            [SMManagedObject update:@"SMIssue" withArray:[responseObject objectForKey:@"issues"]];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error happend %@",error);

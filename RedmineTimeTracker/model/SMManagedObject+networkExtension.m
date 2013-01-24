@@ -72,14 +72,14 @@
                 LOG_ERR(@"did not find property %@",newKey);
             }
         }
-        
-        //  LOG_INFO(@"did update %@",self);
-        
+          LOG_INFO(@"did update %@",self);
     }
 }
 
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray{
+    LOG_INFO(@"will update %@ with %@",entityName,respArray);
+
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         NSFetchRequest *fetchRequest = [NSFetchRequest new];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];

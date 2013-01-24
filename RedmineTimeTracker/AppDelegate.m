@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SMNetworkUpdate.h"
 
 @implementation AppDelegate
 
@@ -22,6 +23,10 @@
                                              selector:@selector(managedObjectContextDidChange:)
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
+    
+    SMNetworkUpdate *updater = [SMNetworkUpdate new];
+    [updater update];
+    LOG_INFO(@"App Started");
     // Insert code here to initialize your application
 }
 
@@ -115,6 +120,7 @@
         return nil;
     }
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [_managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
 
     return _managedObjectContext;
@@ -184,6 +190,20 @@
     }
 
     return NSTerminateNow;
+}
+- (void)saveContext
+{
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            LOG_ERR(@"Unresolved error %@, %@", error, [error userInfo]);
+            LOG_ERR(@"%@",[NSThread callStackSymbols]);
+            [managedObjectContext rollback];
+        }
+    }
 }
 
 #pragma mark - NSMANAGEDOBJECT currency

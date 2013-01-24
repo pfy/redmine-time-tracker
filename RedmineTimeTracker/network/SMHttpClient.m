@@ -19,6 +19,7 @@
     dispatch_once(&pred, ^{
         __httpClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kServerUrl]];
         [__httpClient setParameterEncoding:AFJSONParameterEncoding];
+        [__httpClient setDefaultHeader:@"X-Redmine-API-Key" value:@"18017705a6c18009204d2fe609574fbd0edd657d"];
         [__httpClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
         [__httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
         [[__httpClient operationQueue ] setMaxConcurrentOperationCount:1] ;
