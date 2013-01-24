@@ -7,16 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */; };
+		CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
 		CF8844C716B045E9008B87FC /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CF8844C516B045E9008B87FC /* Credits.rtf */; };
 		CF8844CA16B045E9008B87FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C916B045E9008B87FC /* AppDelegate.m */; };
 		CF8844CD16B045E9008B87FC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF8844CB16B045E9008B87FC /* MainMenu.xib */; };
-		CF8844D016B045E9008B87FC /* RedmineTimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF8844CE16B045E9008B87FC /* RedmineTimeTracker.xcdatamodeld */; };
+		CF88452216B17767008B87FC /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844DB16B17767008B87FC /* AFHTTPClient.m */; };
+		CF88452316B17767008B87FC /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844DD16B17767008B87FC /* AFHTTPRequestOperation.m */; };
+		CF88452416B17767008B87FC /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844DF16B17767008B87FC /* AFImageRequestOperation.m */; };
+		CF88452516B17767008B87FC /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E116B17767008B87FC /* AFJSONRequestOperation.m */; };
+		CF88452616B17767008B87FC /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E316B17767008B87FC /* AFNetworkActivityIndicatorManager.m */; };
+		CF88452716B17767008B87FC /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E616B17767008B87FC /* AFPropertyListRequestOperation.m */; };
+		CF88452816B17767008B87FC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E816B17767008B87FC /* AFURLConnectionOperation.m */; };
+		CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */; };
+		CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF10AEDA16B177D5008F9741 /* RedmineTimeTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedmineTimeTracker.xcdatamodel; sourceTree = "<group>"; };
+		CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -30,7 +42,25 @@
 		CF8844C816B045E9008B87FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CF8844C916B045E9008B87FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CF8844CC16B045E9008B87FC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		CF8844CF16B045E9008B87FC /* RedmineTimeTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedmineTimeTracker.xcdatamodel; sourceTree = "<group>"; };
+		CF8844DA16B17767008B87FC /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		CF8844DB16B17767008B87FC /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		CF8844DC16B17767008B87FC /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		CF8844DD16B17767008B87FC /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		CF8844DE16B17767008B87FC /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		CF8844DF16B17767008B87FC /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		CF8844E016B17767008B87FC /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		CF8844E116B17767008B87FC /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		CF8844E216B17767008B87FC /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		CF8844E316B17767008B87FC /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		CF8844E416B17767008B87FC /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		CF8844E516B17767008B87FC /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		CF8844E616B17767008B87FC /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		CF8844E716B17767008B87FC /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		CF8844E816B17767008B87FC /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		CF8844E916B17767008B87FC /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		CF8844EB16B17767008B87FC /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */,
 				CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,9 +76,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF10AED816B177D5008F9741 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		CF8844A716B045E9008B87FC = {
 			isa = PBXGroup;
 			children = (
+				CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */,
 				CF8844BC16B045E9008B87FC /* RedmineTimeTracker */,
 				CF8844B516B045E9008B87FC /* Frameworks */,
 				CF8844B316B045E9008B87FC /* Products */,
@@ -84,10 +124,11 @@
 		CF8844BC16B045E9008B87FC /* RedmineTimeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CF10AED816B177D5008F9741 /* model */,
+				CF8844D616B17767008B87FC /* addins */,
 				CF8844C816B045E9008B87FC /* AppDelegate.h */,
 				CF8844C916B045E9008B87FC /* AppDelegate.m */,
 				CF8844CB16B045E9008B87FC /* MainMenu.xib */,
-				CF8844CE16B045E9008B87FC /* RedmineTimeTracker.xcdatamodeld */,
 				CF8844BD16B045E9008B87FC /* Supporting Files */,
 			);
 			path = RedmineTimeTracker;
@@ -103,6 +144,48 @@
 				CF8844C516B045E9008B87FC /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF8844D616B17767008B87FC /* addins */ = {
+			isa = PBXGroup;
+			children = (
+				CF8844D716B17767008B87FC /* AFNetworking */,
+			);
+			path = addins;
+			sourceTree = "<group>";
+		};
+		CF8844D716B17767008B87FC /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				CF8844D916B17767008B87FC /* AFNetworking */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		CF8844D916B17767008B87FC /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				CF8844DA16B17767008B87FC /* AFHTTPClient.h */,
+				CF8844DB16B17767008B87FC /* AFHTTPClient.m */,
+				CF8844DC16B17767008B87FC /* AFHTTPRequestOperation.h */,
+				CF8844DD16B17767008B87FC /* AFHTTPRequestOperation.m */,
+				CF8844DE16B17767008B87FC /* AFImageRequestOperation.h */,
+				CF8844DF16B17767008B87FC /* AFImageRequestOperation.m */,
+				CF8844E016B17767008B87FC /* AFJSONRequestOperation.h */,
+				CF8844E116B17767008B87FC /* AFJSONRequestOperation.m */,
+				CF8844E216B17767008B87FC /* AFNetworkActivityIndicatorManager.h */,
+				CF8844E316B17767008B87FC /* AFNetworkActivityIndicatorManager.m */,
+				CF8844E416B17767008B87FC /* AFNetworking.h */,
+				CF8844E516B17767008B87FC /* AFPropertyListRequestOperation.h */,
+				CF8844E616B17767008B87FC /* AFPropertyListRequestOperation.m */,
+				CF8844E716B17767008B87FC /* AFURLConnectionOperation.h */,
+				CF8844E816B17767008B87FC /* AFURLConnectionOperation.m */,
+				CF8844E916B17767008B87FC /* AFXMLRequestOperation.h */,
+				CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */,
+				CF8844EB16B17767008B87FC /* UIImageView+AFNetworking.h */,
+				CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,7 +254,16 @@
 			files = (
 				CF8844C316B045E9008B87FC /* main.m in Sources */,
 				CF8844CA16B045E9008B87FC /* AppDelegate.m in Sources */,
-				CF8844D016B045E9008B87FC /* RedmineTimeTracker.xcdatamodeld in Sources */,
+				CF88452216B17767008B87FC /* AFHTTPClient.m in Sources */,
+				CF88452316B17767008B87FC /* AFHTTPRequestOperation.m in Sources */,
+				CF88452416B17767008B87FC /* AFImageRequestOperation.m in Sources */,
+				CF88452516B17767008B87FC /* AFJSONRequestOperation.m in Sources */,
+				CF88452616B17767008B87FC /* AFNetworkActivityIndicatorManager.m in Sources */,
+				CF88452716B17767008B87FC /* AFPropertyListRequestOperation.m in Sources */,
+				CF88452816B17767008B87FC /* AFURLConnectionOperation.m in Sources */,
+				CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */,
+				CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */,
+				CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,16 +393,17 @@
 				CF8844D516B045E9008B87FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CF8844CE16B045E9008B87FC /* RedmineTimeTracker.xcdatamodeld */ = {
+		CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CF8844CF16B045E9008B87FC /* RedmineTimeTracker.xcdatamodel */,
+				CF10AEDA16B177D5008F9741 /* RedmineTimeTracker.xcdatamodel */,
 			);
-			currentVersion = CF8844CF16B045E9008B87FC /* RedmineTimeTracker.xcdatamodel */;
+			currentVersion = CF10AEDA16B177D5008F9741 /* RedmineTimeTracker.xcdatamodel */;
 			path = RedmineTimeTracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

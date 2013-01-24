@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SMIssue" syncable="YES">
+        <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_done_ratio" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="n_estimated_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="n_spent_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="n_start_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="n_subject" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMProjects" inverseName="issues" inverseEntity="SMProjects" syncable="YES"/>
+        <relationship name="status" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMStatus" inverseName="issue" inverseEntity="SMStatus" syncable="YES"/>
+        <relationship name="tracker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTrackers" inverseName="issue" inverseEntity="SMTrackers" syncable="YES"/>
+    </entity>
+    <entity name="SMManagedObject" syncable="YES">
+        <attribute name="n_created_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="n_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="n_updated_on" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="SMProjects" syncable="YES">
+        <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="project" inverseEntity="SMIssue" syncable="YES"/>
+    </entity>
+    <entity name="SMRedmineUser" syncable="YES">
+        <attribute name="n_firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_last_login_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="n_lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_login" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_mail" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="author" inverseEntity="SMIssue" syncable="YES"/>
+    </entity>
+    <entity name="SMStatus" syncable="YES">
+        <attribute name="n_is_closed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="n_is_default" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="issue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="status" inverseEntity="SMIssue" syncable="YES"/>
+    </entity>
+    <entity name="SMTrackers" syncable="YES">
+        <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="issue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="tracker" inverseEntity="SMIssue" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SMManagedObject" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="SMRedmineUser" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="SMProjects" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="SMIssue" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="SMTrackers" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="SMStatus" positionX="160" positionY="192" width="128" height="105"/>
+    </elements>
+</model>
