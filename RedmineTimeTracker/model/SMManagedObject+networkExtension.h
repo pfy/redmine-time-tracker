@@ -15,14 +15,9 @@ typedef void (^VoidBlock)(NSManagedObject *newSelf);
 
 @interface SMManagedObject (NetworkExtension)
 -(void)createRequest:(SMHttpClient*)client;
--(int)language;
 -(void)updateWithDict:(NSDictionary*)dict;
--(void)update:(NSString*)entityName withArray:(NSArray*)objects;
++(void)update:(NSString*)entityName withArray:(NSArray*)objects;
 
--(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;
--(void)scheduleUpdateOperationOnMainWithBlock:(VoidBlock) block;
++(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;
 
-
-@property (nonatomic,retain) AFHTTPRequestOperation *requestOperation;
-@property (nonatomic,retain) NSMutableArray *updateOperations;
 @end

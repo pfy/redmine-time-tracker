@@ -33,6 +33,7 @@
 		CF88452816B17767008B87FC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E816B17767008B87FC /* AFURLConnectionOperation.m */; };
 		CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */; };
 		CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */; };
+		CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,8 @@
 		CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		CF8844EB16B17767008B87FC /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNetworkUpdate.h; sourceTree = "<group>"; };
+		CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNetworkUpdate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 			children = (
 				CF10AEFE16B17B4C008F9741 /* SMHttpClient.h */,
 				CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */,
+				CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */,
+				CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				CF10AEF216B178DD008F9741 /* SMProjects.m in Sources */,
 				CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */,
 				CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */,
+				CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

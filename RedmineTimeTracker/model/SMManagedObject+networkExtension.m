@@ -14,22 +14,7 @@
 
 
 @implementation SMManagedObject (NetworkExtension)
-@dynamic requestOperation;
-@dynamic updateOperations;
 
-- (void)prepareForDeletion{
-    [super willTurnIntoFault];
-    AFHTTPRequestOperation *operation = self.requestOperation;
-   [operation cancel];
-    
-    for(NSOperation *operation in self.updateOperations){
-        [operation cancel];
-        [operation removeObserver:self forKeyPath:@"isFinished"];
-    }
-    self.updateOperations = nil;
-    self.requestOperation = nil;
-    [super prepareForDeletion];
-}
 
 -(void)createRequest:(SMHttpClient *)client{
     
@@ -94,7 +79,7 @@
 }
 
 
--(void)update:(NSString*)entityName withArray:(NSArray*)respArray{
++(void)update:(NSString*)entityName withArray:(NSArray*)respArray{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         NSFetchRequest *fetchRequest = [NSFetchRequest new];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
@@ -128,64 +113,12 @@
     }];
 }
 
--(void)scheduleUpdateOperationWithBlock:(ContextBlock) block{
++(void)scheduleUpdateOperationWithBlock:(ContextBlock) block{
     SMUpdateOperation *operation = [SMUpdateOperation operationWithBlock:block];
     AppDelegate *app = [NSApplication sharedApplication].delegate;
-    [operation addObserver:self forKeyPath:@"isFinished" options:NSKeyValueObservingOptionNew context:nil];
-    [self.updateOperations addObject:operation];
     [app.asyncDbQueue addOperation:operation];
     return;
 }
-
--(void)scheduleUpdateOperationOnMainWithBlock:(VoidBlock)block{
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
-    NSManagedObjectID *selfID = self.objectID;
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSManagedObject *object = [app.managedObjectContext existingObjectWithID:selfID error:nil];
-            if(object && ! object.isDeleted)
-                block(object);
-        });
-    }];
-    [operation addObserver:self forKeyPath:@"isFinished" options:NSKeyValueObservingOptionNew context:nil];
-    [self.updateOperations addObject:operation];
-    [app.asyncDbQueue addOperation:operation];
-}
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([keyPath isEqualToString:@"isFinished"]){
-        //LOG_INFO(@"update operation finished %@",object);
-        //  [object removeObserver:self];
-        [object removeObserver:self forKeyPath:@"isFinished"];
-        [self.updateOperations removeObject:object];
-    }
-}
-
--(void)awakeFromFetch{
-    if(![NSThread isMainThread])
-        return;
-    
-    [super awakeFromFetch];
-    self.updateOperations = [NSMutableArray new];
-    
-}
--(void)awakeFromInsert{
-    if(![NSThread isMainThread])
-        return;
-    [super awakeFromInsert];
-    self.updateOperations = [NSMutableArray new];
-}
-
--(int)language{
-    int lang_string = 1;
-    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if([language isEqualToString:@"fr"]){
-        lang_string = 2;
-    } else if([language isEqualToString:@"it"]){
-        lang_string = 3;
-    }
-    return  lang_string;
-}
-
 
 
 
