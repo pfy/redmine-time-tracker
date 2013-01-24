@@ -95,8 +95,6 @@
 
 
 -(void)update:(NSString*)entityName withArray:(NSArray*)respArray{
-    
-    
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         NSFetchRequest *fetchRequest = [NSFetchRequest new];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
@@ -105,7 +103,7 @@
         NSMutableDictionary *allObjects = [NSMutableDictionary new];
         NSMutableArray *toDelete = [NSMutableArray arrayWithArray:array];
         for(NSManagedObject *obj in array){
-            [allObjects setValue:obj forKey:[obj valueForKey:@"r_id"]];
+            [allObjects setValue:obj forKey:[obj valueForKey:@"n_id"]];
         }
         
         for(NSDictionary *dict in respArray){
@@ -119,7 +117,7 @@
         }
         
         for (NSManagedObject* managedObject in toDelete){
-            if(! [[toDelete valueForKey:@"r_id"] isEqual:[NSNumber numberWithInt:0]])
+            if(! [[toDelete valueForKey:@"n_id"] isEqual:[NSNumber numberWithInt:0]])
                 [context deleteObject:managedObject];
         }
         NSError *error = nil;
