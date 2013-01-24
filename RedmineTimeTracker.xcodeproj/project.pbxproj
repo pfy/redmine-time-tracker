@@ -36,6 +36,7 @@
 		CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */; };
 		CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42516B1A06500C93A0D /* StatusBarMenu.m */; };
 		CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */; };
+		CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42B16B1A49800C93A0D /* IssuesList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,8 @@
 		CFABD42516B1A06500C93A0D /* StatusBarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarMenu.m; sourceTree = "<group>"; };
 		CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveApplicationTracker.h; sourceTree = "<group>"; };
 		CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveApplicationTracker.m; sourceTree = "<group>"; };
+		CFABD42A16B1A49800C93A0D /* IssuesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesList.h; sourceTree = "<group>"; };
+		CFABD42B16B1A49800C93A0D /* IssuesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +263,8 @@
 				CFABD42516B1A06500C93A0D /* StatusBarMenu.m */,
 				CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */,
 				CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */,
+				CFABD42A16B1A49800C93A0D /* IssuesList.h */,
+				CFABD42B16B1A49800C93A0D /* IssuesList.m */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */,
 				CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */,
 				CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */,
+				CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

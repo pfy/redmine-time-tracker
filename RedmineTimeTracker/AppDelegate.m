@@ -28,6 +28,9 @@
     //[updater update];
     self.statusBarMenu = [StatusBarMenu new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
+    self.issuesList =[IssuesList new];
+    self.outlineView.delegate = self.issuesList;
+    self.outlineView.dataSource = self.issuesList;
     
 
 
