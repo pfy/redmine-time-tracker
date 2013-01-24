@@ -2,6 +2,30 @@
 // Prefix header for all source files of the 'RedmineTimeTracker' target in the 'RedmineTimeTracker' project
 //
 
+
+#ifndef DEBUG_LEVEL
+#define DEBUG_LEVEL 2
+#endif
+
+#define LOG_ERR(...)   NSLog(__VA_ARGS__)
+
+#if DEBUG_LEVEL > 1
+#define LOG_INFO(...)   NSLog(__VA_ARGS__)
+#define LOG_WARN(...)   NSLog(__VA_ARGS__)
+#elif DEBUG_LEVEL > 0
+#define LOG_INFO(...)
+#define LOG_WARN(...)   NSLog(__VA_ARGS__)
+#else
+#define LOG_INFO(...)
+#define LOG_WARN(...)
+#endif
+
 #ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
+#import <Cocoa/Cocoa.h>
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import "AppDelegate.h"
+
+    #define SAVE_APP_CONTEXT [(AppDelegate*)[UIApplication sharedApplication].delegate saveContext];
+
 #endif
