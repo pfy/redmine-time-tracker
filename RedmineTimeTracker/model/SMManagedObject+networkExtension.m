@@ -11,6 +11,7 @@
 #import "SMUpdateOperation.h"
 #import <objc/runtime.h>
 #import "AFHTTPRequestOperation.h"
+static char *smoohClassPrefix = "T@\"SM";
 
 
 @implementation SMManagedObject (NetworkExtension)
@@ -25,6 +26,7 @@
         return;
     }
     
+    
     NSEnumerator *enumerator = [dict keyEnumerator];
     id key;
     while ((key = [enumerator nextObject])) {
@@ -35,7 +37,12 @@
             class_getProperty([self class], [newKey UTF8String]);
             if(theProperty){
                 const char * propertyAttrs = property_getAttributes(theProperty);
-                if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
+                LOG_INFO(@"type %s",propertyAttrs);
+
+                if((strncmp(propertyAttrs,smoohClassPrefix,strlen(smoohClassPrefix)) == 0)){
+                    LOG_INFO(@"is smooh class");
+                }
+                else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
                     NSDate *newDate;
                     NSString *stringVal = val;
                     if(stringVal.length == 5){

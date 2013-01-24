@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "SMManagedObject.h"
 
-@class SMRedmineUser;
+@class SMProjects, SMRedmineUser, SMStatus, SMTrackers;
 
 @interface SMIssue : SMManagedObject
 
@@ -20,9 +20,9 @@
 @property (nonatomic, retain) NSNumber * n_spent_hours;
 @property (nonatomic, retain) NSDate * n_start_date;
 @property (nonatomic, retain) NSString * n_subject;
-@property (nonatomic, retain) SMRedmineUser *author;
-@property (nonatomic, retain) NSManagedObject *project;
-@property (nonatomic, retain) NSManagedObject *status;
-@property (nonatomic, retain) NSManagedObject *tracker;
+@property (nonatomic, retain) SMRedmineUser *n_author;
+@property (nonatomic, retain) SMProjects *n_project;
+@property (nonatomic, retain) SMStatus *n_status;
+@property (nonatomic, retain) SMTrackers *n_tracker;
 
 @end
