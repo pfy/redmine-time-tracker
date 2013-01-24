@@ -15,7 +15,7 @@
     while(max_faults){
         
         NSManagedObjectContext *context = [[NSManagedObjectContext alloc]init];
-        [context setPersistentStoreCoordinator:[(AppDelegate*)[UIApplication sharedApplication].delegate persistentStoreCoordinator]];
+        [context setPersistentStoreCoordinator:[(AppDelegate*)[NSApplication sharedApplication].delegate persistentStoreCoordinator]];
         [context setUndoManager:nil];
         
         NSError *error = nil;
@@ -52,17 +52,13 @@
              //   LOG_INFO(@"did success safe managed object context after %d",10-max_faults);
             max_faults = 0;
         }        
-        [context release];
     }
 }
 +(SMUpdateOperation*)operationWithBlock:(ContextBlock) block{
     SMUpdateOperation *operation = [SMUpdateOperation new];
     operation.block = block;
-    return [operation autorelease];
+    return operation ;
 }
--(void)dealloc{
-    self.block = nil;
-    [super dealloc];
-}
+
 
 @end

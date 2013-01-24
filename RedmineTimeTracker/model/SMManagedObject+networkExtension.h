@@ -17,12 +17,11 @@ typedef void (^VoidBlock)(NSManagedObject *newSelf);
 -(void)createRequest:(SMHttpClient*)client;
 -(int)language;
 -(void)updateWithDict:(NSDictionary*)dict;
--(void)update:(NSString*)entityName withArray:(NSArray*)objects andId:(NSString*)ID parent:(NSManagedObject*)parent withChildKey:(NSString*)childKey andParentKey:(NSString*)parentKey cleanup:(BOOL)cleanup;
+-(void)update:(NSString*)entityName withArray:(NSArray*)objects;
 
 -(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;
 -(void)scheduleUpdateOperationOnMainWithBlock:(VoidBlock) block;
 
-+(SMManagedObject*)managedObjectWithId:(NSManagedObjectID*)objectId;
 
 @property (nonatomic,retain) AFHTTPRequestOperation *requestOperation;
 @property (nonatomic,retain) NSMutableArray *updateOperations;

@@ -16,6 +16,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    self.asyncDbQueue = [[NSOperationQueue alloc]init];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(managedObjectContextDidChange:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:nil];
     // Insert code here to initialize your application
 }
 
@@ -178,6 +184,13 @@
     }
 
     return NSTerminateNow;
+}
+
+#pragma mark - NSMANAGEDOBJECT currency
+-(void)managedObjectContextDidChange:(NSNotification*)notification{
+    LOG_INFO(@"AppDelegate: Merge changes from update");
+    [self.managedObjectContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:) withObject:notification waitUntilDone:YES];
+    [self performSelectorOnMainThread:@selector(saveContext) withObject:nil waitUntilDone:YES];
 }
 
 @end
