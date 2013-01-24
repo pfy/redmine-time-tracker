@@ -24,8 +24,8 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
     
-    //SMNetworkUpdate *updater = [SMNetworkUpdate new];
-    //[updater update];
+    SMNetworkUpdate *updater = [SMNetworkUpdate new];
+    [updater update];
     self.statusBarMenu = [StatusBarMenu new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
     self.issuesList =[IssuesList new];

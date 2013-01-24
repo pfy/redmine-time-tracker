@@ -72,13 +72,11 @@
                 LOG_ERR(@"did not find property %@",newKey);
             }
         }
-          LOG_INFO(@"did update %@",self);
     }
 }
 
 
-+(void)update:(NSString*)entityName withArray:(NSArray*)respArray{
-    LOG_INFO(@"will update %@ with %@",entityName,respArray);
++(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
 
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         NSFetchRequest *fetchRequest = [NSFetchRequest new];
@@ -100,10 +98,11 @@
             }
             [managedObject updateWithDict:dict];
         }
-        
+        if(delete){
         for (NSManagedObject* managedObject in toDelete){
             if(! [[toDelete valueForKey:@"n_id"] isEqual:[NSNumber numberWithInt:0]])
                 [context deleteObject:managedObject];
+        }
         }
         NSError *error = nil;
         [context save:&error];
