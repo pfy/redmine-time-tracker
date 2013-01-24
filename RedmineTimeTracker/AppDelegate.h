@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "StatusBarMenu.h"
+#import "ActiveApplicationTracker.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -16,6 +18,10 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,retain) NSOperationQueue *asyncDbQueue;
+
+
+@property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
+@property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
 
 - (IBAction)saveAction:(id)sender;
 

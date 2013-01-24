@@ -24,8 +24,14 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
     
-    SMNetworkUpdate *updater = [SMNetworkUpdate new];
-    [updater update];
+    //SMNetworkUpdate *updater = [SMNetworkUpdate new];
+    //[updater update];
+    self.statusBarMenu = [StatusBarMenu new];
+    self.activeApplicationTracker = [ActiveApplicationTracker new];
+    
+
+
+
     LOG_INFO(@"App Started");
     // Insert code here to initialize your application
 }
@@ -206,6 +212,13 @@
     }
 }
 
+-(void)getActiveApp{
+    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    LOG_INFO(@"did change %@ of object %@ change %@",keyPath,object,change);
+}
 #pragma mark - NSMANAGEDOBJECT currency
 -(void)managedObjectContextDidChange:(NSNotification*)notification{
     LOG_INFO(@"AppDelegate: Merge changes from update");
