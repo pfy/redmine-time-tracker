@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "SMManagedObject.h"
 
-@class SMIssue, SMPriority, SMProjects, SMRedmineUser, SMStatus, SMTrackers;
+@class SMIssue, SMPriority, SMProjects, SMRedmineUser, SMStatus, SMTimeEntry, SMTrackers;
 
 @interface SMIssue : SMManagedObject
 
@@ -33,8 +33,8 @@
 
 @interface SMIssue (CoreDataGeneratedAccessors)
 
-- (void)addTime_entriesObject:(NSManagedObject *)value;
-- (void)removeTime_entriesObject:(NSManagedObject *)value;
+- (void)addTime_entriesObject:(SMTimeEntry *)value;
+- (void)removeTime_entriesObject:(SMTimeEntry *)value;
 - (void)addTime_entries:(NSSet *)values;
 - (void)removeTime_entries:(NSSet *)values;
 

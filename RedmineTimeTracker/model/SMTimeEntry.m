@@ -7,6 +7,7 @@
 //
 
 #import "SMTimeEntry.h"
+#import "SMActivity.h"
 #import "SMIssue.h"
 #import "SMProjects.h"
 #import "SMRedmineUser.h"

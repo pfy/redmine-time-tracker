@@ -12,6 +12,7 @@
 #import "SMProjects.h"
 #import "SMRedmineUser.h"
 #import "SMStatus.h"
+#import "SMTimeEntry.h"
 #import "SMTrackers.h"
 
 
