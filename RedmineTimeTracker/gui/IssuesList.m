@@ -52,7 +52,8 @@
 
 - (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item{
     SMIssue *issue = item;
-    [cell setTitle:issue.n_subject];
+    if(issue.n_subject)
+        [cell setTitle:issue.n_subject];
 }
 
 @end

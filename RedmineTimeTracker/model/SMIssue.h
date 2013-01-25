@@ -28,5 +28,14 @@
 @property (nonatomic, retain) SMIssue *child;
 @property (nonatomic, retain) SMPriority *n_priority;
 @property (nonatomic, retain) SMRedmineUser *n_assigned_to;
+@property (nonatomic, retain) NSSet *time_entries;
+@end
+
+@interface SMIssue (CoreDataGeneratedAccessors)
+
+- (void)addTime_entriesObject:(NSManagedObject *)value;
+- (void)removeTime_entriesObject:(NSManagedObject *)value;
+- (void)addTime_entries:(NSSet *)values;
+- (void)removeTime_entries:(NSSet *)values;
 
 @end

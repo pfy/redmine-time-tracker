@@ -8,6 +8,7 @@
 
 #import "SMRedmineUser.h"
 #import "SMIssue.h"
+#import "SMTimeEntry.h"
 
 
 @implementation SMRedmineUser
@@ -20,5 +21,6 @@
 @dynamic n_name;
 @dynamic issues_created;
 @dynamic issues_assigned;
+@dynamic time_entries;
 
 @end

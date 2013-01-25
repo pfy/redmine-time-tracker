@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "SMManagedObject.h"
 
-@class SMIssue;
+@class SMIssue, SMTimeEntry;
 
 @interface SMRedmineUser : SMManagedObject
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * n_name;
 @property (nonatomic, retain) NSSet *issues_created;
 @property (nonatomic, retain) NSSet *issues_assigned;
+@property (nonatomic, retain) NSSet *time_entries;
 @end
 
 @interface SMRedmineUser (CoreDataGeneratedAccessors)
@@ -35,5 +36,10 @@
 - (void)removeIssues_assignedObject:(SMIssue *)value;
 - (void)addIssues_assigned:(NSSet *)values;
 - (void)removeIssues_assigned:(NSSet *)values;
+
+- (void)addTime_entriesObject:(SMTimeEntry *)value;
+- (void)removeTime_entriesObject:(SMTimeEntry *)value;
+- (void)addTime_entries:(NSSet *)values;
+- (void)removeTime_entries:(NSSet *)values;
 
 @end

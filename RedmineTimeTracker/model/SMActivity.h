@@ -1,5 +1,5 @@
 //
-//  SMProjects.h
+//  SMActivity.h
 //  RedmineTimeTracker
 //
 //  Created by pfy on 25.01.13.
@@ -10,23 +10,15 @@
 #import <CoreData/CoreData.h>
 #import "SMManagedObject.h"
 
-@class SMIssue, SMTimeEntry;
+@class SMTimeEntry;
 
-@interface SMProjects : SMManagedObject
+@interface SMActivity : SMManagedObject
 
-@property (nonatomic, retain) NSString * n_description;
-@property (nonatomic, retain) NSString * n_identifier;
 @property (nonatomic, retain) NSString * n_name;
-@property (nonatomic, retain) NSSet *issues;
 @property (nonatomic, retain) NSSet *time_entries;
 @end
 
-@interface SMProjects (CoreDataGeneratedAccessors)
-
-- (void)addIssuesObject:(SMIssue *)value;
-- (void)removeIssuesObject:(SMIssue *)value;
-- (void)addIssues:(NSSet *)values;
-- (void)removeIssues:(NSSet *)values;
+@interface SMActivity (CoreDataGeneratedAccessors)
 
 - (void)addTime_entriesObject:(SMTimeEntry *)value;
 - (void)removeTime_entriesObject:(SMTimeEntry *)value;

@@ -31,5 +31,6 @@
 @dynamic child;
 @dynamic n_priority;
 @dynamic n_assigned_to;
+@dynamic time_entries;
 
 @end
