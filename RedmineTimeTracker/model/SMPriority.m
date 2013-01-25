@@ -1,16 +1,16 @@
 //
-//  SMTrackers.m
+//  SMPriority.m
 //  RedmineTimeTracker
 //
 //  Created by pfy on 25.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
-#import "SMTrackers.h"
+#import "SMPriority.h"
 #import "SMIssue.h"
 
 
-@implementation SMTrackers
+@implementation SMPriority
 
 @dynamic n_name;
 @dynamic issues;

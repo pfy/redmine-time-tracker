@@ -2,7 +2,7 @@
 //  SMStatus.m
 //  RedmineTimeTracker
 //
-//  Created by pfy on 24.01.13.
+//  Created by pfy on 25.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -15,6 +15,6 @@
 @dynamic n_is_closed;
 @dynamic n_is_default;
 @dynamic n_name;
-@dynamic issue;
+@dynamic issues;
 
 @end

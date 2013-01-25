@@ -1,5 +1,5 @@
 //
-//  SMTrackers.h
+//  SMPriority.h
 //  RedmineTimeTracker
 //
 //  Created by pfy on 25.01.13.
@@ -12,13 +12,13 @@
 
 @class SMIssue;
 
-@interface SMTrackers : SMManagedObject
+@interface SMPriority : SMManagedObject
 
 @property (nonatomic, retain) NSString * n_name;
 @property (nonatomic, retain) NSSet *issues;
 @end
 
-@interface SMTrackers (CoreDataGeneratedAccessors)
+@interface SMPriority (CoreDataGeneratedAccessors)
 
 - (void)addIssuesObject:(SMIssue *)value;
 - (void)removeIssuesObject:(SMIssue *)value;

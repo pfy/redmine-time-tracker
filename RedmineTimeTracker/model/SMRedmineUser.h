@@ -20,14 +20,20 @@
 @property (nonatomic, retain) NSString * n_login;
 @property (nonatomic, retain) NSString * n_mail;
 @property (nonatomic, retain) NSString * n_name;
-@property (nonatomic, retain) NSSet *issues;
+@property (nonatomic, retain) NSSet *issues_created;
+@property (nonatomic, retain) NSSet *issues_assigned;
 @end
 
 @interface SMRedmineUser (CoreDataGeneratedAccessors)
 
-- (void)addIssuesObject:(SMIssue *)value;
-- (void)removeIssuesObject:(SMIssue *)value;
-- (void)addIssues:(NSSet *)values;
-- (void)removeIssues:(NSSet *)values;
+- (void)addIssues_createdObject:(SMIssue *)value;
+- (void)removeIssues_createdObject:(SMIssue *)value;
+- (void)addIssues_created:(NSSet *)values;
+- (void)removeIssues_created:(NSSet *)values;
+
+- (void)addIssues_assignedObject:(SMIssue *)value;
+- (void)removeIssues_assignedObject:(SMIssue *)value;
+- (void)addIssues_assigned:(NSSet *)values;
+- (void)removeIssues_assigned:(NSSet *)values;
 
 @end

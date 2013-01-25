@@ -2,7 +2,7 @@
 //  SMStatus.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 24.01.13.
+//  Created by pfy on 25.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSNumber * n_is_closed;
 @property (nonatomic, retain) NSNumber * n_is_default;
 @property (nonatomic, retain) NSString * n_name;
-@property (nonatomic, retain) SMIssue *issue;
+@property (nonatomic, retain) SMIssue *issues;
 
 @end

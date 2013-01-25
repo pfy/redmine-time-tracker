@@ -2,7 +2,7 @@
 //  SMIssue.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 24.01.13.
+//  Created by pfy on 25.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "SMManagedObject.h"
 
-@class SMProjects, SMRedmineUser, SMStatus, SMTrackers;
+@class SMIssue, SMPriority, SMProjects, SMRedmineUser, SMStatus, SMTrackers;
 
 @interface SMIssue : SMManagedObject
 
@@ -24,5 +24,9 @@
 @property (nonatomic, retain) SMProjects *n_project;
 @property (nonatomic, retain) SMStatus *n_status;
 @property (nonatomic, retain) SMTrackers *n_tracker;
+@property (nonatomic, retain) SMIssue *n_parent;
+@property (nonatomic, retain) SMIssue *child;
+@property (nonatomic, retain) SMPriority *n_priority;
+@property (nonatomic, retain) SMRedmineUser *n_assigned_to;
 
 @end

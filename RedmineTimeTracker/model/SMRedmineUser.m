@@ -18,6 +18,7 @@
 @dynamic n_login;
 @dynamic n_mail;
 @dynamic n_name;
-@dynamic issues;
+@dynamic issues_created;
+@dynamic issues_assigned;
 
 @end

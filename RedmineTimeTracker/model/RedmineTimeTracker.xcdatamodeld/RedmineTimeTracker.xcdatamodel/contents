@@ -7,15 +7,23 @@
         <attribute name="n_spent_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="n_start_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="n_subject" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="n_author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="child" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_parent" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="n_assigned_to" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_assigned" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="n_author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_created" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="n_parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="child" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="n_priority" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMPriority" inverseName="issues" inverseEntity="SMPriority" syncable="YES"/>
         <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMProjects" inverseName="issues" inverseEntity="SMProjects" syncable="YES"/>
-        <relationship name="n_status" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMStatus" inverseName="issue" inverseEntity="SMStatus" syncable="YES"/>
-        <relationship name="n_tracker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTrackers" inverseName="issue" inverseEntity="SMTrackers" syncable="YES"/>
+        <relationship name="n_status" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMStatus" inverseName="issues" inverseEntity="SMStatus" syncable="YES"/>
+        <relationship name="n_tracker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTrackers" inverseName="issues" inverseEntity="SMTrackers" syncable="YES"/>
     </entity>
     <entity name="SMManagedObject" representedClassName="SMManagedObject" isAbstract="YES" syncable="YES">
         <attribute name="n_created_on" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="n_id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="n_updated_on" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="SMPriority" representedClassName="SMPriority" parentEntity="SMManagedObject" syncable="YES">
+        <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_priority" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMProjects" representedClassName="SMProjects" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,24 +38,26 @@
         <attribute name="n_login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues_assigned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_assigned_to" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues_created" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMStatus" representedClassName="SMStatus" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_is_closed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="n_is_default" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_status" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_status" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMTrackers" representedClassName="SMTrackers" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_tracker" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_tracker" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SMIssue" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="SMIssue" positionX="160" positionY="192" width="128" height="255"/>
         <element name="SMManagedObject" positionX="160" positionY="192" width="128" height="90"/>
         <element name="SMProjects" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="SMRedmineUser" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="SMRedmineUser" positionX="160" positionY="192" width="128" height="165"/>
         <element name="SMStatus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="SMTrackers" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="SMPriority" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

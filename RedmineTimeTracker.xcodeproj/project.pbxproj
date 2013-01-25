@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */; };
 		CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */; };
-		CF10AEE916B178DC008F9741 /* SMTrackers.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEE816B178DC008F9741 /* SMTrackers.m */; };
-		CF10AEEC16B178DC008F9741 /* SMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEEB16B178DC008F9741 /* SMStatus.m */; };
-		CF10AEEF16B178DD008F9741 /* SMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEEE16B178DD008F9741 /* SMManagedObject.m */; };
-		CF10AEF216B178DD008F9741 /* SMProjects.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF116B178DD008F9741 /* SMProjects.m */; };
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
 		CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */; };
 		CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */; };
@@ -35,21 +31,18 @@
 		CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42516B1A06500C93A0D /* StatusBarMenu.m */; };
 		CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */; };
 		CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42B16B1A49800C93A0D /* IssuesList.m */; };
-		CFABD42F16B1B37100C93A0D /* SMIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42E16B1B37100C93A0D /* SMIssue.m */; };
-		CFABD43216B2956200C93A0D /* SMRedmineUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD43116B2956200C93A0D /* SMRedmineUser.m */; };
+		CFABD43E16B2992700C93A0D /* SMTrackers.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD43D16B2992700C93A0D /* SMTrackers.m */; };
+		CFABD44116B2992700C93A0D /* SMProjects.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44016B2992700C93A0D /* SMProjects.m */; };
+		CFABD44416B2992800C93A0D /* SMRedmineUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44316B2992800C93A0D /* SMRedmineUser.m */; };
+		CFABD44716B2992800C93A0D /* SMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44616B2992800C93A0D /* SMStatus.m */; };
+		CFABD44A16B2992800C93A0D /* SMManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44916B2992800C93A0D /* SMManagedObject.m */; };
+		CFABD44D16B2992900C93A0D /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44C16B2992800C93A0D /* SMPriority.m */; };
+		CFABD45016B2992900C93A0D /* SMIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD44F16B2992900C93A0D /* SMIssue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF10AEDA16B177D5008F9741 /* RedmineTimeTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedmineTimeTracker.xcdatamodel; sourceTree = "<group>"; };
 		CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		CF10AEE716B178DC008F9741 /* SMTrackers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrackers.h; sourceTree = "<group>"; };
-		CF10AEE816B178DC008F9741 /* SMTrackers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrackers.m; sourceTree = "<group>"; };
-		CF10AEEA16B178DC008F9741 /* SMStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatus.h; sourceTree = "<group>"; };
-		CF10AEEB16B178DC008F9741 /* SMStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatus.m; sourceTree = "<group>"; };
-		CF10AEED16B178DD008F9741 /* SMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMManagedObject.h; sourceTree = "<group>"; };
-		CF10AEEE16B178DD008F9741 /* SMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMManagedObject.m; sourceTree = "<group>"; };
-		CF10AEF016B178DD008F9741 /* SMProjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProjects.h; sourceTree = "<group>"; };
-		CF10AEF116B178DD008F9741 /* SMProjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProjects.m; sourceTree = "<group>"; };
 		CF10AEF416B179EF008F9741 /* SMManagedObject+networkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMManagedObject+networkExtension.h"; sourceTree = "<group>"; };
 		CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMManagedObject+networkExtension.m"; sourceTree = "<group>"; };
 		CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMUpdateOperation.h; sourceTree = "<group>"; };
@@ -96,10 +89,20 @@
 		CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveApplicationTracker.m; sourceTree = "<group>"; };
 		CFABD42A16B1A49800C93A0D /* IssuesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesList.h; sourceTree = "<group>"; };
 		CFABD42B16B1A49800C93A0D /* IssuesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesList.m; sourceTree = "<group>"; };
-		CFABD42D16B1B37100C93A0D /* SMIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMIssue.h; sourceTree = "<group>"; };
-		CFABD42E16B1B37100C93A0D /* SMIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMIssue.m; sourceTree = "<group>"; };
-		CFABD43016B2956200C93A0D /* SMRedmineUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRedmineUser.h; sourceTree = "<group>"; };
-		CFABD43116B2956200C93A0D /* SMRedmineUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRedmineUser.m; sourceTree = "<group>"; };
+		CFABD43C16B2992700C93A0D /* SMTrackers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrackers.h; sourceTree = "<group>"; };
+		CFABD43D16B2992700C93A0D /* SMTrackers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrackers.m; sourceTree = "<group>"; };
+		CFABD43F16B2992700C93A0D /* SMProjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProjects.h; sourceTree = "<group>"; };
+		CFABD44016B2992700C93A0D /* SMProjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProjects.m; sourceTree = "<group>"; };
+		CFABD44216B2992800C93A0D /* SMRedmineUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRedmineUser.h; sourceTree = "<group>"; };
+		CFABD44316B2992800C93A0D /* SMRedmineUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRedmineUser.m; sourceTree = "<group>"; };
+		CFABD44516B2992800C93A0D /* SMStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatus.h; sourceTree = "<group>"; };
+		CFABD44616B2992800C93A0D /* SMStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatus.m; sourceTree = "<group>"; };
+		CFABD44816B2992800C93A0D /* SMManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMManagedObject.h; sourceTree = "<group>"; };
+		CFABD44916B2992800C93A0D /* SMManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMManagedObject.m; sourceTree = "<group>"; };
+		CFABD44B16B2992800C93A0D /* SMPriority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPriority.h; sourceTree = "<group>"; };
+		CFABD44C16B2992800C93A0D /* SMPriority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPriority.m; sourceTree = "<group>"; };
+		CFABD44E16B2992900C93A0D /* SMIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMIssue.h; sourceTree = "<group>"; };
+		CFABD44F16B2992900C93A0D /* SMIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMIssue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,20 +124,22 @@
 				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
 				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
 				CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */,
-				CFABD43016B2956200C93A0D /* SMRedmineUser.h */,
-				CFABD43116B2956200C93A0D /* SMRedmineUser.m */,
-				CFABD42D16B1B37100C93A0D /* SMIssue.h */,
-				CFABD42E16B1B37100C93A0D /* SMIssue.m */,
-				CF10AEF016B178DD008F9741 /* SMProjects.h */,
-				CF10AEF116B178DD008F9741 /* SMProjects.m */,
-				CF10AEED16B178DD008F9741 /* SMManagedObject.h */,
-				CF10AEEE16B178DD008F9741 /* SMManagedObject.m */,
+				CFABD44E16B2992900C93A0D /* SMIssue.h */,
+				CFABD44F16B2992900C93A0D /* SMIssue.m */,
+				CFABD44B16B2992800C93A0D /* SMPriority.h */,
+				CFABD44C16B2992800C93A0D /* SMPriority.m */,
+				CFABD44816B2992800C93A0D /* SMManagedObject.h */,
+				CFABD44916B2992800C93A0D /* SMManagedObject.m */,
+				CFABD44516B2992800C93A0D /* SMStatus.h */,
+				CFABD44616B2992800C93A0D /* SMStatus.m */,
+				CFABD44216B2992800C93A0D /* SMRedmineUser.h */,
+				CFABD44316B2992800C93A0D /* SMRedmineUser.m */,
+				CFABD43F16B2992700C93A0D /* SMProjects.h */,
+				CFABD44016B2992700C93A0D /* SMProjects.m */,
+				CFABD43C16B2992700C93A0D /* SMTrackers.h */,
+				CFABD43D16B2992700C93A0D /* SMTrackers.m */,
 				CF10AEF416B179EF008F9741 /* SMManagedObject+networkExtension.h */,
 				CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */,
-				CF10AEEA16B178DC008F9741 /* SMStatus.h */,
-				CF10AEEB16B178DC008F9741 /* SMStatus.m */,
-				CF10AEE716B178DC008F9741 /* SMTrackers.h */,
-				CF10AEE816B178DC008F9741 /* SMTrackers.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -346,18 +351,19 @@
 				CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */,
 				CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */,
 				CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */,
-				CF10AEE916B178DC008F9741 /* SMTrackers.m in Sources */,
-				CF10AEEC16B178DC008F9741 /* SMStatus.m in Sources */,
-				CF10AEEF16B178DD008F9741 /* SMManagedObject.m in Sources */,
-				CF10AEF216B178DD008F9741 /* SMProjects.m in Sources */,
 				CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */,
 				CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */,
 				CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */,
 				CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */,
 				CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */,
 				CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */,
-				CFABD42F16B1B37100C93A0D /* SMIssue.m in Sources */,
-				CFABD43216B2956200C93A0D /* SMRedmineUser.m in Sources */,
+				CFABD43E16B2992700C93A0D /* SMTrackers.m in Sources */,
+				CFABD44116B2992700C93A0D /* SMProjects.m in Sources */,
+				CFABD44416B2992800C93A0D /* SMRedmineUser.m in Sources */,
+				CFABD44716B2992800C93A0D /* SMStatus.m in Sources */,
+				CFABD44A16B2992800C93A0D /* SMManagedObject.m in Sources */,
+				CFABD44D16B2992900C93A0D /* SMPriority.m in Sources */,
+				CFABD45016B2992900C93A0D /* SMIssue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
