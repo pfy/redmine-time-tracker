@@ -29,6 +29,7 @@
         <attribute name="n_lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_mail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMStatus" representedClassName="SMStatus" parentEntity="SMManagedObject" syncable="YES">
@@ -45,7 +46,7 @@
         <element name="SMIssue" positionX="160" positionY="192" width="128" height="195"/>
         <element name="SMManagedObject" positionX="160" positionY="192" width="128" height="90"/>
         <element name="SMProjects" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="SMRedmineUser" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="SMRedmineUser" positionX="160" positionY="192" width="128" height="150"/>
         <element name="SMStatus" positionX="160" positionY="192" width="128" height="105"/>
         <element name="SMTrackers" positionX="160" positionY="192" width="128" height="75"/>
     </elements>

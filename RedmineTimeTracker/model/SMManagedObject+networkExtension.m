@@ -20,6 +20,23 @@ static char *smoohClassPrefix = "T@\"SM";
 -(void)createRequest:(SMHttpClient *)client{
     
 }
+
++(SMManagedObject*)findOrCreateById:(int)n_id andEntity:(NSString*)entityName inContext:(NSManagedObjectContext*)context {
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_id = %d",n_id];
+    [fetchRequest setEntity:entity];
+    NSArray *array = [context executeFetchRequest:fetchRequest error:nil];
+    SMManagedObject *managedObject = nil;
+    if(array.count > 0){
+        managedObject = [array objectAtIndex:0];
+    } else {
+            managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    }
+    return managedObject;
+    
+}
+
 -(void)updateWithDict:(NSDictionary*)dict{
     if(self.managedObjectContext == nil){
         LOG_INFO(@"object has been deleted %@",self);
@@ -40,7 +57,15 @@ static char *smoohClassPrefix = "T@\"SM";
                 LOG_INFO(@"type %s",propertyAttrs);
 
                 if((strncmp(propertyAttrs,smoohClassPrefix,strlen(smoohClassPrefix)) == 0)){
-                    LOG_INFO(@"is smooh class");
+                    NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
+                    NSString *className = [listItems objectAtIndex:1];
+                    int n_id = [[val valueForKey:@"id"]intValue];
+                    SMManagedObject *newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
+                    [newObject updateWithDict:val];
+                    if(! [newObject isEqual:[self valueForKey:newKey]]){
+                        [self setValue:newObject forKey:newKey];
+                    }
+                    LOG_INFO(@"is smooh class %d %@ %@",n_id,className,newObject);
                 }
                 else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
                     NSDate *newDate;
