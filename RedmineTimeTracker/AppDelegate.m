@@ -216,9 +216,7 @@
     }
 }
 
--(void)getActiveApp{
-    
-}
+
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     LOG_INFO(@"did change %@ of object %@ change %@",keyPath,object,change);

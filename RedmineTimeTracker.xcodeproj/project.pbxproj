@@ -17,6 +17,8 @@
 		CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9716B68EC60033346D /* StartTrackingWindowController.m */; };
 		CF114B9A16B68EC70033346D /* StartTrackingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */; };
 		CF114B9D16B6C0EE0033346D /* SMIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9C16B6C0EE0033346D /* SMIssue.m */; };
+		CF114BA116B6CBED0033346D /* TrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9F16B6CBED0033346D /* TrackingWindowController.m */; };
+		CF114BA216B6CBED0033346D /* TrackingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF114BA016B6CBED0033346D /* TrackingWindowController.xib */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -63,6 +65,9 @@
 		CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartTrackingWindowController.xib; sourceTree = "<group>"; };
 		CF114B9B16B6C0EE0033346D /* SMIssue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMIssue.h; sourceTree = "<group>"; };
 		CF114B9C16B6C0EE0033346D /* SMIssue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMIssue.m; sourceTree = "<group>"; };
+		CF114B9E16B6CBED0033346D /* TrackingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingWindowController.h; sourceTree = "<group>"; };
+		CF114B9F16B6CBED0033346D /* TrackingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingWindowController.m; sourceTree = "<group>"; };
+		CF114BA016B6CBED0033346D /* TrackingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackingWindowController.xib; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -305,6 +310,9 @@
 				CF114B9616B68EC60033346D /* StartTrackingWindowController.h */,
 				CF114B9716B68EC60033346D /* StartTrackingWindowController.m */,
 				CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */,
+				CF114B9E16B6CBED0033346D /* TrackingWindowController.h */,
+				CF114B9F16B6CBED0033346D /* TrackingWindowController.m */,
+				CF114BA016B6CBED0033346D /* TrackingWindowController.xib */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -365,6 +373,7 @@
 				CF8844C716B045E9008B87FC /* Credits.rtf in Resources */,
 				CF8844CD16B045E9008B87FC /* MainMenu.xib in Resources */,
 				CF114B9A16B68EC70033346D /* StartTrackingWindowController.xib in Resources */,
+				CF114BA216B6CBED0033346D /* TrackingWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 				CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */,
 				CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */,
 				CF114B9D16B6C0EE0033346D /* SMIssue.m in Sources */,
+				CF114BA116B6CBED0033346D /* TrackingWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
