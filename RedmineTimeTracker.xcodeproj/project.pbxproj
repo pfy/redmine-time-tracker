@@ -30,6 +30,7 @@
 		CF114BC016B6D3460033346D /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BBF16B6D3460033346D /* SMPriority.m */; };
 		CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */; };
 		CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC616B6D9A60033346D /* TimeTracker.m */; };
+		CF114BCE16B6DF4E0033346D /* SMTimeEntry+DisplayThingi.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -93,6 +94,8 @@
 		CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMCurrentUser+trackingExtension.m"; sourceTree = "<group>"; };
 		CF114BC516B6D9A60033346D /* TimeTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTracker.h; sourceTree = "<group>"; };
 		CF114BC616B6D9A60033346D /* TimeTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTracker.m; sourceTree = "<group>"; };
+		CF114BCC16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMTimeEntry+DisplayThingi.h"; sourceTree = "<group>"; };
+		CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+DisplayThingi.m"; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -179,6 +182,8 @@
 				CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */,
 				CF114BC116B6D36D0033346D /* SMCurrentUser+trackingExtension.h */,
 				CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */,
+				CF114BCC16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.h */,
+				CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -212,6 +217,13 @@
 				CF114BC616B6D9A60033346D /* TimeTracker.m */,
 			);
 			path = tracking;
+			sourceTree = "<group>";
+		};
+		CF114BC816B6DE270033346D /* valueTransformer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = valueTransformer;
 			sourceTree = "<group>";
 		};
 		CF8844A716B045E9008B87FC = {
@@ -255,6 +267,7 @@
 		CF8844BC16B045E9008B87FC /* RedmineTimeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CF114BC816B6DE270033346D /* valueTransformer */,
 				CF114BC416B6D9790033346D /* tracking */,
 				CFABD41A16B1899C00C93A0D /* gui */,
 				CF10AEFD16B17B34008F9741 /* network */,
@@ -441,6 +454,7 @@
 				CF114BC016B6D3460033346D /* SMPriority.m in Sources */,
 				CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */,
 				CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */,
+				CF114BCE16B6DF4E0033346D /* SMTimeEntry+DisplayThingi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
