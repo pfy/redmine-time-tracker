@@ -12,6 +12,9 @@
 @property (nonatomic,strong) IBOutlet NSComboBox *projectField;
 @property (nonatomic,strong) IBOutlet NSComboBox *issuesField;
 @property (nonatomic,strong) IBOutlet NSTextView *commentTextView;
+@property (nonatomic,weak)  NSManagedObjectContext *context;
+@property (nonatomic,strong) IBOutlet NSArrayController *projectArrayController;
+
 
 
 @end
