@@ -62,7 +62,7 @@
 }
 
 -(IBAction)startTracking:(id)sender{
-    if(self.currentIssue){
+    if(self.currentIssue && [[self.commentTextView stringValue] isNotEqualTo:@""]){
         SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry" inManagedObjectContext:self.context];
         NSError *error;
         NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
