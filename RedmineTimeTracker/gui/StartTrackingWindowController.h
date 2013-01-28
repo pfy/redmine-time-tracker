@@ -17,6 +17,7 @@
 @property (nonatomic,weak)  NSManagedObjectContext *context;
 @property (nonatomic,strong) IBOutlet NSArrayController *projectArrayController;
 @property (nonatomic,strong) IBOutlet NSArrayController *issueArrayController;
+@property (nonatomic,strong) id currentProject;
 
 
 

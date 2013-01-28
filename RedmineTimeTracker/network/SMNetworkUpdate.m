@@ -16,7 +16,7 @@
     AFHTTPClient *client = [SMHttpClient sharedHTTPClient];
     [client getPath:[NSString stringWithFormat:@"time_entries.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        LOG_INFO(@"timenetries requested %@",responseObject);
+       // LOG_INFO(@"timenetries requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
             int totalCount = [[responseObject objectForKey:@"total_count"] intValue];
             int limit = [[responseObject objectForKey:@"limit"] intValue];

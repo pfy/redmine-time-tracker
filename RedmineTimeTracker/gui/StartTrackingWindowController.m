@@ -39,14 +39,18 @@
     
     NSError *error;
     [self.projectArrayController fetchWithRequest:nil merge:YES error:&error];
+    
     [self.issueArrayController setManagedObjectContext:self.context];
+    [self.issueArrayController setEntityName:@"SMIssue"];
+    self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project = %@",self.projectArrayController.selection];
+    [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
 
 
 
     LOG_INFO(@"fetched objects %@",[[self.projectArrayController arrangedObjects] valueForKey:@"n_name"]);
     
     
-    [self.projectArrayController addObserver:self forKeyPath:@"selection.n_name" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"currentProject" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
 
 
        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
@@ -57,10 +61,11 @@
     LOG_INFO(@"array section %@ ",currentProject);
     LOG_INFO(@"array section %@ ",[currentProject.issues valueForKey:@"n_subject"]);
 
-    [self.issueArrayController setContent:[NSArray array]];
-    [self.issueArrayController setContent:currentProject.issues];
+    NSError *error;
 
-    
+    self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project.n_name = %@",self.currentProject];
+    [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
+
     LOG_INFO(@"fetch complete, got %@ objects",[self.issueArrayController.arrangedObjects valueForKey:@"n_subject"]);
 
 }

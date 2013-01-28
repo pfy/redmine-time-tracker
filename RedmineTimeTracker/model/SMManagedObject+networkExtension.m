@@ -100,7 +100,7 @@ static char *smoohClassPrefix = "T@\"SM";
         }
     }
     
-    LOG_INFO(@"did update %@",self);
+   // LOG_INFO(@"did update %@",self);
 }
 
 
