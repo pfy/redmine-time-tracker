@@ -26,5 +26,6 @@
 @property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
 @property (nonatomic,strong) IssuesList  *issuesList;
 - (IBAction)saveAction:(id)sender;
+- (void)saveContext;
 
 @end

@@ -4,6 +4,12 @@
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_activity" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
+    <entity name="SMCurrentUser" representedClassName="SMCurrentUser" syncable="YES">
+        <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serverUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentTimeEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="currentUser" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="myUserObject" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="currentUser" inverseEntity="SMRedmineUser" syncable="YES"/>
+    </entity>
     <entity name="SMIssue" representedClassName="SMIssue" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_done_ratio" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -45,6 +51,7 @@
         <attribute name="n_login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMCurrentUser" inverseName="myUserObject" inverseEntity="SMCurrentUser" syncable="YES"/>
         <relationship name="issues_assigned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_assigned_to" inverseEntity="SMIssue" syncable="YES"/>
         <relationship name="issues_created" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
         <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_user" inverseEntity="SMTimeEntry" syncable="YES"/>
@@ -59,6 +66,7 @@
         <attribute name="n_comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="n_spent_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMCurrentUser" inverseName="currentTimeEntry" inverseEntity="SMCurrentUser" syncable="YES"/>
         <relationship name="n_activity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMActivity" inverseName="time_entries" inverseEntity="SMActivity" syncable="YES"/>
         <relationship name="n_issue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="time_entries" inverseEntity="SMIssue" syncable="YES"/>
         <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMProjects" inverseName="time_entries" inverseEntity="SMProjects" syncable="YES"/>
@@ -74,9 +82,10 @@
         <element name="SMManagedObject" positionX="216" positionY="-63" width="128" height="90"/>
         <element name="SMPriority" positionX="385" positionY="153" width="128" height="75"/>
         <element name="SMProjects" positionX="-171" positionY="-27" width="128" height="120"/>
-        <element name="SMRedmineUser" positionX="-272" positionY="378" width="128" height="180"/>
+        <element name="SMRedmineUser" positionX="-272" positionY="378" width="128" height="195"/>
         <element name="SMStatus" positionX="-117" positionY="201" width="128" height="105"/>
-        <element name="SMTimeEntry" positionX="61" positionY="486" width="128" height="150"/>
+        <element name="SMTimeEntry" positionX="61" positionY="486" width="128" height="165"/>
         <element name="SMTrackers" positionX="-360" positionY="261" width="128" height="75"/>
+        <element name="SMCurrentUser" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

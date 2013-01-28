@@ -26,6 +26,6 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "AppDelegate.h"
 
-    #define SAVE_APP_CONTEXT [(AppDelegate*)[UIApplication sharedApplication].delegate saveContext];
+    #define SAVE_APP_CONTEXT [(AppDelegate*)[NSApplication sharedApplication].delegate saveContext];
 
 #endif

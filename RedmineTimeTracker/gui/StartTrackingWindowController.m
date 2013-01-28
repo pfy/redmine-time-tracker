@@ -7,6 +7,8 @@
 //
 
 #import "StartTrackingWindowController.h"
+#import "SMTimeEntry.h"
+#import "SMCurrentUser+trackingExtension.h"
 
 @interface StartTrackingWindowController ()
 
@@ -61,7 +63,33 @@
 
 -(IBAction)startTracking:(id)sender{
     if(self.currentIssue){
-    [self.window close];
+        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry" inManagedObjectContext:self.context];
+        NSError *error;
+        NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
+        projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@",self.currentProject];
+        SMProjects *currentProject = [[self.context executeFetchRequest:projectFetchRequest error:&error] objectAtIndex:0];
+        if(error){
+            LOG_ERR(@"error happend %@",error);
+            error = nil;
+        }
+        
+        NSFetchRequest *issueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
+        issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject =  %@ and n_project=%@",self.currentIssue,currentProject];
+        SMIssue *currentIssue = [[self.context executeFetchRequest:issueFetchRequest error:&error] objectAtIndex:0];
+        if(error){
+            LOG_ERR(@"error happend %@",error);
+            error = nil;
+        }
+        entry.n_issue = currentIssue;
+        entry.n_project = currentProject;
+        entry.n_comments = [self.commentTextView stringValue];
+        
+        [SMCurrentUser findOrCreate].currentTimeEntry = entry;
+
+        SAVE_APP_CONTEXT
+                
+        
+        [self.window close];
     }
 
 }
