@@ -12,6 +12,8 @@
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
 		CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */; };
 		CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */; };
+		CF114ADE16B686DF0033346D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF114ADD16B686DF0033346D /* Carbon.framework */; };
+		CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -51,6 +53,9 @@
 		CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMUpdateOperation.m; sourceTree = "<group>"; };
 		CF10AEFE16B17B4C008F9741 /* SMHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHttpClient.h; sourceTree = "<group>"; };
 		CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHttpClient.m; sourceTree = "<group>"; };
+		CF114ADD16B686DF0033346D /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
+		CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -116,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF114ADE16B686DF0033346D /* Carbon.framework in Frameworks */,
 				CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */,
 				CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */,
 			);
@@ -165,9 +171,19 @@
 			path = network;
 			sourceTree = "<group>";
 		};
+		CF114B7316B6880D0033346D /* DDHotKey */ = {
+			isa = PBXGroup;
+			children = (
+				CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */,
+				CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */,
+			);
+			path = DDHotKey;
+			sourceTree = "<group>";
+		};
 		CF8844A716B045E9008B87FC = {
 			isa = PBXGroup;
 			children = (
+				CF114ADD16B686DF0033346D /* Carbon.framework */,
 				CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */,
 				CF8844BC16B045E9008B87FC /* RedmineTimeTracker */,
 				CF8844B516B045E9008B87FC /* Frameworks */,
@@ -232,6 +248,7 @@
 		CF8844D616B17767008B87FC /* addins */ = {
 			isa = PBXGroup;
 			children = (
+				CF114B7316B6880D0033346D /* DDHotKey */,
 				CF8844D716B17767008B87FC /* AFNetworking */,
 			);
 			path = addins;
@@ -319,6 +336,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = CF8844A716B045E9008B87FC;
 			productRefGroup = CF8844B316B045E9008B87FC /* Products */;
@@ -376,6 +394,7 @@
 				CFABD48016B2B5FF00C93A0D /* SMStatus.m in Sources */,
 				CFABD48316B2B5FF00C93A0D /* SMTrackers.m in Sources */,
 				CFABD48616B2B5FF00C93A0D /* SMActivity.m in Sources */,
+				CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

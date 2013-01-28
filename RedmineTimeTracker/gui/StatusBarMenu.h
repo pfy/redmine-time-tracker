@@ -10,4 +10,9 @@
 
 @interface StatusBarMenu : NSObject
 @property (nonatomic,strong) NSStatusItem *statusItem;
+@property (nonatomic,strong) NSMenu *statusMenu;
+@property (nonatomic,strong) NSMenuItem *startTrackingMenuItem;
+@property (nonatomic,strong) NSMenuItem *stopTrackingMenuItem;
+
+
 @end
