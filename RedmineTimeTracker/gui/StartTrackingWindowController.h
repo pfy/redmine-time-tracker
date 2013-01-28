@@ -18,7 +18,11 @@
 @property (nonatomic,strong) IBOutlet NSArrayController *projectArrayController;
 @property (nonatomic,strong) IBOutlet NSArrayController *issueArrayController;
 @property (nonatomic,strong) id currentProject;
+@property (nonatomic,strong) id currentIssue;
 
+
+ -(IBAction) startTracking:(id)sender;
+ -(IBAction) cancelTracking:(id)sender;
 
 
 @end
