@@ -45,6 +45,10 @@
 
 -(void)startTracking{
     LOG_WARN(@"====== START TRARCKING =======");
+    
+    self.startTrackingWindowController = [[StartTrackingWindowController alloc] initWithWindowNibName:@"StartTrackingWindowController"];
+    [self.startTrackingWindowController showWindow:self];
+
 }
 -(void)stopTracking{
     LOG_WARN(@"====== STOP TRARCKING =======");

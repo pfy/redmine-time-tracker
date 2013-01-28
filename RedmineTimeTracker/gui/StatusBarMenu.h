@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StartTrackingWindowController.h"
 
 @interface StatusBarMenu : NSObject
 @property (nonatomic,strong) NSStatusItem *statusItem;
 @property (nonatomic,strong) NSMenu *statusMenu;
 @property (nonatomic,strong) NSMenuItem *startTrackingMenuItem;
 @property (nonatomic,strong) NSMenuItem *stopTrackingMenuItem;
+@property (nonatomic,strong) StartTrackingWindowController *startTrackingWindowController;
 
 
 @end
