@@ -54,48 +54,42 @@ static char *smoohClassPrefix = "T@\"SM";
             class_getProperty([self class], [newKey UTF8String]);
             if(theProperty){
                 const char * propertyAttrs = property_getAttributes(theProperty);
-                LOG_INFO(@"type %s",propertyAttrs);
-
                 if((strncmp(propertyAttrs,smoohClassPrefix,strlen(smoohClassPrefix)) == 0)){
                     NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
                     NSString *className = [listItems objectAtIndex:1];
                     int n_id = [[val valueForKey:@"id"]intValue];
-                    SMManagedObject *newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
+                    SMManagedObject *newObject = [self valueForKey:newKey];
+                    if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
+                        newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
+                    }
                     [newObject updateWithDict:val];
                     if(! [newObject isEqual:[self valueForKey:newKey]]){
                         [self setValue:newObject forKey:newKey];
                     }
-                    LOG_INFO(@"is smooh class %d %@ %@",n_id,className,newObject);
                 }
-                else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
+               else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
                     NSDate *newDate;
-                    NSString *stringVal = val;
-                    if(stringVal.length == 5){
-                        NSArray *comps = [stringVal componentsSeparatedByString:@":"];
-                        NSCalendar *cal = [NSCalendar currentCalendar];
-                        NSDateComponents *net_comps = [NSDateComponents new];
-                        net_comps.hour = [[comps objectAtIndex:0] intValue];
-                        net_comps.minute = [[comps objectAtIndex:1] intValue];
-                        NSDateComponents *cur_comps = [cal components:NSYearCalendarUnit|NSDayCalendarUnit|NSMonthCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:[NSDate date]];
-                        
-                        int addDay = 0;
-                        if(net_comps.hour < 5 && cur_comps.hour > 20){
-                            addDay = 1;
-                        } else if ( cur_comps.hour < 5 && net_comps.hour > 20 ){
-                            addDay = -1;
-                        }
-                        cur_comps.hour = net_comps.hour;
-                        cur_comps.minute = net_comps.minute;
-                        newDate = [cal dateFromComponents:cur_comps];
-                        newDate = [newDate dateByAddingTimeInterval:3600*24.0*addDay];
-                    } else {
-                       // newDate = [stringVal getDateFromJSON];
-                    }
+                   NSString *dateString = val;
+                   if(dateString.length == 10){
+                       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                       [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                       newDate = [dateFormatter dateFromString:dateString];
+                   } else {
+                       dateString = [dateString stringByReplacingOccurrencesOfString:@":"
+                                                                    withString:@""];
+                       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                       [dateFormatter setDateFormat:@"yyyy/MM/dd HHmmss ZZ"];
+                       newDate = [dateFormatter dateFromString:dateString];
+                   }
+                   if(newDate == nil){
+                       LOG_ERR(@"did fail to parse date %@",dateString);
+                   }
                     if(! [newDate isEqual:[self valueForKey:newKey]]){
                         [self setValue:newDate forKey:newKey];
                     }
                     
-                } else {
+                }
+                else {
                     if(! [val isEqual:[self valueForKey:newKey]]){
                         [self setValue:val forKey:newKey];
                     }
@@ -105,6 +99,8 @@ static char *smoohClassPrefix = "T@\"SM";
             }
         }
     }
+    
+    LOG_INFO(@"did update %@",self);
 }
 
 

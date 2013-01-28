@@ -39,12 +39,10 @@
     
     NSError *error;
     [self.projectArrayController fetchWithRequest:nil merge:YES error:&error];
-    
     [self.issueArrayController setManagedObjectContext:self.context];
-    [self.issueArrayController setEntityName:@"SMIssue"];
-    [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
-    
-    
+
+
+
     LOG_INFO(@"fetched objects %@",[[self.projectArrayController arrangedObjects] valueForKey:@"n_name"]);
     
     
@@ -54,8 +52,16 @@
        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    SMProjects *currentProject = [[self.projectArrayController selectedObjects] objectAtIndex:0] ;
     LOG_INFO(@"did observer change %@ at %@ for %@",change,keyPath,object);
-    LOG_INFO(@"array section %@ ",[self.projectArrayController.selection valueForKey:@"issues"]);
+    LOG_INFO(@"array section %@ ",currentProject);
+    LOG_INFO(@"array section %@ ",[currentProject.issues valueForKey:@"n_subject"]);
+
+    [self.issueArrayController setContent:[NSArray array]];
+    [self.issueArrayController setContent:currentProject.issues];
+
     
+    LOG_INFO(@"fetch complete, got %@ objects",[self.issueArrayController.arrangedObjects valueForKey:@"n_subject"]);
+
 }
 @end
