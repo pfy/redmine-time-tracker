@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SMNetworkUpdate.h"
+#import "SMCurrentUser+trackingExtension.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,8 @@
     self.asyncDbQueue = [[NSOperationQueue alloc]init];
     [self.asyncDbQueue setMaxConcurrentOperationCount:1];
 
+    self.timeTracker = [TimeTracker new];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(managedObjectContextDidChange:)
                                                  name:NSManagedObjectContextDidSaveNotification
@@ -29,12 +32,11 @@
    [updater update];
     self.statusBarMenu = [StatusBarMenu new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
-    self.issuesList =[IssuesList new];
-    self.outlineView.delegate = self.issuesList;
-    self.outlineView.dataSource = self.issuesList;
+ 
     
 
-
+    self.trackingVc = [[TrackingWindowController alloc] initWithWindowNibName:@"TrackingWindowController"];
+    [self.trackingVc showWindow:self];
 
     LOG_INFO(@"App Started");
     // Insert code here to initialize your application

@@ -9,5 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TrackingWindowController : NSWindowController
+@property (nonatomic,strong) IBOutlet NSArrayController *timeEntryArrayController;
+@property (nonatomic,weak)  NSManagedObjectContext *context;
 
 @end

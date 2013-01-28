@@ -29,6 +29,7 @@
 		CF114BBD16B6D3460033346D /* SMRedmineUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BBC16B6D3460033346D /* SMRedmineUser.m */; };
 		CF114BC016B6D3460033346D /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BBF16B6D3460033346D /* SMPriority.m */; };
 		CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */; };
+		CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC616B6D9A60033346D /* TimeTracker.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -90,6 +91,8 @@
 		CF114BBF16B6D3460033346D /* SMPriority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPriority.m; sourceTree = "<group>"; };
 		CF114BC116B6D36D0033346D /* SMCurrentUser+trackingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMCurrentUser+trackingExtension.h"; sourceTree = "<group>"; };
 		CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMCurrentUser+trackingExtension.m"; sourceTree = "<group>"; };
+		CF114BC516B6D9A60033346D /* TimeTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTracker.h; sourceTree = "<group>"; };
+		CF114BC616B6D9A60033346D /* TimeTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTracker.m; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -126,8 +129,8 @@
 		CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNetworkUpdate.m; sourceTree = "<group>"; };
 		CFABD42416B1A06500C93A0D /* StatusBarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarMenu.h; sourceTree = "<group>"; };
 		CFABD42516B1A06500C93A0D /* StatusBarMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarMenu.m; sourceTree = "<group>"; };
-		CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveApplicationTracker.h; sourceTree = "<group>"; };
-		CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveApplicationTracker.m; sourceTree = "<group>"; };
+		CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActiveApplicationTracker.h; path = ../gui/ActiveApplicationTracker.h; sourceTree = "<group>"; };
+		CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveApplicationTracker.m; path = ../gui/ActiveApplicationTracker.m; sourceTree = "<group>"; };
 		CFABD42A16B1A49800C93A0D /* IssuesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesList.h; sourceTree = "<group>"; };
 		CFABD42B16B1A49800C93A0D /* IssuesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +203,17 @@
 			path = DDHotKey;
 			sourceTree = "<group>";
 		};
+		CF114BC416B6D9790033346D /* tracking */ = {
+			isa = PBXGroup;
+			children = (
+				CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */,
+				CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */,
+				CF114BC516B6D9A60033346D /* TimeTracker.h */,
+				CF114BC616B6D9A60033346D /* TimeTracker.m */,
+			);
+			path = tracking;
+			sourceTree = "<group>";
+		};
 		CF8844A716B045E9008B87FC = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +255,7 @@
 		CF8844BC16B045E9008B87FC /* RedmineTimeTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CF114BC416B6D9790033346D /* tracking */,
 				CFABD41A16B1899C00C93A0D /* gui */,
 				CF10AEFD16B17B34008F9741 /* network */,
 				CF10AED816B177D5008F9741 /* model */,
@@ -313,8 +328,6 @@
 			children = (
 				CFABD42416B1A06500C93A0D /* StatusBarMenu.h */,
 				CFABD42516B1A06500C93A0D /* StatusBarMenu.m */,
-				CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */,
-				CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */,
 				CFABD42A16B1A49800C93A0D /* IssuesList.h */,
 				CFABD42B16B1A49800C93A0D /* IssuesList.m */,
 				CF114B9616B68EC60033346D /* StartTrackingWindowController.h */,
@@ -427,6 +440,7 @@
 				CF114BBD16B6D3460033346D /* SMRedmineUser.m in Sources */,
 				CF114BC016B6D3460033346D /* SMPriority.m in Sources */,
 				CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */,
+				CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

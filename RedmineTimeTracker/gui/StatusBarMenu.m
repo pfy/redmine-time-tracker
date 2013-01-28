@@ -8,6 +8,7 @@
 
 #import "StatusBarMenu.h"
 #import "DDHotKeyCenter.h"
+#import "SMCurrentUser+trackingExtension.h"
 
 @implementation StatusBarMenu
 -(id)init{
@@ -52,6 +53,9 @@
 }
 -(void)stopTracking{
     LOG_WARN(@"====== STOP TRARCKING =======");
+    [SMCurrentUser findOrCreate].currentTimeEntry = nil;
+    SAVE_APP_CONTEXT
+    
 }
 
 -(void)registerHotkey{

@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "StatusBarMenu.h"
 #import "ActiveApplicationTracker.h"
-#import "IssuesList.h"
+#import "TrackingWindowController.h"
+#import "TimeTracker.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -20,11 +21,12 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,retain) NSOperationQueue *asyncDbQueue;
 @property (nonatomic,weak)  IBOutlet NSOutlineView *outlineView;
+@property (nonatomic,strong) TrackingWindowController *trackingVc;
+@property (nonatomic,strong) TimeTracker *timeTracker;
 
 
 @property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
 @property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
-@property (nonatomic,strong) IssuesList  *issuesList;
 - (IBAction)saveAction:(id)sender;
 - (void)saveContext;
 
