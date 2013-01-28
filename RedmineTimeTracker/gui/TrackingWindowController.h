@@ -10,6 +10,13 @@
 
 @interface TrackingWindowController : NSWindowController
 @property (nonatomic,strong) IBOutlet NSArrayController *timeEntryArrayController;
-@property (nonatomic,weak)  NSManagedObjectContext *context;
+@property (nonatomic,strong)  NSManagedObjectContext *context;
+@property (nonatomic,strong)  NSDate *currentDate;
+@property (nonatomic,strong)  NSString *currentDateString;
+@property (nonatomic,strong) NSDateFormatter *formatter;
+
+-(IBAction)nextDay:(id)sender;
+-(IBAction)prevDay:(id)sender;
+-(IBAction)today:(id)sender;
 
 @end

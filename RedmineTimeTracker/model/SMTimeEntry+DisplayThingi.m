@@ -27,8 +27,7 @@
     [self setPrimitiveValue:n_hours forKey:@"n_hours"];
     [self didChangeValueForKey:@"n_hours"];
     [self didChangeValueForKey:@"formattedTime"];
-    
-
-    
 }
+
+
 @end
