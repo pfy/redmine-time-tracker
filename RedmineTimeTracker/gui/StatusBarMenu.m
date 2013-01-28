@@ -52,7 +52,8 @@
 
 -(void)registerHotkey{
     DDHotKeyCenter *center = [DDHotKeyCenter sharedHotKeyCenter];
-    center registerHotKeyWithKeyCode:'1' modifierFlags:<#(NSUInteger)#> target:<#(id)#> action:<#(SEL)#> object:<#(id)#>
+    [center registerHotKeyWithKeyCode:18 modifierFlags:NSCommandKeyMask target:self action:@selector(startTracking) object:nil];
+       [center registerHotKeyWithKeyCode:19 modifierFlags:NSCommandKeyMask target:self action:@selector(stopTracking) object:nil];
 }
 
 
