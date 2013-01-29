@@ -9,6 +9,8 @@
 #import "StartTrackingWindowController.h"
 #import "SMTimeEntry.h"
 #import "SMCurrentUser+trackingExtension.h"
+static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
+
 
 @interface StartTrackingWindowController ()
 
@@ -21,7 +23,8 @@
     self = [super initWithWindow:window];
     if (self) {
         self.context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
-        
+        self.currentProject = [[NSUserDefaults standardUserDefaults]objectForKey:recentProjectDefaultsKey];
+
         // Initialization code here.
     }
     
@@ -84,11 +87,12 @@
         entry.n_spent_on = [NSDate date];
         entry.n_project = currentProject;
         entry.n_comments = [self.commentTextView stringValue];
+        entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.changed = [NSNumber numberWithBool:YES];
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
 
         SAVE_APP_CONTEXT
-                
+        [[NSUserDefaults standardUserDefaults]setValue:self.currentProject forKey:recentProjectDefaultsKey];
         
         [self.window close];
     }
