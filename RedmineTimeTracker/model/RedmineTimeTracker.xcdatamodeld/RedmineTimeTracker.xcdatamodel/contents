@@ -2,13 +2,13 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SMActivity" representedClassName="SMActivity" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_activity" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMTimeEntry" inverseName="n_activity" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
     <entity name="SMCurrentUser" representedClassName="SMCurrentUser" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serverUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="currentTimeEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="currentUser" inverseEntity="SMTimeEntry" syncable="YES"/>
-        <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="currentUser" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="currentTimeEntry" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMTimeEntry" inverseName="currentUser" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMRedmineUser" inverseName="currentUser" inverseEntity="SMRedmineUser" syncable="YES"/>
     </entity>
     <entity name="SMIssue" representedClassName="SMIssue" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,15 +18,15 @@
         <attribute name="n_spent_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="n_start_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="n_subject" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="child" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_parent" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="n_assigned_to" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_assigned" inverseEntity="SMRedmineUser" syncable="YES"/>
-        <relationship name="n_author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_created" inverseEntity="SMRedmineUser" syncable="YES"/>
-        <relationship name="n_parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="child" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="n_priority" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMPriority" inverseName="issues" inverseEntity="SMPriority" syncable="YES"/>
-        <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMProjects" inverseName="issues" inverseEntity="SMProjects" syncable="YES"/>
-        <relationship name="n_status" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMStatus" inverseName="issues" inverseEntity="SMStatus" syncable="YES"/>
-        <relationship name="n_tracker" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTrackers" inverseName="issues" inverseEntity="SMTrackers" syncable="YES"/>
-        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_issue" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="child" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_parent" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="n_assigned_to" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMRedmineUser" inverseName="issues_assigned" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="n_author" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMRedmineUser" inverseName="issues_created" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="n_parent" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMIssue" inverseName="child" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="n_priority" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMPriority" inverseName="issues" inverseEntity="SMPriority" syncable="YES"/>
+        <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMProjects" inverseName="issues" inverseEntity="SMProjects" syncable="YES"/>
+        <relationship name="n_status" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMStatus" inverseName="issues" inverseEntity="SMStatus" syncable="YES"/>
+        <relationship name="n_tracker" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMTrackers" inverseName="issues" inverseEntity="SMTrackers" syncable="YES"/>
+        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMTimeEntry" inverseName="n_issue" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
     <entity name="SMManagedObject" representedClassName="SMManagedObject" isAbstract="YES" syncable="YES">
         <attribute name="changed" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -36,14 +36,14 @@
     </entity>
     <entity name="SMPriority" representedClassName="SMPriority" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_priority" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_priority" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMProjects" representedClassName="SMProjects" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_project" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_project" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_project" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMTimeEntry" inverseName="n_project" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
     <entity name="SMRedmineUser" representedClassName="SMRedmineUser" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_firstname" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,30 +52,30 @@
         <attribute name="n_login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_mail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMCurrentUser" inverseName="n_user" inverseEntity="SMCurrentUser" syncable="YES"/>
-        <relationship name="issues_assigned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_assigned_to" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="issues_created" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_user" inverseEntity="SMTimeEntry" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMCurrentUser" inverseName="n_user" inverseEntity="SMCurrentUser" syncable="YES"/>
+        <relationship name="issues_assigned" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_assigned_to" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues_created" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_author" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMTimeEntry" inverseName="n_user" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
     <entity name="SMStatus" representedClassName="SMStatus" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_is_closed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="n_is_default" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issues" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_status" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_status" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <entity name="SMTimeEntry" representedClassName="SMTimeEntry" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="n_spent_on" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMCurrentUser" inverseName="currentTimeEntry" inverseEntity="SMCurrentUser" syncable="YES"/>
-        <relationship name="n_activity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMActivity" inverseName="time_entries" inverseEntity="SMActivity" syncable="YES"/>
-        <relationship name="n_issue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="time_entries" inverseEntity="SMIssue" syncable="YES"/>
-        <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMProjects" inverseName="time_entries" inverseEntity="SMProjects" syncable="YES"/>
-        <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="time_entries" inverseEntity="SMRedmineUser" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMCurrentUser" inverseName="currentTimeEntry" inverseEntity="SMCurrentUser" syncable="YES"/>
+        <relationship name="n_activity" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMActivity" inverseName="time_entries" inverseEntity="SMActivity" syncable="YES"/>
+        <relationship name="n_issue" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMIssue" inverseName="time_entries" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="n_project" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMProjects" inverseName="time_entries" inverseEntity="SMProjects" syncable="YES"/>
+        <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="SMRedmineUser" inverseName="time_entries" inverseEntity="SMRedmineUser" syncable="YES"/>
     </entity>
     <entity name="SMTrackers" representedClassName="SMTrackers" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="issues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_tracker" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="issues" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="SMIssue" inverseName="n_tracker" inverseEntity="SMIssue" syncable="YES"/>
     </entity>
     <elements>
         <element name="SMActivity" positionX="43" positionY="321" width="128" height="75"/>
