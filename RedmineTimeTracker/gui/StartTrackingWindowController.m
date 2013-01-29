@@ -23,7 +23,6 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     self = [super initWithWindow:window];
     if (self) {
         self.context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
-        self.currentProject = [[NSUserDefaults standardUserDefaults]objectForKey:recentProjectDefaultsKey];
 
         // Initialization code here.
     }
@@ -54,7 +53,8 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
     
     
-    
+    self.currentProject = [[NSUserDefaults standardUserDefaults]objectForKey:recentProjectDefaultsKey];
+
     LOG_INFO(@"fetched objects %@",[[self.projectArrayController arrangedObjects] valueForKey:@"n_name"]);
     
     
