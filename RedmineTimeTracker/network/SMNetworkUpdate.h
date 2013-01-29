@@ -9,15 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "SMCurrentUser+trackingExtension.h"
 #import "SMHttpClient.h"
+@class SMNetworkUpdateCommand;
 
 @interface SMNetworkUpdate : NSObject
 @property (nonatomic,retain) NSTimer *timer;
-@property (nonatomic,retain) NSArrayController *arrayController;
 @property (nonatomic,weak) SMCurrentUser *user;
-@property (nonatomic,assign) bool updating;
 @property (nonatomic,strong) SMHttpClient *client;
-@property (nonatomic,strong) NSMutableArray *allIssues;
-@property (nonatomic,strong) NSMutableArray *allTimeEntries;
+@property (nonatomic,strong) NSMutableArray *allCommands;
+
 
 -(void)update;
+-(void)queueItemFinished:(SMNetworkUpdateCommand*)cmd;
+-(void)queueItemFailed:(SMNetworkUpdateCommand*)cmd;
+
 @end

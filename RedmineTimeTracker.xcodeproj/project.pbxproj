@@ -22,6 +22,11 @@
 		CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC616B6D9A60033346D /* TimeTracker.m */; };
 		CF114BCE16B6DF4E0033346D /* SMTimeEntry+DisplayThingi.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */; };
 		CF2EBDFE16B7E5C400CA2BAA /* TimeIssueRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */; };
+		CF2EBE0116B8364200CA2BAA /* SMNetworkUpdateCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0016B8364200CA2BAA /* SMNetworkUpdateCommand.m */; };
+		CF2EBE0416B836F700CA2BAA /* SMUpdateIssuesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0316B836F700CA2BAA /* SMUpdateIssuesCommand.m */; };
+		CF2EBE0716B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0616B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m */; };
+		CF2EBE0A16B8372700CA2BAA /* SMUpdateCurrentUserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */; };
+		CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -82,6 +87,16 @@
 		CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+DisplayThingi.m"; sourceTree = "<group>"; };
 		CF2EBDFC16B7E5C400CA2BAA /* TimeIssueRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeIssueRowView.h; sourceTree = "<group>"; };
 		CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeIssueRowView.m; sourceTree = "<group>"; };
+		CF2EBDFF16B8364200CA2BAA /* SMNetworkUpdateCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNetworkUpdateCommand.h; sourceTree = "<group>"; };
+		CF2EBE0016B8364200CA2BAA /* SMNetworkUpdateCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNetworkUpdateCommand.m; sourceTree = "<group>"; };
+		CF2EBE0216B836F700CA2BAA /* SMUpdateIssuesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateIssuesCommand.h; sourceTree = "<group>"; };
+		CF2EBE0316B836F700CA2BAA /* SMUpdateIssuesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateIssuesCommand.m; sourceTree = "<group>"; };
+		CF2EBE0516B8371300CA2BAA /* SMUpdateTimeEntriesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateTimeEntriesCommand.h; sourceTree = "<group>"; };
+		CF2EBE0616B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateTimeEntriesCommand.m; sourceTree = "<group>"; };
+		CF2EBE0816B8372600CA2BAA /* SMUpdateCurrentUserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateCurrentUserCommand.h; sourceTree = "<group>"; };
+		CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateCurrentUserCommand.m; sourceTree = "<group>"; };
+		CF2EBE0B16B8373700CA2BAA /* SMUploadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUploadCommand.h; sourceTree = "<group>"; };
+		CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUploadCommand.m; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -208,6 +223,16 @@
 				CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */,
 				CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */,
 				CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */,
+				CF2EBDFF16B8364200CA2BAA /* SMNetworkUpdateCommand.h */,
+				CF2EBE0016B8364200CA2BAA /* SMNetworkUpdateCommand.m */,
+				CF2EBE0216B836F700CA2BAA /* SMUpdateIssuesCommand.h */,
+				CF2EBE0316B836F700CA2BAA /* SMUpdateIssuesCommand.m */,
+				CF2EBE0516B8371300CA2BAA /* SMUpdateTimeEntriesCommand.h */,
+				CF2EBE0616B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m */,
+				CF2EBE0816B8372600CA2BAA /* SMUpdateCurrentUserCommand.h */,
+				CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */,
+				CF2EBE0B16B8373700CA2BAA /* SMUploadCommand.h */,
+				CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -477,6 +502,11 @@
 				CF8A1B1D16B7AFFF00ED429E /* SMCurrentUser.m in Sources */,
 				CF8A1B2916B7CFE500ED429E /* PreferencesWindowController.m in Sources */,
 				CF2EBDFE16B7E5C400CA2BAA /* TimeIssueRowView.m in Sources */,
+				CF2EBE0116B8364200CA2BAA /* SMNetworkUpdateCommand.m in Sources */,
+				CF2EBE0416B836F700CA2BAA /* SMUpdateIssuesCommand.m in Sources */,
+				CF2EBE0716B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m in Sources */,
+				CF2EBE0A16B8372700CA2BAA /* SMUpdateCurrentUserCommand.m in Sources */,
+				CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
