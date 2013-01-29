@@ -24,5 +24,6 @@
  -(IBAction) startTracking:(id)sender;
  -(IBAction) cancelTracking:(id)sender;
 
-
+- (NSArray *)projectSortDescriptors;
+- (NSArray *)issueSortDescriptors;
 @end

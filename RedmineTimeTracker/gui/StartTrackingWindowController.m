@@ -109,6 +109,18 @@
     } else if ([keyPath isEqualToString:@"currentIssue"]){
         
     }
-    
 }
+
+
+- (NSArray *)projectSortDescriptors {
+    return [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:@"n_name"
+                                          ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+}
+- (NSArray *)issueSortDescriptors {
+    return [NSArray arrayWithObject:
+            [NSSortDescriptor sortDescriptorWithKey:@"n_subject"
+                                          ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+}
+
 @end
