@@ -109,11 +109,14 @@ static char *smoohClassPrefix = "T@\"SM";
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
-        NSMutableSet *updated = [NSMutableSet new];
-        for(NSDictionary *dict in respArray){            
-            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:[[dict objectForKey:@"id"]intValue] andEntity:entityName inContext:context];
+        NSMutableDictionary *updated = [NSMutableDictionary new];
+        for(NSDictionary *dict in respArray){
+            int n_id = [[dict objectForKey:@"id"] intValue];
+            NSLog(@"Updating %d",n_id);
+
+            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:n_id andEntity:entityName inContext:context];
             [managedObject updateWithDict:dict];
-            [updated addObject:managedObject.n_id];
+            [updated setValue:managedObject forKey:[managedObject.n_id stringValue]];
         }
         
        if(delete){
@@ -122,11 +125,14 @@ static char *smoohClassPrefix = "T@\"SM";
            [fetchRequest setEntity:entity];
            NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
             for (SMManagedObject* managedObject in array){
-                if(managedObject.n_id != nil && ! [updated containsObject:managedObject.n_id]){
+                LOG_INFO(@"check object id %@",managedObject.n_id);
+                if(managedObject.n_id != nil && (! [updated objectForKey:[managedObject.n_id stringValue]])){
                     if(managedObject.changed){
+                        LOG_WARN(@"recreate object %@",managedObject);
                         managedObject.n_id = nil;
                     } else {
                         [context deleteObject:managedObject];
+                        LOG_WARN(@"delete object %@",managedObject);
                     }
                 }
             }

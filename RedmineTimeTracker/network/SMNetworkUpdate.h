@@ -16,6 +16,8 @@
 @property (nonatomic,weak) SMCurrentUser *user;
 @property (nonatomic,assign) bool updating;
 @property (nonatomic,strong) SMHttpClient *client;
+@property (nonatomic,strong) NSMutableArray *allIssues;
+@property (nonatomic,strong) NSMutableArray *allTimeEntries;
 
 -(void)update;
 @end

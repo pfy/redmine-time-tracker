@@ -15,7 +15,7 @@
 @implementation SMNetworkUpdate
 
 -(void)fetchTimeEntries:(int)offset{
-    NSMutableArray *allTimeEntries = [NSMutableArray new];
+    NSMutableArray __block *allTimeEntries = self.allTimeEntries;
     [self.client getPath:[NSString stringWithFormat:@"time_entries.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // LOG_INFO(@"timenetries requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
@@ -41,8 +41,8 @@
     } ];
 }
 -(void)fetchIssues:(int)offset{
-    NSMutableArray *allIssues = [NSMutableArray new];
-
+    NSMutableArray __block *allIssues = self.allIssues;
+    LOG_INFO(@"fetch issues %d",offset);
     [self.client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //LOG_INFO(@"issues requested %@",responseObject);
@@ -92,7 +92,9 @@
 -(void)update{
     if(self.user.authToken && self.user.serverUrl && ! self.updating ){
             SMCurrentUser *user = [SMCurrentUser findOrCreate];
-        
+        self.allIssues = [NSMutableArray new];
+        self.allTimeEntries = [NSMutableArray new];
+
         self.client = [[SMHttpClient alloc] initWithBaseURL:[NSURL URLWithString:user.serverUrl]];
         [self.client setDefaultHeader:@"X-Redmine-API-Key" value:user.authToken];
 

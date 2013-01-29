@@ -48,7 +48,7 @@
             [self updateWithDict:[responseObject objectForKey:@"time_entry"]];
         }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        LOG_WARN(@"time entry creation failed %@",error);
+        LOG_WARN(@"time entry creation failed %@ %@",error,params);
     } ];
     }
 
