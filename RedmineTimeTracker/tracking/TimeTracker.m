@@ -36,6 +36,8 @@
         oldVal += timePassed;
         self.user.currentTimeEntry.n_hours = [NSNumber numberWithDouble:oldVal];
         self.user.currentTimeEntry.changed = [NSNumber numberWithBool:YES];
+        self.user.currentTimeEntry.n_updated_on = newDate;
+
         //SAVE_APP_CONTEXT
 
     }

@@ -74,4 +74,19 @@
     return NO;
 }
 
+- (NSArray *)timeEntrySortDescriptors{
+    return [NSArray arrayWithObjects:
+            [NSSortDescriptor sortDescriptorWithKey:@"n_user" ascending:NO comparator:^NSComparisonResult(id obj1, id obj2) {
+        SMRedmineUser *user = [SMCurrentUser findOrCreate].n_user;
+        if( obj1 == user && obj2 == user){
+            return 0;
+        } else if (obj1 == user){
+            return 1;
+        }
+        return -1;
+    }],
+            [NSSortDescriptor sortDescriptorWithKey:@"n_updated_on"
+                                          ascending:NO],nil];
+}
+
 @end

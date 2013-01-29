@@ -18,5 +18,6 @@
 -(IBAction)nextDay:(id)sender;
 -(IBAction)prevDay:(id)sender;
 -(IBAction)today:(id)sender;
+- (NSArray *)timeEntrySortDescriptors;
 
 @end
