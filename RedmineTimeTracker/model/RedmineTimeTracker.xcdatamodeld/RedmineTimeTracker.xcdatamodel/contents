@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SMActivity" representedClassName="SMActivity" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_activity" inverseEntity="SMTimeEntry" syncable="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="n_spent_hours" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="n_start_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="n_subject" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="child" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_parent" inverseEntity="SMIssue" syncable="YES"/>
+        <relationship name="child" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="n_parent" inverseEntity="SMIssue" syncable="YES"/>
         <relationship name="n_assigned_to" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_assigned" inverseEntity="SMRedmineUser" syncable="YES"/>
         <relationship name="n_author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="issues_created" inverseEntity="SMRedmineUser" syncable="YES"/>
         <relationship name="n_parent" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMIssue" inverseName="child" inverseEntity="SMIssue" syncable="YES"/>

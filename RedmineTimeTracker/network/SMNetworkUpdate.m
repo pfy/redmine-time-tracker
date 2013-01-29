@@ -15,19 +15,20 @@
 @implementation SMNetworkUpdate
 
 -(void)fetchTimeEntries:(int)offset{
+    NSMutableArray *allTimeEntries = [NSMutableArray new];
     [self.client getPath:[NSString stringWithFormat:@"time_entries.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         // LOG_INFO(@"timenetries requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
             int totalCount = [[responseObject objectForKey:@"total_count"] intValue];
             int limit = [[responseObject objectForKey:@"limit"] intValue];
-            [SMManagedObject update:@"SMTimeEntry" withArray:[responseObject objectForKey:@"time_entries"] delete:NO];
+            [allTimeEntries addObjectsFromArray:[responseObject objectForKey:@"time_entries"]];
             if(offset+limit < totalCount){
                 AppDelegate *app = [NSApplication sharedApplication].delegate;
                 [app.asyncDbQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
                     [  self fetchTimeEntries:offset+limit ];
                 }]];
             } else {
+                [SMManagedObject update:@"SMTimeEntry" withArray:allTimeEntries delete:YES];
                 /* we are done */
                 self.updating = NO;
             }
@@ -40,13 +41,15 @@
     } ];
 }
 -(void)fetchIssues:(int)offset{
+    NSMutableArray *allIssues = [NSMutableArray new];
+
     [self.client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //LOG_INFO(@"issues requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
             int totalCount = [[responseObject objectForKey:@"total_count"] intValue];
             int limit = [[responseObject objectForKey:@"limit"] intValue];
-            [SMManagedObject update:@"SMIssue" withArray:[responseObject objectForKey:@"issues"] delete:NO];
+            [allIssues addObjectsFromArray:[responseObject objectForKey:@"issues"]];
             
             if(offset+limit < totalCount){
                 AppDelegate *app = [NSApplication sharedApplication].delegate;
@@ -55,10 +58,12 @@
                 }]];
             } else {
                 /* we are done */
+                [SMManagedObject update:@"SMIssue" withArray:allIssues delete:YES];
                 AppDelegate *app = [NSApplication sharedApplication].delegate;
                 [app.asyncDbQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
                     [  self fetchTimeEntries:0 ];
                 }]];
+                
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

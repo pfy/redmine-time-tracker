@@ -31,7 +31,7 @@ static char *smoohClassPrefix = "T@\"SM";
     if(array.count > 0){
         managedObject = [array objectAtIndex:0];
     } else {
-            managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+        managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     }
     return managedObject;
     
@@ -61,7 +61,7 @@ static char *smoohClassPrefix = "T@\"SM";
                     NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
                     NSString *className = [listItems objectAtIndex:1];
                     int n_id = [[val valueForKey:@"id"]intValue];
-                   __weak SMManagedObject *newObject = [self valueForKey:newKey];
+                    __weak SMManagedObject *newObject = [self valueForKey:newKey];
                     if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
                         newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
                     }
@@ -70,23 +70,23 @@ static char *smoohClassPrefix = "T@\"SM";
                         [self setValue:newObject forKey:newKey];
                     }
                 }
-               else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
+                else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
                     NSDate __autoreleasing *newDate;
-                   NSString *dateString = val;
-                   if(dateString.length == 10){
-                       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                       [dateFormatter setDateFormat:@"yyyy/MM/dd"];
-                       newDate = [dateFormatter dateFromString:dateString];
-                   } else {
-                       dateString = [dateString stringByReplacingOccurrencesOfString:@":"
-                                                                    withString:@""];
-                       NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                       [dateFormatter setDateFormat:@"yyyy/MM/dd HHmmss ZZ"];
-                       newDate = [dateFormatter dateFromString:dateString];
-                   }
-                   if(newDate == nil){
-                       LOG_ERR(@"did fail to parse date %@",dateString);
-                   }
+                    NSString *dateString = val;
+                    if(dateString.length == 10){
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                        newDate = [dateFormatter dateFromString:dateString];
+                    } else {
+                        dateString = [dateString stringByReplacingOccurrencesOfString:@":"
+                                                                           withString:@""];
+                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy/MM/dd HHmmss ZZ"];
+                        newDate = [dateFormatter dateFromString:dateString];
+                    }
+                    if(newDate == nil){
+                        LOG_ERR(@"did fail to parse date %@",dateString);
+                    }
                     if(! [newDate isEqual:[self valueForKey:newKey]]){
                         [self setValue:newDate forKey:newKey];
                     }
@@ -103,37 +103,33 @@ static char *smoohClassPrefix = "T@\"SM";
         }
     }
     
-   // LOG_INFO(@"did update %@",self);
+    // LOG_INFO(@"did update %@",self);
 }
 
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
-
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
-        NSFetchRequest *fetchRequest = [NSFetchRequest new];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-        [fetchRequest setEntity:entity];
-        NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
-        NSMutableDictionary *allObjects = [NSMutableDictionary new];
-        NSMutableArray *toDelete = [NSMutableArray arrayWithArray:array];
-        for(NSManagedObject *obj in array){
-            [allObjects setValue:obj forKey:[obj valueForKey:@"n_id"]];
+        NSMutableSet *updated = [NSMutableSet new];
+        for(NSDictionary *dict in respArray){            
+            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:[[dict objectForKey:@"id"]intValue] andEntity:entityName inContext:context];
+            [managedObject updateWithDict:dict];
+            [updated addObject:managedObject.n_id];
         }
         
-        for(NSDictionary *dict in respArray){
-            SMManagedObject *managedObject =  [allObjects objectForKey:[dict objectForKey:@"id"]];
-            if(managedObject){
-                [toDelete removeObject:managedObject];
-            } else {
-                managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+       if(delete){
+           NSFetchRequest *fetchRequest = [NSFetchRequest new];
+           NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+           [fetchRequest setEntity:entity];
+           NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
+            for (SMManagedObject* managedObject in array){
+                if(managedObject.n_id != nil && ! [updated containsObject:managedObject.n_id]){
+                    if(managedObject.changed){
+                        managedObject.n_id = nil;
+                    } else {
+                        [context deleteObject:managedObject];
+                    }
+                }
             }
-            [managedObject updateWithDict:dict];
-        }
-        if(delete){
-        for (NSManagedObject* managedObject in toDelete){
-            if(! [[toDelete valueForKey:@"n_id"] isEqual:[NSNumber numberWithInt:0]])
-                [context deleteObject:managedObject];
-        }
         }
         NSError __autoreleasing *error = error;
         [context save:&error];
@@ -156,7 +152,7 @@ static char *smoohClassPrefix = "T@\"SM";
         if(object && ! object.isDeleted)
             block(object);
     }];
-                                                                      
+    
     AppDelegate *app = [NSApplication sharedApplication].delegate;
     [app.asyncDbQueue addOperation:operation];
 }
