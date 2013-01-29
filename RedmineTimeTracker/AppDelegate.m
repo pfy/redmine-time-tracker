@@ -30,6 +30,12 @@
     
    SMNetworkUpdate *updater = [SMNetworkUpdate new];
    [updater update];
+    SMCurrentUser *user = [SMCurrentUser findOrCreate];
+    if(!user.serverUrl || !user.authToken){
+        [self showPreferences];
+    }
+    
+    
     self.statusBarMenu = [StatusBarMenu new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
  
@@ -218,7 +224,10 @@
     }
 }
 
-
+-(void)showPreferences{
+    self.preferences = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindowController"];
+    [self.preferences showWindow:self];
+}
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     LOG_INFO(@"did change %@ of object %@ change %@",keyPath,object,change);

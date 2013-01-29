@@ -11,6 +11,7 @@
 #import "ActiveApplicationTracker.h"
 #import "TrackingWindowController.h"
 #import "TimeTracker.h"
+#import "PreferencesWindowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -23,11 +24,13 @@
 @property (nonatomic,weak)  IBOutlet NSOutlineView *outlineView;
 @property (nonatomic,strong) TrackingWindowController *trackingVc;
 @property (nonatomic,strong) TimeTracker *timeTracker;
+@property (nonatomic,strong) PreferencesWindowController *preferences;
+
 
 
 @property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
 @property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
 - (IBAction)saveAction:(id)sender;
 - (void)saveContext;
-
+-(void)showPreferences;
 @end

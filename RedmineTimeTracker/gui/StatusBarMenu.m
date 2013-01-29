@@ -23,12 +23,12 @@
         
         self.stopTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Stop Tracking"  action:@selector(stopTracking) keyEquivalent:@"2"];
         [self.stopTrackingMenuItem setTarget:self];
-
         [self.statusMenu setAutoenablesItems:NO];
         
         [self.statusMenu addItem:self.startTrackingMenuItem];
         [self.statusMenu addItem:self.stopTrackingMenuItem];
         
+        [self.statusMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @""]];
         [_statusItem setMenu:self.statusMenu];
         [_statusItem setTitle:@"Aaarbeeeiiiit"];
         [_statusItem setHighlightMode:YES];
@@ -47,6 +47,11 @@
     return YES;
 }
 
+-(void)preferences{
+    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    [app showPreferences];
+}
+         
 -(void)startTracking{
     LOG_WARN(@"====== START TRARCKING =======");
     
@@ -77,7 +82,7 @@
 -(void)updateStatusText{
     [self setEntry:self.user.currentTimeEntry];
     if(self.entry){
-        [_statusItem setTitle:[NSString stringWithFormat:@"%@ %@",self.entry.n_issue.n_subject,self.entry.formattedTime]];
+        [_statusItem setTitle:[NSString stringWithFormat:@"%@",self.entry.formattedTime]];
     } else {
         [_statusItem setTitle:@"Idle"];
 

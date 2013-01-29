@@ -47,6 +47,8 @@
 		CF8A1B1716B7AFFF00ED429E /* SMIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B1616B7AFFF00ED429E /* SMIssue.m */; };
 		CF8A1B1A16B7AFFF00ED429E /* SMProjects.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B1916B7AFFF00ED429E /* SMProjects.m */; };
 		CF8A1B1D16B7AFFF00ED429E /* SMCurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B1C16B7AFFF00ED429E /* SMCurrentUser.m */; };
+		CF8A1B2916B7CFE500ED429E /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */; };
+		CF8A1B2A16B7CFE500ED429E /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */; };
 		CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */; };
 		CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42516B1A06500C93A0D /* StatusBarMenu.m */; };
 		CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */; };
@@ -131,6 +133,9 @@
 		CF8A1B1916B7AFFF00ED429E /* SMProjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProjects.m; sourceTree = "<group>"; };
 		CF8A1B1B16B7AFFF00ED429E /* SMCurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCurrentUser.h; sourceTree = "<group>"; };
 		CF8A1B1C16B7AFFF00ED429E /* SMCurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCurrentUser.m; sourceTree = "<group>"; };
+		CF8A1B2616B7CFE400ED429E /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
 		CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNetworkUpdate.h; sourceTree = "<group>"; };
 		CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNetworkUpdate.m; sourceTree = "<group>"; };
 		CFABD42416B1A06500C93A0D /* StatusBarMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarMenu.h; sourceTree = "<group>"; };
@@ -354,6 +359,9 @@
 				CF114B9E16B6CBED0033346D /* TrackingWindowController.h */,
 				CF114B9F16B6CBED0033346D /* TrackingWindowController.m */,
 				CF114BA016B6CBED0033346D /* TrackingWindowController.xib */,
+				CF8A1B2616B7CFE400ED429E /* PreferencesWindowController.h */,
+				CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */,
+				CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -415,6 +423,7 @@
 				CF8844CD16B045E9008B87FC /* MainMenu.xib in Resources */,
 				CF114B9A16B68EC70033346D /* StartTrackingWindowController.xib in Resources */,
 				CF114BA216B6CBED0033346D /* TrackingWindowController.xib in Resources */,
+				CF8A1B2A16B7CFE500ED429E /* PreferencesWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +470,7 @@
 				CF8A1B1716B7AFFF00ED429E /* SMIssue.m in Sources */,
 				CF8A1B1A16B7AFFF00ED429E /* SMProjects.m in Sources */,
 				CF8A1B1D16B7AFFF00ED429E /* SMCurrentUser.m in Sources */,
+				CF8A1B2916B7CFE500ED429E /* PreferencesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,6 +30,7 @@
                 }]];
             } else {
                 /* we are done */
+                self.updating = NO;
             }
             
         }
@@ -81,8 +82,11 @@
 }
 
 -(void)update{
-    [self getCurrentUser];
-    [self uploadChanges];
+    if(self.user.authToken && self.user.serverUrl && ! self.updating ){
+        self.updating = YES;
+        [self getCurrentUser];
+        [self uploadChanges];
+    }
 }
 
 
@@ -106,8 +110,22 @@
                                                         selector:@selector(update)
                                                         userInfo:nil
                                                          repeats:YES];
+        self.user = [SMCurrentUser findOrCreate];
+        [self.user addObserver:self forKeyPath:@"authToken" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [self.user addObserver:self forKeyPath:@"serverUrl" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        self.updating = NO;
 
     }
     return self;
+}
+
+-(void)dealloc{
+    [self.timer invalidate];
+    self.timer = nil;
+    self.user = nil;
+    self.arrayController = nil;
+}
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    [self update];
 }
 @end
