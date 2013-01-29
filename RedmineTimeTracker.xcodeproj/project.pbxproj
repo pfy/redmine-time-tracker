@@ -21,6 +21,7 @@
 		CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC216B6D36D0033346D /* SMCurrentUser+trackingExtension.m */; };
 		CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BC616B6D9A60033346D /* TimeTracker.m */; };
 		CF114BCE16B6DF4E0033346D /* SMTimeEntry+DisplayThingi.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */; };
+		CF2EBDFE16B7E5C400CA2BAA /* TimeIssueRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -79,6 +80,8 @@
 		CF114BC616B6D9A60033346D /* TimeTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTracker.m; sourceTree = "<group>"; };
 		CF114BCC16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMTimeEntry+DisplayThingi.h"; sourceTree = "<group>"; };
 		CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+DisplayThingi.m"; sourceTree = "<group>"; };
+		CF2EBDFC16B7E5C400CA2BAA /* TimeIssueRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeIssueRowView.h; sourceTree = "<group>"; };
+		CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeIssueRowView.m; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -362,6 +365,8 @@
 				CF8A1B2616B7CFE400ED429E /* PreferencesWindowController.h */,
 				CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */,
 				CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */,
+				CF2EBDFC16B7E5C400CA2BAA /* TimeIssueRowView.h */,
+				CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 				CF8A1B1A16B7AFFF00ED429E /* SMProjects.m in Sources */,
 				CF8A1B1D16B7AFFF00ED429E /* SMCurrentUser.m in Sources */,
 				CF8A1B2916B7CFE500ED429E /* PreferencesWindowController.m in Sources */,
+				CF2EBDFE16B7E5C400CA2BAA /* TimeIssueRowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

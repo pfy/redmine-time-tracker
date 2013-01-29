@@ -67,6 +67,11 @@
 }
 -(IBAction)prevDay:(id)sender{
     self.currentDate = [self.currentDate dateByAddingTimeInterval:-24*3600];
-
 }
+
+- (BOOL)selectionShouldChangeInTableView:(NSTableView *)aTableView
+{
+    return NO;
+}
+
 @end
