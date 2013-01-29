@@ -10,6 +10,7 @@
 #import "SMHttpClient.h"
 #import "SMManagedObject+networkExtension.h"
 #import "SMCurrentUser+trackingExtension.h"
+#import "AppDelegate.h"
 
 @implementation SMNetworkUpdate
 
@@ -81,5 +82,32 @@
 
 -(void)update{
     [self getCurrentUser];
+    [self uploadChanges];
+}
+
+
+-(void)uploadChanges{
+    for (SMManagedObject *object in self.arrayController.arrangedObjects){
+        [object createRequest:[SMHttpClient sharedHTTPClient]];
+    }
+}
+
+-(id)init{
+    self = [super init];
+    if(self){
+        self.arrayController = [NSArrayController new];
+        self.arrayController.managedObjectContext = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+        
+        [self.arrayController setEntityName:@"SMManagedObject"];
+        self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"changed = %@",[NSNumber numberWithBool:YES] ];
+        [self.arrayController fetchWithRequest:nil merge:NO error:nil];
+        self.timer =     [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                          target:self
+                                                        selector:@selector(update)
+                                                        userInfo:nil
+                                                         repeats:YES];
+
+    }
+    return self;
 }
 @end

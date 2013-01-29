@@ -149,6 +149,17 @@ static char *smoohClassPrefix = "T@\"SM";
     [app.asyncDbQueue addOperation:operation];
     return;
 }
+-(void)scheduleOperationWithBlock:(VoidBlock)block{
+    NSManagedObjectID *selfID = self.objectID;
+    SMUpdateOperation *operation = [SMUpdateOperation operationWithBlock:^(NSManagedObjectContext *context) {
+        SMManagedObject *object = (SMManagedObject *)[context existingObjectWithID:selfID error:nil];
+        if(object && ! object.isDeleted)
+            block(object);
+    }];
+                                                                      
+    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    [app.asyncDbQueue addOperation:operation];
+}
 
 
 

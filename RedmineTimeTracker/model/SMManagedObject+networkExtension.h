@@ -11,7 +11,7 @@
 #import "SMUpdateOperation.h"
 #import "SMHttpClient.h"
 
-typedef void (^VoidBlock)(NSManagedObject *newSelf);
+typedef void (^VoidBlock)(SMManagedObject *newSelf);
 
 @interface SMManagedObject (NetworkExtension)
 -(void)createRequest:(SMHttpClient*)client;
@@ -19,5 +19,5 @@ typedef void (^VoidBlock)(NSManagedObject *newSelf);
 +(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(bool)delete;
 
 +(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;
-
+-(void)scheduleOperationWithBlock:(VoidBlock)block;
 @end

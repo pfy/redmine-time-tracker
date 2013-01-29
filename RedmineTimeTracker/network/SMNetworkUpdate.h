@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SMNetworkUpdate : NSObject
+@property (nonatomic,retain) NSTimer *timer;
+@property (nonatomic,retain) NSArrayController *arrayController;
 -(void)update;
 @end
