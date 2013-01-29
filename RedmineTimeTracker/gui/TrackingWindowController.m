@@ -38,7 +38,7 @@
     
 
     self.timeEntryArrayController.fetchPredicate = predicate;
-    NSError *error;
+    __weak NSError *error;
     [self.timeEntryArrayController fetchWithRequest:nil merge:YES error:&error];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }

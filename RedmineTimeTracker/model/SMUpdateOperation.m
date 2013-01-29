@@ -18,10 +18,12 @@
         [context setPersistentStoreCoordinator:[(AppDelegate*)[NSApplication sharedApplication].delegate persistentStoreCoordinator]];
         [context setUndoManager:nil];
         
-        NSError *error = nil;
+        NSError __autoreleasing *error = error;
         @try {
             /* execute the associated object context block */
-        self.block(context);
+            @autoreleasepool {
+                self.block(context);
+            }
         } @catch (NSException *exception) {
             if ([[exception name] isEqualToString:NSObjectInaccessibleException]){
                 LOG_INFO(@"block did fault, will retry");
@@ -53,6 +55,9 @@
             max_faults = 0;
         }        
     }
+}
+-(void)dealloc{
+    self.block = nil;
 }
 +(SMUpdateOperation*)operationWithBlock:(ContextBlock) block{
     SMUpdateOperation *operation = [SMUpdateOperation new];

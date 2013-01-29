@@ -26,7 +26,7 @@ static char *smoohClassPrefix = "T@\"SM";
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_id = %d",n_id];
     [fetchRequest setEntity:entity];
-    NSArray *array = [context executeFetchRequest:fetchRequest error:nil];
+    NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
     SMManagedObject *managedObject = nil;
     if(array.count > 0){
         managedObject = [array objectAtIndex:0];
@@ -61,7 +61,7 @@ static char *smoohClassPrefix = "T@\"SM";
                     NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
                     NSString *className = [listItems objectAtIndex:1];
                     int n_id = [[val valueForKey:@"id"]intValue];
-                    SMManagedObject *newObject = [self valueForKey:newKey];
+                   __weak SMManagedObject *newObject = [self valueForKey:newKey];
                     if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
                         newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
                     }
@@ -71,7 +71,7 @@ static char *smoohClassPrefix = "T@\"SM";
                     }
                 }
                else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
-                    NSDate *newDate;
+                    NSDate __autoreleasing *newDate;
                    NSString *dateString = val;
                    if(dateString.length == 10){
                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -113,7 +113,7 @@ static char *smoohClassPrefix = "T@\"SM";
         NSFetchRequest *fetchRequest = [NSFetchRequest new];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
         [fetchRequest setEntity:entity];
-        NSArray *array = [context executeFetchRequest:fetchRequest error:nil];
+        NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
         NSMutableDictionary *allObjects = [NSMutableDictionary new];
         NSMutableArray *toDelete = [NSMutableArray arrayWithArray:array];
         for(NSManagedObject *obj in array){
@@ -135,10 +135,10 @@ static char *smoohClassPrefix = "T@\"SM";
                 [context deleteObject:managedObject];
         }
         }
-        NSError *error = nil;
+        NSError __autoreleasing *error = error;
         [context save:&error];
         if(error){
-            NSLog(@"did fail safe managed object context %@",error);
+            LOG_WARN(@"did fail safe managed object context %@",error);
         }
     }];
 }

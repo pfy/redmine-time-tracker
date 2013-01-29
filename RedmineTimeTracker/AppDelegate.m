@@ -205,7 +205,7 @@
 }
 - (void)saveContext
 {
-    NSError *error = nil;
+    NSError __autoreleasing *error = error;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
