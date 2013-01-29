@@ -108,7 +108,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     if([keyPath isEqualToString:@"currentProject"]){
         NSError *error;
         self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project.n_name = %@",self.currentProject];
-        [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
+        [self.issueArrayController fetchWithRequest:nil merge:NO error:&error];
         LOG_INFO(@"fetch complete, got %@ objects",[self.issueArrayController.arrangedObjects valueForKey:@"n_subject"]);
     } else if ([keyPath isEqualToString:@"currentIssue"]){
         
