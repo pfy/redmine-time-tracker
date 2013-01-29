@@ -31,7 +31,7 @@
     <entity name="SMManagedObject" representedClassName="SMManagedObject" isAbstract="YES" syncable="YES">
         <attribute name="changed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="n_created_on" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="n_id" optional="YES" attributeType="Integer 64" syncable="YES"/>
+        <attribute name="n_id" optional="YES" attributeType="Integer 64" indexed="YES" syncable="YES"/>
         <attribute name="n_updated_on" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="SMPriority" representedClassName="SMPriority" parentEntity="SMManagedObject" syncable="YES">
