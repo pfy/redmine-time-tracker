@@ -37,7 +37,7 @@ static char *smoohClassPrefix = "T@\"SM";
     
 }
 
--(void)updateWithDict:(NSDictionary*)dict{
+-(void)updateWithDict:(NSDictionary*)dict andSet:(NSMutableSet *)set{
     if(self.managedObjectContext == nil){
         LOG_INFO(@"object has been deleted %@",self);
         return;
@@ -65,7 +65,8 @@ static char *smoohClassPrefix = "T@\"SM";
                     if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
                         newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
                     }
-                    [newObject updateWithDict:val];
+                    [newObject updateWithDict:val andSet:set];
+                    [set addObject:newObject.objectID];
                     if(! [newObject isEqual:[self valueForKey:newKey]]){
                         [self setValue:newObject forKey:newKey];
                     }
@@ -109,14 +110,13 @@ static char *smoohClassPrefix = "T@\"SM";
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
-        NSMutableDictionary *updated = [NSMutableDictionary new];
+        NSMutableSet *set = [NSMutableSet new];
         for(NSDictionary *dict in respArray){
             int n_id = [[dict objectForKey:@"id"] intValue];
-            NSLog(@"Updating %d",n_id);
 
-            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:n_id andEntity:entityName inContext:context];
-            [managedObject updateWithDict:dict];
-            [updated setValue:managedObject forKey:[managedObject.n_id stringValue]];
+            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:n_id andEntity:entityName inContext:context ];
+            [managedObject updateWithDict:dict andSet:set];
+            [set addObject:managedObject.objectID];
         }
         
        if(delete){
@@ -125,8 +125,7 @@ static char *smoohClassPrefix = "T@\"SM";
            [fetchRequest setEntity:entity];
            NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
             for (SMManagedObject* managedObject in array){
-                LOG_INFO(@"check object id %@",managedObject.n_id);
-                if(managedObject.n_id != nil && (! [updated objectForKey:[managedObject.n_id stringValue]])){
+                if(managedObject.n_id != nil && (! [set containsObject:managedObject.objectID])){
                     if(managedObject.changed){
                         LOG_WARN(@"recreate object %@",managedObject);
                         managedObject.n_id = nil;

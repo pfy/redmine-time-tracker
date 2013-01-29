@@ -15,7 +15,7 @@ typedef void (^VoidBlock)(SMManagedObject *newSelf);
 
 @interface SMManagedObject (NetworkExtension)
 -(void)createRequest:(SMHttpClient*)client;
--(void)updateWithDict:(NSDictionary*)dict;
+-(void)updateWithDict:(NSDictionary*)dict andSet:(NSMutableSet*)set;
 +(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(bool)delete;
 
 +(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;

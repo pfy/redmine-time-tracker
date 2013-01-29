@@ -77,7 +77,7 @@
     [self.client getPath:@"users/current.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if([responseObject isKindOfClass:[NSDictionary class]]){
-            [[SMCurrentUser findOrCreate] updateWithDict:responseObject];
+            [[SMCurrentUser findOrCreate] updateWithDict:responseObject andSet:nil];
             LOG_INFO(@"updated current user %@",[SMCurrentUser findOrCreate]);
             [  self fetchIssues:0 ];
         }
