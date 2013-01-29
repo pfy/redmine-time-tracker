@@ -9,6 +9,7 @@
 #import "StatusBarMenu.h"
 #import "DDHotKeyCenter.h"
 #import "SMCurrentUser+trackingExtension.h"
+#import "SMTimeEntry+DisplayThingi.h"
 
 @implementation StatusBarMenu
 -(id)init{
@@ -28,12 +29,14 @@
         [self.statusMenu addItem:self.startTrackingMenuItem];
         [self.statusMenu addItem:self.stopTrackingMenuItem];
         
-        
-        
         [_statusItem setMenu:self.statusMenu];
         [_statusItem setTitle:@"Aaarbeeeiiiit"];
         [_statusItem setHighlightMode:YES];
         [self registerHotkey];
+        
+        self.user = [SMCurrentUser findOrCreate];
+        [self.user addObserver:self forKeyPath:@"currentTimeEntry" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [self updateStatusText];
         LOG_INFO(@"statusItem %@",_statusItem);
     }
     return self;
@@ -63,8 +66,26 @@
     [center registerHotKeyWithKeyCode:18 modifierFlags:NSCommandKeyMask target:self action:@selector(startTracking) object:nil];
        [center registerHotKeyWithKeyCode:19 modifierFlags:NSCommandKeyMask target:self action:@selector(stopTracking) object:nil];
 }
+-(void)setEntry:(SMTimeEntry *)entry{
+    if(entry != _entry){
+        [_entry removeObserver:self forKeyPath:@"formattedTime"];
+        [entry addObserver:self forKeyPath:@"formattedTime" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        _entry = entry;
+    }
+}
 
+-(void)updateStatusText{
+    [self setEntry:self.user.currentTimeEntry];
+    if(self.entry){
+        [_statusItem setTitle:[NSString stringWithFormat:@"%@ %@",self.entry.n_issue.n_subject,self.entry.formattedTime]];
+    } else {
+        [_statusItem setTitle:@"Idle"];
 
+    }
+}
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    [self updateStatusText];
+}
 
 @end

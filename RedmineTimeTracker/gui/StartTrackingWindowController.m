@@ -81,6 +81,7 @@
             error = nil;
         }
         entry.n_issue = currentIssue;
+        entry.n_spent_on = [NSDate date];
         entry.n_project = currentProject;
         entry.n_comments = [self.commentTextView stringValue];
         
