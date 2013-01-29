@@ -15,8 +15,7 @@
 @implementation SMNetworkUpdate
 
 -(void)fetchTimeEntries:(int)offset{
-    AFHTTPClient *client = [SMHttpClient sharedHTTPClient];
-    [client getPath:[NSString stringWithFormat:@"time_entries.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.client getPath:[NSString stringWithFormat:@"time_entries.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         // LOG_INFO(@"timenetries requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
@@ -36,11 +35,12 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_ERR(@"error happend %@",error);
+        self.updating = NO;
+
     } ];
 }
 -(void)fetchIssues:(int)offset{
-    AFHTTPClient *client = [SMHttpClient sharedHTTPClient];
-    [client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //LOG_INFO(@"issues requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
@@ -63,12 +63,13 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_ERR(@"error happend %@",error);
+        self.updating = NO;
+
     } ];
 }
 
 -(void)getCurrentUser{
-    AFHTTPClient *client = [SMHttpClient sharedHTTPClient];
-    [client getPath:@"users/current.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.client getPath:@"users/current.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if([responseObject isKindOfClass:[NSDictionary class]]){
             [[SMCurrentUser findOrCreate] updateWithDict:responseObject];
@@ -78,11 +79,18 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_ERR(@"error happend %@",error);
+        self.updating = NO;
+
     } ];
 }
 
 -(void)update{
     if(self.user.authToken && self.user.serverUrl && ! self.updating ){
+            SMCurrentUser *user = [SMCurrentUser findOrCreate];
+        
+        self.client = [[SMHttpClient alloc] initWithBaseURL:[NSURL URLWithString:user.serverUrl]];
+        [self.client setDefaultHeader:@"X-Redmine-API-Key" value:user.authToken];
+
         self.updating = YES;
         [self getCurrentUser];
         [self uploadChanges];
@@ -92,7 +100,7 @@
 
 -(void)uploadChanges{
     for (SMManagedObject *object in self.arrayController.arrangedObjects){
-        [object createRequest:[SMHttpClient sharedHTTPClient]];
+        [object createRequest:self.client];
     }
 }
 

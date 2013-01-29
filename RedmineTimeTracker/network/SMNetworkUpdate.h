@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "SMCurrentUser+trackingExtension.h"
+#import "SMHttpClient.h"
 
 @interface SMNetworkUpdate : NSObject
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,retain) NSArrayController *arrayController;
 @property (nonatomic,weak) SMCurrentUser *user;
 @property (nonatomic,assign) bool updating;
+@property (nonatomic,strong) SMHttpClient *client;
 
 -(void)update;
 @end

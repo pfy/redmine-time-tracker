@@ -10,7 +10,5 @@
 #import "SMCurrentUser+trackingExtension.h"
 
 @interface SMHttpClient : AFHTTPClient
-+(SMHttpClient*)sharedHTTPClient;
-@property (nonatomic,weak) SMCurrentUser *user;
-@property (readwrite, nonatomic, retain) NSURL *baseURL;
+
 @end

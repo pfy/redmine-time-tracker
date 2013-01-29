@@ -27,8 +27,9 @@
         
         [self.statusMenu addItem:self.startTrackingMenuItem];
         [self.statusMenu addItem:self.stopTrackingMenuItem];
-        
-        [self.statusMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @""]];
+        NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @""];
+        [preferencesMenuItem setTarget:self];
+        [self.statusMenu addItem:preferencesMenuItem];
         [_statusItem setMenu:self.statusMenu];
         [_statusItem setTitle:@"Aaarbeeeiiiit"];
         [_statusItem setHighlightMode:YES];
@@ -48,6 +49,8 @@
 }
 
 -(void)preferences{
+    LOG_INFO(@"show preferences");
+
     AppDelegate *app = [NSApplication sharedApplication].delegate;
     [app showPreferences];
 }
