@@ -2,7 +2,7 @@
 //  SMActivity.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 

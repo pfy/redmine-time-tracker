@@ -42,7 +42,10 @@ static char *smoohClassPrefix = "T@\"SM";
         LOG_INFO(@"object has been deleted %@",self);
         return;
     }
-    
+    if([self.changed boolValue]){
+        LOG_INFO(@"object has changed and will not be updated %@",self);
+        return;
+    }
     
     NSEnumerator *enumerator = [dict keyEnumerator];
     id key;

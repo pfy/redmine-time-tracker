@@ -2,7 +2,7 @@
 //  SMRedmineUser.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -20,10 +20,10 @@
 @property (nonatomic, retain) NSString * n_login;
 @property (nonatomic, retain) NSString * n_mail;
 @property (nonatomic, retain) NSString * n_name;
+@property (nonatomic, retain) SMCurrentUser *currentUser;
 @property (nonatomic, retain) NSSet *issues_assigned;
 @property (nonatomic, retain) NSSet *issues_created;
 @property (nonatomic, retain) NSSet *time_entries;
-@property (nonatomic, retain) SMCurrentUser *currentUser;
 @end
 
 @interface SMRedmineUser (CoreDataGeneratedAccessors)

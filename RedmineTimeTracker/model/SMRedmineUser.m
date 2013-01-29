@@ -2,7 +2,7 @@
 //  SMRedmineUser.m
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -20,9 +20,9 @@
 @dynamic n_login;
 @dynamic n_mail;
 @dynamic n_name;
+@dynamic currentUser;
 @dynamic issues_assigned;
 @dynamic issues_created;
 @dynamic time_entries;
-@dynamic currentUser;
 
 @end

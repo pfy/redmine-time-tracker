@@ -84,7 +84,7 @@
         entry.n_spent_on = [NSDate date];
         entry.n_project = currentProject;
         entry.n_comments = [self.commentTextView stringValue];
-        
+        entry.changed = [NSNumber numberWithBool:YES];
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
 
         SAVE_APP_CONTEXT

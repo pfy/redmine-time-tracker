@@ -2,7 +2,7 @@
 //  SMIssue.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -16,11 +16,11 @@
 
 @property (nonatomic, retain) NSString * n_description;
 @property (nonatomic, retain) NSNumber * n_done_ratio;
+@property (nonatomic, retain) NSDate * n_due_date;
 @property (nonatomic, retain) NSNumber * n_estimated_hours;
 @property (nonatomic, retain) NSNumber * n_spent_hours;
 @property (nonatomic, retain) NSDate * n_start_date;
 @property (nonatomic, retain) NSString * n_subject;
-@property (nonatomic, retain) NSDate * n_due_date;
 @property (nonatomic, retain) SMIssue *child;
 @property (nonatomic, retain) SMRedmineUser *n_assigned_to;
 @property (nonatomic, retain) SMRedmineUser *n_author;

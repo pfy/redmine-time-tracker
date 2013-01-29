@@ -2,7 +2,7 @@
 //  SMIssue.m
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -20,11 +20,11 @@
 
 @dynamic n_description;
 @dynamic n_done_ratio;
+@dynamic n_due_date;
 @dynamic n_estimated_hours;
 @dynamic n_spent_hours;
 @dynamic n_start_date;
 @dynamic n_subject;
-@dynamic n_due_date;
 @dynamic child;
 @dynamic n_assigned_to;
 @dynamic n_author;

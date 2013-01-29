@@ -2,7 +2,7 @@
 //  SMCurrentUser.m
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 
 @implementation SMCurrentUser
 
-@dynamic serverUrl;
 @dynamic authToken;
+@dynamic serverUrl;
 @dynamic currentTimeEntry;
-@dynamic myUserObject;
+@dynamic n_user;
 
 @end

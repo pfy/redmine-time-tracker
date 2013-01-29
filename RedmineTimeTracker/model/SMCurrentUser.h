@@ -2,20 +2,21 @@
 //  SMCurrentUser.h
 //  RedmineTimeTracker
 //
-//  Created by pfy on 28.01.13.
+//  Created by pfy on 29.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SMManagedObject.h"
 
 @class SMRedmineUser, SMTimeEntry;
 
-@interface SMCurrentUser : NSManagedObject
+@interface SMCurrentUser : SMManagedObject
 
-@property (nonatomic, retain) NSString * serverUrl;
 @property (nonatomic, retain) NSString * authToken;
+@property (nonatomic, retain) NSString * serverUrl;
 @property (nonatomic, retain) SMTimeEntry *currentTimeEntry;
-@property (nonatomic, retain) SMRedmineUser *myUserObject;
+@property (nonatomic, retain) SMRedmineUser *n_user;
 
 @end
