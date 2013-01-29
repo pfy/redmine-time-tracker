@@ -61,7 +61,7 @@ static char *smoohClassPrefix = "T@\"SM";
                     NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
                     NSString *className = [listItems objectAtIndex:1];
                     int n_id = [[val valueForKey:@"id"]intValue];
-                    __weak SMManagedObject *newObject = [self valueForKey:newKey];
+                    SMManagedObject *newObject = [self valueForKey:newKey];
                     if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
                         newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
                     }
@@ -72,7 +72,7 @@ static char *smoohClassPrefix = "T@\"SM";
                     }
                 }
                 else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
-                    NSDate __autoreleasing *newDate;
+                    NSDate *newDate;
                     NSString *dateString = val;
                     if(dateString.length == 10){
                         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -110,6 +110,7 @@ static char *smoohClassPrefix = "T@\"SM";
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
+        
         NSMutableSet *set = [NSMutableSet new];
         for(NSDictionary *dict in respArray){
             int n_id = [[dict objectForKey:@"id"] intValue];

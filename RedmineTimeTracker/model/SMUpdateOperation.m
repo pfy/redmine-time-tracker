@@ -14,7 +14,7 @@
     int max_faults = 10;
     while(max_faults){
         
-        NSManagedObjectContext *context = [[NSManagedObjectContext alloc]init];
+        NSManagedObjectContext __autoreleasing *context = [[NSManagedObjectContext alloc]init];
         [context setPersistentStoreCoordinator:[(AppDelegate*)[NSApplication sharedApplication].delegate persistentStoreCoordinator]];
         [context setUndoManager:nil];
         
@@ -53,7 +53,8 @@
             //if(max_faults != 10)
              //   LOG_INFO(@"did success safe managed object context after %d",10-max_faults);
             max_faults = 0;
-        }        
+        }
+        [context reset];
     }
 }
 -(void)dealloc{
