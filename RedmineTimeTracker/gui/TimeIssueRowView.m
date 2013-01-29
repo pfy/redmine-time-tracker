@@ -56,7 +56,6 @@
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    LOG_INFO(@"observerValueForKeyPath %@ of Object %@",keyPath,object);
     [self updateState];
     
 }
