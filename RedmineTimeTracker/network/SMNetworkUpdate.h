@@ -17,6 +17,7 @@
 @property (nonatomic,strong) SMHttpClient *client;
 @property (nonatomic,strong) NSMutableArray *allCommands;
 
+@property (nonatomic,assign) bool running;
 
 -(void)update;
 -(void)queueItemFinished:(SMNetworkUpdateCommand*)cmd;

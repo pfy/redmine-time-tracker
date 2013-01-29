@@ -12,12 +12,13 @@
 #import "SMHttpClient.h"
 
 typedef void (^VoidBlock)(SMManagedObject *newSelf);
+typedef void (^noneBlock)();
 
 @interface SMManagedObject (NetworkExtension)
 -(void)createRequest:(SMHttpClient*)client;
 -(void)updateWithDict:(NSDictionary*)dict andSet:(NSMutableSet*)set;
 +(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(bool)delete;
-
++(void)scheduleOperationOnMainWithBlock:(noneBlock)block;
 +(void)scheduleUpdateOperationWithBlock:(ContextBlock) block;
 -(void)scheduleOperationWithBlock:(VoidBlock)block;
 @end

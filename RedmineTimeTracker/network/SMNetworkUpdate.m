@@ -34,7 +34,8 @@
 }
 
 -(void)runNext{
-    if(self.allCommands.count > 0){
+    if(self.allCommands.count > 0 && !self.running){
+        self.running = YES;
         SMNetworkUpdateCommand *cmd = [self.allCommands lastObject];
         LOG_INFO(@"running %@",cmd);
         [cmd run:self];
@@ -43,9 +44,11 @@
 
 -(void)queueItemFinished:(SMNetworkUpdateCommand *)cmd{
     [self.allCommands removeObject:cmd];
+    self.running = NO;
     [self runNext];
 }
 -(void)queueItemFailed:(SMNetworkUpdateCommand *)cmd{
+    self.running = NO;
     [self.allCommands removeAllObjects];
 }
 
@@ -55,6 +58,7 @@
     self = [super init];
     if(self){
         self.allCommands = [NSMutableArray new];
+        self.running = NO;
         self.timer =     [NSTimer scheduledTimerWithTimeInterval:60.0
                                                           target:self
                                                         selector:@selector(update)

@@ -36,11 +36,9 @@
             } else {
                 /* we are done */
                 [SMManagedObject update:@"SMIssue" withArray:allIssues delete:YES];
-                AppDelegate *app = [NSApplication sharedApplication].delegate;
-                [app.asyncDbQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
+                [SMManagedObject scheduleOperationOnMainWithBlock:^{
                     [self.center queueItemFinished:self];
-                }]];
-                
+                }];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

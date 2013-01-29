@@ -32,7 +32,9 @@
                 }]];
             } else {
                 [SMManagedObject update:@"SMTimeEntry" withArray:allTimeEntries delete:YES];
-                [self.center queueItemFinished:self];
+                [SMManagedObject scheduleOperationOnMainWithBlock:^{
+                    [self.center queueItemFinished:self];
+                }];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
