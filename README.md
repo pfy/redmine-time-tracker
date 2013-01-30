@@ -1,10 +1,7 @@
 redmine-time-tracker
 ====================
 
-Time Tracking for Redmine
-Simple time tracking tool for Redmine
-
-Start the app, enter your Redmine Auth token and start tracking ...
+Redmine Time Tracker is a simple time tracking App for OSX and Redmine. It tracks your time and adds them as Time Entry to Redmine issues.
 
 
 System Requirements
