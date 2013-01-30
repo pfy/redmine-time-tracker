@@ -28,8 +28,8 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
     
-   SMNetworkUpdate *updater = [SMNetworkUpdate new];
-   [updater update];
+   self.updateCenter = [SMNetworkUpdate new];
+   [self.updateCenter  update];
     SMCurrentUser *user = [SMCurrentUser findOrCreate];
     if(!user.serverUrl || !user.authToken){
         [self showPreferences];

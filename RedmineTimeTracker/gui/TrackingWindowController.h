@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TrackingWindowController : NSWindowController
-@property (nonatomic,strong) IBOutlet NSArrayController *timeEntryArrayController;
+@property (nonatomic,weak) IBOutlet NSProgressIndicator *progressIndicator;
+
+@property (nonatomic,weak) IBOutlet NSArrayController *timeEntryArrayController;
 @property (nonatomic,strong)  NSManagedObjectContext *context;
 @property (nonatomic,strong)  NSDate *currentDate;
 @property (nonatomic,strong)  NSString *currentDateString;
@@ -18,6 +20,8 @@
 -(IBAction)nextDay:(id)sender;
 -(IBAction)prevDay:(id)sender;
 -(IBAction)today:(id)sender;
+-(IBAction)refresh:(id)sender;
+
 - (NSArray *)timeEntrySortDescriptors;
 
 @end

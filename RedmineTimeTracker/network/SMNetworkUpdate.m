@@ -45,10 +45,14 @@
 -(void)queueItemFinished:(SMNetworkUpdateCommand *)cmd{
     [self.allCommands removeObject:cmd];
     self.running = NO;
+    LOG_INFO(@"finished %@",cmd);
+
     [self runNext];
 }
 -(void)queueItemFailed:(SMNetworkUpdateCommand *)cmd{
     self.running = NO;
+    LOG_INFO(@"aborted %@",cmd);
+
     [self.allCommands removeAllObjects];
 }
 

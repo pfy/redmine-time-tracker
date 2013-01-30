@@ -11,6 +11,9 @@
 
 @implementation SMUploadCommand
 -(void)run:(SMNetworkUpdate *)networkUpdateCenter{
+    self.center = networkUpdateCenter;
+    self.client = self.center.client;
+    
     
     NSManagedObjectContext *context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
     
@@ -18,9 +21,26 @@
     request.predicate  =  [NSPredicate predicateWithFormat:@"changed = %@",[NSNumber numberWithBool:YES] ];
     NSArray *fetched = [context executeFetchRequest:request error:nil];
     for (SMManagedObject *obj in fetched){
-        [obj createRequest:networkUpdateCenter.client];
+        [obj createRequest:self.client];
     }
-    [networkUpdateCenter queueItemFinished:self];
+    [self.client.operationQueue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self check];
+}
+
+-(void)dealloc{
+    [self.client.operationQueue  removeObserver:self forKeyPath:@"operationCount"];
+    self.client = nil;
+    self.center = nil;
+}
+-(void)check{
+    if(self.client.operationQueue.operationCount == 0){
+        [self.center queueItemFinished:self];
+    }
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    LOG_INFO(@"queue item count changed %ld",(unsigned long)self.client.operationQueue.operationCount );
+    [self check];
 }
 
 @end

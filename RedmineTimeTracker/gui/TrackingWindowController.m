@@ -49,14 +49,34 @@
     [self.timeEntryArrayController setManagedObjectContext:self.context];
     [self.timeEntryArrayController setEntityName:@"SMTimeEntry"];
 
-    [self addObserver:self forKeyPath:@"currentDate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+   
     self.formatter = [NSDateFormatter new];
     [self.formatter setTimeStyle:NSDateFormatterNoStyle];
     [self.formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    [self addObserver:self forKeyPath:@"currentDate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    
     self.currentDate = [NSDate date];
+    
+    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    [app.updateCenter addObserver:self forKeyPath:@"running" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        
+    [self updateSpinner];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    [self updateFetcher];
+    if([keyPath isEqualToString:@"currentDate"]){
+        [self updateFetcher];
+    } else {
+        [self updateSpinner];
+    }
+}
+-(void)updateSpinner{
+    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    if(app.updateCenter.running){
+        [self.progressIndicator startAnimation:self];
+    } else {
+        [self.progressIndicator stopAnimation:self];
+    }
 }
 
 -(IBAction)today:(id)sender{
@@ -87,6 +107,11 @@
     }],
             [NSSortDescriptor sortDescriptorWithKey:@"n_updated_on"
                                           ascending:NO],nil];
+}
+
+-(void)refresh:(id)sender{
+    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    [app.updateCenter update];
 }
 
 @end

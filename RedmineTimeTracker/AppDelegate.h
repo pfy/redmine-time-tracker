@@ -12,6 +12,8 @@
 #import "TrackingWindowController.h"
 #import "TimeTracker.h"
 #import "PreferencesWindowController.h"
+#import "SMNetworkUpdate.h"
+
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -25,6 +27,7 @@
 @property (nonatomic,strong) TrackingWindowController *trackingVc;
 @property (nonatomic,strong) TimeTracker *timeTracker;
 @property (nonatomic,strong) PreferencesWindowController *preferences;
+@property (nonatomic,strong) SMNetworkUpdate *updateCenter;
 
 
 

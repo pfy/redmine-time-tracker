@@ -9,5 +9,7 @@
 #import "SMNetworkUpdateCommand.h"
 
 @interface SMUploadCommand : SMNetworkUpdateCommand
+@property (nonatomic,strong) SMHttpClient *client;
+@property (nonatomic,strong) SMNetworkUpdate *center;
 
 @end
