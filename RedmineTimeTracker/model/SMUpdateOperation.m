@@ -2,8 +2,8 @@
 //  SMUpdateOperation.m
 //  entertrainment
 //
-//  Created by pfy on 22.10.12.
-//  Copyright (c) 2012 pfy. All rights reserved.
+//  Created by David Gunzinger Smooh GmbH on 22.10.12.
+//  Copyright (c) 2012 David Gunzinger Smooh GmbH. All rights reserved.
 //
 
 #import "SMUpdateOperation.h"

@@ -2,7 +2,7 @@
 //  SMNetworkUpdate.m
 //  RedmineTimeTracker
 //
-//  Created by pfy on 24.01.13.
+//  Created by David Gunzinger Smooh GmbH on 24.01.13.
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
