@@ -12,7 +12,6 @@
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
 		CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */; };
 		CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */; };
-		CF114ADE16B686DF0033346D /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF114ADD16B686DF0033346D /* Carbon.framework */; };
 		CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */; };
 		CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9716B68EC60033346D /* StartTrackingWindowController.m */; };
 		CF114B9A16B68EC70033346D /* StartTrackingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */; };
@@ -59,6 +58,9 @@
 		CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42516B1A06500C93A0D /* StatusBarMenu.m */; };
 		CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */; };
 		CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFABD42B16B1A49800C93A0D /* IssuesList.m */; };
+		CFBDBAFE16B9788700FD9982 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBDBAFD16B9788700FD9982 /* Carbon.framework */; };
+		CFBDBB0016B9789300FD9982 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBDBAFF16B9789300FD9982 /* IOKit.framework */; };
+		CFBDBB0316B978AF00FD9982 /* IdleTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0216B978AF00FD9982 /* IdleTime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +72,6 @@
 		CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMUpdateOperation.m; sourceTree = "<group>"; };
 		CF10AEFE16B17B4C008F9741 /* SMHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHttpClient.h; sourceTree = "<group>"; };
 		CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHttpClient.m; sourceTree = "<group>"; };
-		CF114ADD16B686DF0033346D /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
 		CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
 		CF114B9616B68EC60033346D /* StartTrackingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartTrackingWindowController.h; sourceTree = "<group>"; };
@@ -162,6 +163,10 @@
 		CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActiveApplicationTracker.m; path = ../gui/ActiveApplicationTracker.m; sourceTree = "<group>"; };
 		CFABD42A16B1A49800C93A0D /* IssuesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssuesList.h; sourceTree = "<group>"; };
 		CFABD42B16B1A49800C93A0D /* IssuesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssuesList.m; sourceTree = "<group>"; };
+		CFBDBAFD16B9788700FD9982 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		CFBDBAFF16B9789300FD9982 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		CFBDBB0116B978AF00FD9982 /* IdleTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdleTime.h; sourceTree = "<group>"; };
+		CFBDBB0216B978AF00FD9982 /* IdleTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdleTime.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +174,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF114ADE16B686DF0033346D /* Carbon.framework in Frameworks */,
+				CFBDBB0016B9789300FD9982 /* IOKit.framework in Frameworks */,
+				CFBDBAFE16B9788700FD9982 /* Carbon.framework in Frameworks */,
 				CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */,
 				CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */,
 			);
@@ -253,6 +259,8 @@
 				CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */,
 				CF114BC516B6D9A60033346D /* TimeTracker.h */,
 				CF114BC616B6D9A60033346D /* TimeTracker.m */,
+				CFBDBB0116B978AF00FD9982 /* IdleTime.h */,
+				CFBDBB0216B978AF00FD9982 /* IdleTime.m */,
 			);
 			path = tracking;
 			sourceTree = "<group>";
@@ -267,8 +275,6 @@
 		CF8844A716B045E9008B87FC = {
 			isa = PBXGroup;
 			children = (
-				CF114ADD16B686DF0033346D /* Carbon.framework */,
-				CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */,
 				CF8844BC16B045E9008B87FC /* RedmineTimeTracker */,
 				CF8844B516B045E9008B87FC /* Frameworks */,
 				CF8844B316B045E9008B87FC /* Products */,
@@ -286,6 +292,9 @@
 		CF8844B516B045E9008B87FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFBDBAFF16B9789300FD9982 /* IOKit.framework */,
+				CFBDBAFD16B9788700FD9982 /* Carbon.framework */,
+				CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */,
 				CF8844B616B045E9008B87FC /* Cocoa.framework */,
 				CF8844B816B045E9008B87FC /* Other Frameworks */,
 			);
@@ -507,6 +516,7 @@
 				CF2EBE0716B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m in Sources */,
 				CF2EBE0A16B8372700CA2BAA /* SMUpdateCurrentUserCommand.m in Sources */,
 				CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */,
+				CFBDBB0316B978AF00FD9982 /* IdleTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
