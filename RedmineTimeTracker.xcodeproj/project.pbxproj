@@ -65,6 +65,7 @@
 		CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0816BA8FEE00FD9982 /* NSAttributedString+hyperlink.m */; };
 		CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */; };
 		CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */; };
+		CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB1416BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +180,8 @@
 		CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueValueTransformer.m; sourceTree = "<group>"; };
 		CFBDBB0D16BA9D2700FD9982 /* TimeEntryValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEntryValueTransformer.h; sourceTree = "<group>"; };
 		CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeEntryValueTransformer.m; sourceTree = "<group>"; };
+		CFBDBB1316BADEFF00FD9982 /* CaseIntensitiveComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseIntensitiveComboBoxCell.h; sourceTree = "<group>"; };
+		CFBDBB1416BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaseIntensitiveComboBoxCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +424,8 @@
 				CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */,
 				CF2EBDFC16B7E5C400CA2BAA /* TimeIssueRowView.h */,
 				CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */,
+				CFBDBB1316BADEFF00FD9982 /* CaseIntensitiveComboBoxCell.h */,
+				CFBDBB1416BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */,
 				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
 				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
+				CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
