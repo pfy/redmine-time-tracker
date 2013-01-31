@@ -49,8 +49,6 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     
     [self.issueArrayController setManagedObjectContext:self.context];
     [self.issueArrayController setEntityName:@"SMIssue"];
-    self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project = %@",self.projectArrayController.selection];
-    [self.issueArrayController fetchWithRequest:nil merge:YES error:&error];
     
     
     self.currentProject = [[NSUserDefaults standardUserDefaults]objectForKey:recentProjectDefaultsKey];

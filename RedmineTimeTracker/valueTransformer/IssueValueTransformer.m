@@ -22,7 +22,6 @@
     if(value == nil)
         return nil;
     SMCurrentUser *user = [SMCurrentUser findOrCreate];
-    LOG_INFO(@"transform %@",value);
     NSAttributedString *str = [NSAttributedString hyperlinkFromString:[NSString stringWithFormat:@"%@",value] withURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/issues/%@",user.serverUrl,value]]];
     return str;
     
