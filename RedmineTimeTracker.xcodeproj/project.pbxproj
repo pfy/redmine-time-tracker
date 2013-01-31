@@ -61,6 +61,10 @@
 		CFBDBAFE16B9788700FD9982 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBDBAFD16B9788700FD9982 /* Carbon.framework */; };
 		CFBDBB0016B9789300FD9982 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBDBAFF16B9789300FD9982 /* IOKit.framework */; };
 		CFBDBB0316B978AF00FD9982 /* IdleTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0216B978AF00FD9982 /* IdleTime.m */; };
+		CFBDBB0616BA8E4600FD9982 /* ProjectValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0516BA8E4600FD9982 /* ProjectValueTransformer.m */; };
+		CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0816BA8FEE00FD9982 /* NSAttributedString+hyperlink.m */; };
+		CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */; };
+		CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +171,14 @@
 		CFBDBAFF16B9789300FD9982 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		CFBDBB0116B978AF00FD9982 /* IdleTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdleTime.h; sourceTree = "<group>"; };
 		CFBDBB0216B978AF00FD9982 /* IdleTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdleTime.m; sourceTree = "<group>"; };
+		CFBDBB0416BA8E4600FD9982 /* ProjectValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectValueTransformer.h; sourceTree = "<group>"; };
+		CFBDBB0516BA8E4600FD9982 /* ProjectValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectValueTransformer.m; sourceTree = "<group>"; };
+		CFBDBB0716BA8FEE00FD9982 /* NSAttributedString+hyperlink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+hyperlink.h"; sourceTree = "<group>"; };
+		CFBDBB0816BA8FEE00FD9982 /* NSAttributedString+hyperlink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+hyperlink.m"; sourceTree = "<group>"; };
+		CFBDBB0A16BA924700FD9982 /* IssueValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IssueValueTransformer.h; sourceTree = "<group>"; };
+		CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IssueValueTransformer.m; sourceTree = "<group>"; };
+		CFBDBB0D16BA9D2700FD9982 /* TimeEntryValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeEntryValueTransformer.h; sourceTree = "<group>"; };
+		CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeEntryValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +280,14 @@
 		CF114BC816B6DE270033346D /* valueTransformer */ = {
 			isa = PBXGroup;
 			children = (
+				CFBDBB0416BA8E4600FD9982 /* ProjectValueTransformer.h */,
+				CFBDBB0516BA8E4600FD9982 /* ProjectValueTransformer.m */,
+				CFBDBB0716BA8FEE00FD9982 /* NSAttributedString+hyperlink.h */,
+				CFBDBB0816BA8FEE00FD9982 /* NSAttributedString+hyperlink.m */,
+				CFBDBB0A16BA924700FD9982 /* IssueValueTransformer.h */,
+				CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */,
+				CFBDBB0D16BA9D2700FD9982 /* TimeEntryValueTransformer.h */,
+				CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */,
 			);
 			path = valueTransformer;
 			sourceTree = "<group>";
@@ -517,6 +537,10 @@
 				CF2EBE0A16B8372700CA2BAA /* SMUpdateCurrentUserCommand.m in Sources */,
 				CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */,
 				CFBDBB0316B978AF00FD9982 /* IdleTime.m in Sources */,
+				CFBDBB0616BA8E4600FD9982 /* ProjectValueTransformer.m in Sources */,
+				CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */,
+				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
+				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
