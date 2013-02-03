@@ -76,5 +76,8 @@
         [self updateFetcher];
     }
 }
+-(void)dealloc{
+    [self removeObserver:self forKeyPath:@"currentDate"];
+}
 
 @end
