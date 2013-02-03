@@ -14,7 +14,7 @@
 @interface SMApplicationTracker : SMManagedObject
 
 @property (nonatomic, retain) NSString * app_name;
-@property (nonatomic, retain) NSDate * end_time;
-@property (nonatomic, retain) NSDate * start_time;
+@property (nonatomic, retain) NSDate * spent_on;
+@property (nonatomic, retain) NSNumber * seconds;
 
 @end

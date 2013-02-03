@@ -28,7 +28,8 @@
 		CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */; };
 		CF31D21416BE880100E81902 /* ApplicationTrackerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31D21216BE880100E81902 /* ApplicationTrackerWindowController.m */; };
 		CF31D21516BE880100E81902 /* ApplicationTrackerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF31D21316BE880100E81902 /* ApplicationTrackerWindowController.xib */; };
-		CF31D22416BE937F00E81902 /* SMApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31D22316BE937F00E81902 /* SMApplicationTracker.m */; };
+		CF31D22D16BE961000E81902 /* SMApplicationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31D22C16BE961000E81902 /* SMApplicationTracker.m */; };
+		CF31D23016BE9ADC00E81902 /* SecondsValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31D22F16BE9ADC00E81902 /* SecondsValueTransformer.m */; };
 		CF8844B716B045E9008B87FC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8844B616B045E9008B87FC /* Cocoa.framework */; };
 		CF8844C116B045E9008B87FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF8844BF16B045E9008B87FC /* InfoPlist.strings */; };
 		CF8844C316B045E9008B87FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844C216B045E9008B87FC /* main.m */; };
@@ -110,8 +111,10 @@
 		CF31D21116BE880100E81902 /* ApplicationTrackerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTrackerWindowController.h; sourceTree = "<group>"; };
 		CF31D21216BE880100E81902 /* ApplicationTrackerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTrackerWindowController.m; sourceTree = "<group>"; };
 		CF31D21316BE880100E81902 /* ApplicationTrackerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationTrackerWindowController.xib; sourceTree = "<group>"; };
-		CF31D22216BE937F00E81902 /* SMApplicationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMApplicationTracker.h; sourceTree = "<group>"; };
-		CF31D22316BE937F00E81902 /* SMApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMApplicationTracker.m; sourceTree = "<group>"; };
+		CF31D22B16BE961000E81902 /* SMApplicationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMApplicationTracker.h; sourceTree = "<group>"; };
+		CF31D22C16BE961000E81902 /* SMApplicationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMApplicationTracker.m; sourceTree = "<group>"; };
+		CF31D22E16BE9ADC00E81902 /* SecondsValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondsValueTransformer.h; sourceTree = "<group>"; };
+		CF31D22F16BE9ADC00E81902 /* SecondsValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondsValueTransformer.m; sourceTree = "<group>"; };
 		CF8844B216B045E9008B87FC /* RedmineTimeTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedmineTimeTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF8844B616B045E9008B87FC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CF8844B916B045E9008B87FC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -213,9 +216,9 @@
 			children = (
 				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
 				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
+				CF31D22B16BE961000E81902 /* SMApplicationTracker.h */,
+				CF31D22C16BE961000E81902 /* SMApplicationTracker.m */,
 				CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */,
-				CF31D22216BE937F00E81902 /* SMApplicationTracker.h */,
-				CF31D22316BE937F00E81902 /* SMApplicationTracker.m */,
 				CF8A1B1B16B7AFFF00ED429E /* SMCurrentUser.h */,
 				CF8A1B1C16B7AFFF00ED429E /* SMCurrentUser.m */,
 				CF8A1B1816B7AFFF00ED429E /* SMProjects.h */,
@@ -302,6 +305,8 @@
 				CFBDBB0B16BA924700FD9982 /* IssueValueTransformer.m */,
 				CFBDBB0D16BA9D2700FD9982 /* TimeEntryValueTransformer.h */,
 				CFBDBB0E16BA9D2700FD9982 /* TimeEntryValueTransformer.m */,
+				CF31D22E16BE9ADC00E81902 /* SecondsValueTransformer.h */,
+				CF31D22F16BE9ADC00E81902 /* SecondsValueTransformer.m */,
 			);
 			path = valueTransformer;
 			sourceTree = "<group>";
@@ -563,7 +568,8 @@
 				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
 				CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */,
 				CF31D21416BE880100E81902 /* ApplicationTrackerWindowController.m in Sources */,
-				CF31D22416BE937F00E81902 /* SMApplicationTracker.m in Sources */,
+				CF31D22D16BE961000E81902 /* SMApplicationTracker.m in Sources */,
+				CF31D23016BE9ADC00E81902 /* SecondsValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -59,8 +59,8 @@
     NSDate *firstDate = [calendar dateFromComponents:components]; // makes a new NSDate keeping only the year, month, and day
     NSDate *secondDate = [firstDate dateByAddingTimeInterval:24*3600];
     
-    NSPredicate *firstPredicate = [NSPredicate predicateWithFormat:@"end_time >= %@", firstDate];
-    NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"end_time < %@", secondDate];
+    NSPredicate *firstPredicate = [NSPredicate predicateWithFormat:@"spent_on >= %@", firstDate];
+    NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"spent_on < %@", secondDate];
     
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:firstPredicate,secondPredicate, nil]];
     

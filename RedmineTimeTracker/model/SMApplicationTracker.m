@@ -12,7 +12,7 @@
 @implementation SMApplicationTracker
 
 @dynamic app_name;
-@dynamic end_time;
-@dynamic start_time;
+@dynamic spent_on;
+@dynamic seconds;
 
 @end

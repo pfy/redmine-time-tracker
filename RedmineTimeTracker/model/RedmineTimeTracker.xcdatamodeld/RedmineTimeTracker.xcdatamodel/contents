@@ -6,8 +6,8 @@
     </entity>
     <entity name="SMApplicationTracker" representedClassName="SMApplicationTracker" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="app_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="end_time" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="seconds" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="spent_on" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="SMCurrentUser" representedClassName="SMCurrentUser" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
