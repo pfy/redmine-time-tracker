@@ -13,6 +13,7 @@
 #import "TimeTracker.h"
 #import "PreferencesWindowController.h"
 #import "SMNetworkUpdate.h"
+#import "ApplicationTrackerWindowController.h"
 
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
@@ -33,7 +34,11 @@
 
 @property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
 @property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
+@property (nonatomic,strong)  ApplicationTrackerWindowController *applicationTrackerWindowController;
+
 - (IBAction)saveAction:(id)sender;
 - (void)saveContext;
 -(void)showPreferences;
+-(void)showAppTracker;
+
 @end

@@ -4,11 +4,6 @@
         <attribute name="n_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="time_entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="n_activity" inverseEntity="SMTimeEntry" syncable="YES"/>
     </entity>
-    <entity name="SMApplicationTracker" representedClassName="SMApplicationTracker" parentEntity="SMManagedObject" syncable="YES">
-        <attribute name="app_name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="end_time" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
     <entity name="SMCurrentUser" representedClassName="SMCurrentUser" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serverUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -93,6 +88,5 @@
         <element name="SMStatus" positionX="-117" positionY="201" width="128" height="105"/>
         <element name="SMTimeEntry" positionX="61" positionY="486" width="128" height="165"/>
         <element name="SMTrackers" positionX="-360" positionY="261" width="128" height="75"/>
-        <element name="SMApplicationTracker" positionX="-189" positionY="126" width="128" height="88"/>
     </elements>
 </model>

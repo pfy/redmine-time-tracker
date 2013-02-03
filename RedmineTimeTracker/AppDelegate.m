@@ -109,10 +109,13 @@
             return nil;
         }
     }
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"RedmineTimeTracker.storedata"];
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]) {
+    if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error]) {
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -229,6 +232,12 @@
     [self.preferences showWindow:self];
 }
 
+
+
+-(void)showAppTracker{
+    self.applicationTrackerWindowController = [[ApplicationTrackerWindowController alloc] initWithWindowNibName:@"ApplicationTrackerWindowController"];
+    [self.applicationTrackerWindowController showWindow:self];
+}
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     LOG_INFO(@"did change %@ of object %@ change %@",keyPath,object,change);
 }

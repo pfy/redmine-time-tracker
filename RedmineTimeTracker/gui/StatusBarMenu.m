@@ -30,6 +30,11 @@
         NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @""];
         [preferencesMenuItem setTarget:self];
         [self.statusMenu addItem:preferencesMenuItem];
+        
+        NSMenuItem *applicationTrackerMenuItem = [[NSMenuItem alloc]initWithTitle:@"Applications" action:@selector(showAppTracker) keyEquivalent:@""];
+        [applicationTrackerMenuItem setTarget:[NSApplication sharedApplication].delegate];
+        [self.statusMenu addItem:applicationTrackerMenuItem];
+        
         [_statusItem setMenu:self.statusMenu];
         [_statusItem setTitle:@"Aaarbeeeiiiit"];
         [_statusItem setHighlightMode:YES];

@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SMApplicationTracker.h"
 @interface ActiveApplicationTracker : NSObject
 @property (nonatomic,strong) NSTimer *timer;
-@property (nonatomic,strong) NSString *currentAppName;
+@property (nonatomic,strong) SMApplicationTracker *currentTracker;
+@property (nonatomic,strong) NSDate *lastUpdate;
 
 @end

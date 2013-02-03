@@ -12,10 +12,17 @@
 -(void)update{
     NSDictionary *activeApp = [NSWorkspace sharedWorkspace].activeApplication;
     NSString *appName = [activeApp objectForKey:@"NSApplicationName"];
-    if(! [self.currentAppName isEqualToString:appName]){
-        self.currentAppName = appName;
-        LOG_INFO(@"appName %@, app dict %@",appName,activeApp);
+
+    if(!self.currentTracker|| ! [self.currentTracker.app_name isEqualToString:appName]){
+         NSManagedObjectContext *context =  [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+        self.currentTracker = [NSEntityDescription insertNewObjectForEntityForName:@"SMApplicationTracker" inManagedObjectContext:context];
+        self.currentTracker.app_name = appName;
+        self.currentTracker.start_time = [NSDate date];
+        LOG_INFO(@"start tracking on %@",appName);
     }
+    
+    self.currentTracker.end_time = [NSDate date];
+    
 }
 
 
