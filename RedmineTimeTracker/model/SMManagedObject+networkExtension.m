@@ -74,15 +74,13 @@ static char *smoohClassPrefix = "T@\"SM";
                 else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
                     NSDate *newDate;
                     NSString *dateString = val;
-                    if(dateString.length == 10){
+                    if(dateString.length == 20){
                         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                        [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+                        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
                         newDate = [dateFormatter dateFromString:dateString];
                     } else {
-                        dateString = [dateString stringByReplacingOccurrencesOfString:@":"
-                                                                           withString:@""];
                         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                        [dateFormatter setDateFormat:@"yyyy/MM/dd HHmmss ZZ"];
+                        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                         newDate = [dateFormatter dateFromString:dateString];
                     }
                     if(newDate == nil){
