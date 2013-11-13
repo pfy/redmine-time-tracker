@@ -8,27 +8,30 @@
 
 #import "TimeIssueRowView.h"
 #import "SMRedmineUser.h"
+@interface TimeIssueRowView ()
+@property (nonatomic,strong) SMCurrentUser* user;
+@end
+
 @implementation TimeIssueRowView
 
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        self.user = [SMCurrentUser findOrCreate];
+        [self.user addObserver:self forKeyPath:@"currentTimeEntry" options:NSKeyValueObservingOptionNew context:nil];
     }
     
     return self;
 }
 
 -(void)setObjectValue:(id)objectValue{
-    [self.objectValue removeObserver:self forKeyPath:@"currentUser"];
     [super setObjectValue:objectValue];
-    [self.objectValue addObserver:self forKeyPath:@"currentUser" options:NSKeyValueObservingOptionNew context:nil ];
     [self updateState];
 }
 
 -(void)dealloc{
-    [self.objectValue removeObserver:self forKeyPath:@"currentUser"];
+    [self.user removeObserver:self forKeyPath:@"currentTimeEntry"];
 }
 
 -(void)updateState {
