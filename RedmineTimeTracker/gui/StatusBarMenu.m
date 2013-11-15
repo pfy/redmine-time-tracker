@@ -48,7 +48,7 @@
     return self;
 }
 
--(bool)validateMenuItem:(NSMenuItem*)item{
+-(BOOL)validateMenuItem:(NSMenuItem*)item{
     LOG_INFO(@"validateMenuItem");
     return YES;
 }
@@ -71,7 +71,6 @@
     LOG_WARN(@"====== STOP TRARCKING =======");
     [SMCurrentUser findOrCreate].currentTimeEntry = nil;
     SAVE_APP_CONTEXT
-    
 }
 
 -(void)registerHotkey{

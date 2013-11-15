@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */; };
 		CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */; };
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
@@ -73,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		CF10AEDA16B177D5008F9741 /* RedmineTimeTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedmineTimeTracker.xcdatamodel; sourceTree = "<group>"; };
 		CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CF10AEF416B179EF008F9741 /* SMManagedObject+networkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMManagedObject+networkExtension.h"; sourceTree = "<group>"; };
@@ -107,7 +109,7 @@
 		CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateCurrentUserCommand.m; sourceTree = "<group>"; };
 		CF2EBE0B16B8373700CA2BAA /* SMUploadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUploadCommand.h; sourceTree = "<group>"; };
 		CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUploadCommand.m; sourceTree = "<group>"; };
-		CF31D20D16BE838700E81902 /* 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0.1.xcdatamodel; sourceTree = "<group>"; };
+		CF31D20D16BE838700E81902 /* 0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 0.1.xcdatamodel; sourceTree = "<group>"; };
 		CF31D21116BE880100E81902 /* ApplicationTrackerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTrackerWindowController.h; sourceTree = "<group>"; };
 		CF31D21216BE880100E81902 /* ApplicationTrackerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTrackerWindowController.m; sourceTree = "<group>"; };
 		CF31D21316BE880100E81902 /* ApplicationTrackerWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationTrackerWindowController.xib; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		CF8844BD16B045E9008B87FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0775F4BC17BA77BC00F9D18F /* Icon.icns */,
 				CF8844BE16B045E9008B87FC /* RedmineTimeTracker-Info.plist */,
 				CF8844BF16B045E9008B87FC /* InfoPlist.strings */,
 				CF8844C216B045E9008B87FC /* main.m */,
@@ -477,6 +480,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "smooh GmbH";
+				TargetAttributes = {
+					CF8844B116B045E9008B87FC = {
+						DevelopmentTeam = 8AVR59FNSV;
+					};
+				};
 			};
 			buildConfigurationList = CF8844AC16B045E9008B87FC /* Build configuration list for PBXProject "RedmineTimeTracker" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -508,6 +516,7 @@
 				CF114BA216B6CBED0033346D /* TrackingWindowController.xib in Resources */,
 				CF8A1B2A16B7CFE500ED429E /* PreferencesWindowController.xib in Resources */,
 				CF31D21516BE880100E81902 /* ApplicationTrackerWindowController.xib in Resources */,
+				0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +668,7 @@
 		CF8844D416B045E9008B87FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";
@@ -672,6 +682,7 @@
 		CF8844D516B045E9008B87FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";
