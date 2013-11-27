@@ -20,7 +20,7 @@
 -(void)fetchIssues:(int)offset{
     NSMutableArray __block *allIssues = self.allIssues;
     LOG_INFO(@"fetch issues %d",offset);
-    [self.center.client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d&status_id=*",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.center.client getPath:[NSString stringWithFormat:@"issues.json?limit=100&offset=%d&status_id=open",offset] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //LOG_INFO(@"issues requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
