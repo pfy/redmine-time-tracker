@@ -9,7 +9,8 @@
 #import "SMCurrentUser+trackingExtension.h"
 
 @implementation SMCurrentUser (trackingExtension)
-+(SMCurrentUser*)findOrCreate{
+
++(instancetype) _load{
     NSManagedObjectContext *context =  SMMainContext();
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SMCurrentUser" inManagedObjectContext:context];
@@ -23,6 +24,17 @@
     }
     return managedObject;
     
+}
++(instancetype)findOrCreate{
+    static id _current = nil;
+    if(_current)
+        return _current;
     
+    @synchronized(self){
+        if(!_current){
+            _current = [self _load];
+        }
+    }
+    return _current;
 }
 @end

@@ -128,6 +128,7 @@
     [context performBlock:^{
         block(context);
         SMSaveContext(context);
+        [context reset];
         if(completion){
             dispatch_sync(dispatch_get_main_queue(), completion);
         }

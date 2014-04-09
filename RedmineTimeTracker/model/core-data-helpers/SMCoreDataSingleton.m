@@ -185,7 +185,11 @@ void SMSaveContext(NSManagedObjectContext *context) {
         }
     };
         fullBlock = ^() {
-            [tmp performBlock:tmpBlock];
+            if(fullBlock){
+                [tmp performBlock:tmpBlock];
+            } else {
+                tmpBlock();
+            }
         };
         tmp = tmp.parentContext;
     }
