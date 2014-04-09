@@ -112,7 +112,7 @@
         
         if(delete){
             for (SMManagedObject *managedObject in toDelete.allValues){
-                if(managedObject.changed){
+                if([managedObject.changed boolValue]){
                     LOG_WARN(@"recreate object %@",managedObject);
                     managedObject.n_id = nil;
                 } else {
