@@ -20,7 +20,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (nonatomic,retain) NSOperationQueue *asyncDbQueue;
 @property (nonatomic,weak)  IBOutlet NSOutlineView *outlineView;
 @property (nonatomic,strong) TrackingWindowController *trackingVc;
 @property (nonatomic,strong) TimeTracker *timeTracker;

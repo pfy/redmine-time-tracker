@@ -15,8 +15,6 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.asyncDbQueue = [[NSOperationQueue alloc]init];
-    [self.asyncDbQueue setMaxConcurrentOperationCount:1];
 
     self.timeTracker = [TimeTracker new];
     

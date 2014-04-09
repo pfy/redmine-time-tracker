@@ -12,49 +12,12 @@
 
 @implementation SMUpdateOperation
 -(void)main{
-    int max_faults = 10;
-    while(max_faults){
-        
         NSManagedObjectContext *context = SMTemporaryBGContext();
-        
-        NSError __autoreleasing *error = error;
-        @try {
-            /* execute the associated object context block */
-            @autoreleasepool {
-                self.block(context);
-            }
-        } @catch (NSException *exception) {
-            if ([[exception name] isEqualToString:NSObjectInaccessibleException]){
-                LOG_INFO(@"block did fault, will retry");
-            }
-            else
-                [exception raise];      // Unknown exception thrown.
-        }
-        [context processPendingChanges];
-
-        @try {
-            /* save it */
-            [context save:&error];
-        }
-        @catch (NSException *exception) {
-            if ([[exception name] isEqualToString:NSObjectInaccessibleException]){
-                LOG_INFO(@"save did fault, will retry");
-                                // Deleted.
-            }
-            else
-                [exception raise];      // Unknown exception thrown.
-        }
-
-        if(error){
-           // LOG_INFO(@"did fail safe managed object context %@, tries %d",error,max_faults);
-            max_faults--;
-        } else {
-            //if(max_faults != 10)
-             //   LOG_INFO(@"did success safe managed object context after %d",10-max_faults);
-            max_faults = 0;
-        }
-        [context reset];
-    }
+        [context performBlockAndWait:^{
+            self.block(context);
+        }];
+    SMSaveContext(context);
+    
 }
 -(void)dealloc{
     self.block = nil;

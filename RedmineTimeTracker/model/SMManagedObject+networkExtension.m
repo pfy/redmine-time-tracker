@@ -106,7 +106,7 @@ static char *smoohClassPrefix = "T@\"SM";
 }
 
 
-+(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete{
++(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete completion:(noneBlock)completion{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         
         NSMutableSet *set = [NSMutableSet new];
@@ -140,33 +140,37 @@ static char *smoohClassPrefix = "T@\"SM";
         if(error){
             LOG_WARN(@"did fail safe managed object context %@",error);
         }
-    }];
+    } completion:completion];
 }
 
-+(void)scheduleUpdateOperationWithBlock:(ContextBlock) block{
-    SMUpdateOperation *operation = [SMUpdateOperation operationWithBlock:block];
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
-    [app.asyncDbQueue addOperation:operation];
-    return;
-}
-+(void)scheduleOperationOnMainWithBlock:(noneBlock)block{
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
-    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-        dispatch_sync(dispatch_get_main_queue(), block);
++(void)scheduleUpdateOperationWithBlock:(ContextBlock) block completion:(noneBlock)completion{
+    NSManagedObjectContext *context = SMTemporaryBGContext();
+    [context performBlock:^{
+        block(context);
+        SMSaveContext(context);
+        if(completion){
+            dispatch_sync(dispatch_get_main_queue(), completion);
+        }
+        
     }];
-    [app.asyncDbQueue addOperation:op];
     return;
 }
+
 -(void)scheduleOperationWithBlock:(VoidBlock)block{
+    __autoreleasing NSError *err = nil;
+    [self.managedObjectContext obtainPermanentIDsForObjects:@[self]
+                                                      error:&err];
+    if (err) {
+        LOG_ERR(@"%@: %@", err.localizedFailureReason, err.userInfo);
+    }
     NSManagedObjectID *selfID = self.objectID;
-    SMUpdateOperation *operation = [SMUpdateOperation operationWithBlock:^(NSManagedObjectContext *context) {
+    
+    [SMManagedObject scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         SMManagedObject *object = (SMManagedObject *)[context existingObjectWithID:selfID error:nil];
         if(object && ! object.isDeleted)
             block(object);
-    }];
+    } completion:nil];
     
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
-    [app.asyncDbQueue addOperation:operation];
 }
 
 

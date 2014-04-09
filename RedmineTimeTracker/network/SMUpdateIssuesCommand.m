@@ -29,14 +29,12 @@
             [allIssues addObjectsFromArray:[responseObject objectForKey:@"issues"]];
             
             if(offset+limit < totalCount){
-                AppDelegate *app = [NSApplication sharedApplication].delegate;
-                [app.asyncDbQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
+                [[NSOperationQueue currentQueue] addOperationWithBlock:^{
                     [  self fetchIssues:offset+limit ];
-                }]];
+                }];
             } else {
                 /* we are done */
-                [SMManagedObject update:@"SMIssue" withArray:allIssues delete:YES];
-                [SMManagedObject scheduleOperationOnMainWithBlock:^{
+                [SMManagedObject update:@"SMIssue" withArray:allIssues delete:YES completion:^{
                     [self.center queueItemFinished:self];
                 }];
             }

@@ -179,8 +179,8 @@ void SMSaveContext(NSManagedObjectContext *context) {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             LOG_ERR(@"Unresolved error %@, %@", error, [error userInfo]);
             LOG_ERR(@"%@", [NSThread callStackSymbols]);
-            if(fullBlock)fullBlock();
         } else {
+            if(fullBlock)fullBlock();
             LOG_INFO(@"context %@ saved successfull",tmp);
         }
     };

@@ -8,7 +8,6 @@
 
 #import "SMUpdateTimeEntriesCommand.h"
 #import "SMManagedObject+networkExtension.h"
-#import "AppDelegate.h"
 @implementation SMUpdateTimeEntriesCommand
 -(void)run:(SMNetworkUpdate *)networkUpdateCenter{
     self.center = networkUpdateCenter;
@@ -26,13 +25,12 @@
             int limit = [[responseObject objectForKey:@"limit"] intValue];
             [allTimeEntries addObjectsFromArray:[responseObject objectForKey:@"time_entries"]];
             if(offset+limit < totalCount){
-                AppDelegate *app = [NSApplication sharedApplication].delegate;
-                [app.asyncDbQueue addOperation:[NSBlockOperation blockOperationWithBlock:^{
+                [[NSOperationQueue currentQueue] addOperationWithBlock:^{
                     [  self fetchTimeEntries:offset+limit ];
-                }]];
+                }];
+          
             } else {
-                [SMManagedObject update:@"SMTimeEntry" withArray:allTimeEntries delete:YES];
-                [SMManagedObject scheduleOperationOnMainWithBlock:^{
+                [SMManagedObject update:@"SMTimeEntry" withArray:allTimeEntries delete:YES completion:^{
                     [self.center queueItemFinished:self];
                 }];
             }
