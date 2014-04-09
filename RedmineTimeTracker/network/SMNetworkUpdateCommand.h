@@ -10,5 +10,5 @@
 #import "SMNetworkUpdate.h"
 @interface SMNetworkUpdateCommand : NSObject
 -(void)run:(SMNetworkUpdate*)networkUpdateCenter;
-
+-(void)fetchWithUrl:(NSString*)url andKey:(NSString*)key toEntity:(NSString*)entity andOffset:(int)offset;
 @end

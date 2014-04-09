@@ -9,6 +9,4 @@
 #import "SMNetworkUpdateCommand.h"
 
 @interface SMUpdateTimeEntriesCommand : SMNetworkUpdateCommand
-@property (nonatomic,strong) NSMutableArray *allTimeEntries;
-@property (nonatomic,weak) SMNetworkUpdate *center;
 @end

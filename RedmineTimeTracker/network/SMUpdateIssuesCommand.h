@@ -9,7 +9,4 @@
 #import "SMNetworkUpdateCommand.h"
 
 @interface SMUpdateIssuesCommand : SMNetworkUpdateCommand
-@property (nonatomic,strong) NSMutableArray *allIssues;
-@property (nonatomic,weak) SMNetworkUpdate *center;
-
 @end

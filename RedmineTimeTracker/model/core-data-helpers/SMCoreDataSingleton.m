@@ -169,29 +169,38 @@ NSManagedObjectContext *SMTemporaryBGContext()
     return [[SMCoreDataSingleton sharedManager] createTemporaryBackgroundContext];
 }
 void SMSaveContext(NSManagedObjectContext *context) {
+    NSMutableArray *contexts = [NSMutableArray new];
     NSManagedObjectContext *tmp = context;
+    while(tmp){
+        [contexts addObject:tmp];
+        tmp = tmp.parentContext;
+    }
+    
+    
      void(^fullBlock)() = nil;
-    while (tmp) {
+    for (NSManagedObjectContext *tmp in contexts.reverseObjectEnumerator) {
         void(^tmpBlock)() = ^(){
         __autoreleasing NSError *error = nil;
         if (![tmp save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             LOG_ERR(@"Unresolved error %@, %@", error, [error userInfo]);
-            LOG_ERR(@"%@", [NSThread callStackSymbols]);
         } else {
-            if(fullBlock)fullBlock();
+            if(tmp == SMMainContext()){
+                LOG_INFO(@"MainContext %@ saved successfull",tmp);
+            } else if(tmp == [[SMCoreDataSingleton sharedManager]backgroundSavingContext]){
+                LOG_INFO(@"BackgroundContext %@ saved successfull",tmp);
+            } else {
             LOG_INFO(@"context %@ saved successfull",tmp);
+            }
+            if(fullBlock)fullBlock();
         }
     };
         fullBlock = ^() {
-            if(fullBlock){
-                [tmp performBlock:tmpBlock];
+            if(tmp == context){
+                [tmp performBlockAndWait:tmpBlock];
             } else {
-                tmpBlock();
+                [tmp performBlock:tmpBlock];
             }
         };
-        tmp = tmp.parentContext;
     }
     if(fullBlock)
         fullBlock();
