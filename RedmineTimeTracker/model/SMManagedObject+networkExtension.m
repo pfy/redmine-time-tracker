@@ -108,23 +108,32 @@ static char *smoohClassPrefix = "T@\"SM";
 
 +(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete completion:(noneBlock)completion{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
+        NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:entityName];
+        NSArray *allObjects = [context executeFetchRequest:r error:nil];
+        NSMutableDictionary *toDelete = [[NSMutableDictionary alloc]init];
+        for(SMManagedObject *obj in allObjects){
+            if(obj.n_id){
+                toDelete[obj.n_id] = obj;
+            }
+        }
+        
+        
         
         NSMutableSet *set = [NSMutableSet new];
         for(NSDictionary *dict in respArray){
             int n_id = [[dict objectForKey:@"id"] intValue];
 
-            SMManagedObject *managedObject =  [SMManagedObject findOrCreateById:n_id andEntity:entityName inContext:context ];
+            SMManagedObject *managedObject = toDelete[@(n_id)];
+            if(managedObject){
+                [toDelete removeObjectForKey:@(n_id)];
+            } else {
+                managedObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+            }
             [managedObject updateWithDict:dict andSet:set];
-            [set addObject:managedObject.objectID];
         }
         
        if(delete){
-           NSFetchRequest *fetchRequest = [NSFetchRequest new];
-           NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
-           [fetchRequest setEntity:entity];
-           NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
-            for (SMManagedObject* managedObject in array){
-                if(managedObject.n_id != nil && (! [set containsObject:managedObject.objectID])){
+           for (SMManagedObject *managedObject in toDelete.allValues){
                     if(managedObject.changed){
                         LOG_WARN(@"recreate object %@",managedObject);
                         managedObject.n_id = nil;
@@ -134,12 +143,6 @@ static char *smoohClassPrefix = "T@\"SM";
                     }
                 }
             }
-        }
-        NSError __autoreleasing *error = error;
-        [context save:&error];
-        if(error){
-            LOG_WARN(@"did fail safe managed object context %@",error);
-        }
     } completion:completion];
 }
 
