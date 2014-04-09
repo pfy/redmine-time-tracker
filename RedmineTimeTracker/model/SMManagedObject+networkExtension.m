@@ -75,6 +75,7 @@
                         newObject = [SMManagedObject findOrCreateById:n_id andEntity:relDesc.destinationEntity.name inContext:self.managedObjectContext];
                     }
                     [newObject updateWithDict:(NSDictionary*)val];
+                    [self setValue:newObject forKey:key];
                 } else {
                     LOG_WARN(@"unknown description %@",propertiesByName[key]);
                 }
