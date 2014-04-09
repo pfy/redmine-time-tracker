@@ -3,8 +3,10 @@
 //
 
 
-#ifndef DEBUG_LEVEL
+#ifdef DEBUG
 #define DEBUG_LEVEL 2
+#else
+#define DEBUG_LEVEL 0
 #endif
 
 #define LOG_ERR(...)   NSLog(__VA_ARGS__)

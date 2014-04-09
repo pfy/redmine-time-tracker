@@ -15,7 +15,7 @@
     LOG_INFO(@"update current user");
     [networkUpdateCenter.client getPath:@"users/current.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if([responseObject isKindOfClass:[NSDictionary class]]){
-            [[SMCurrentUser findOrCreate] updateWithDict:responseObject andSet:nil];
+            [[SMCurrentUser findOrCreate] updateWithDict:responseObject];
             [networkUpdateCenter queueItemFinished:self];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

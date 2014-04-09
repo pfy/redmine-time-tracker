@@ -46,7 +46,7 @@
         LOG_INFO(@"time entry created %@",responseObject);
         [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
             self.changed = [NSNumber numberWithBool:NO];
-            [self updateWithDict:[responseObject objectForKey:@"time_entry"] andSet:nil];
+            [self updateWithDict:[responseObject objectForKey:@"time_entry"]];
         }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_WARN(@"time entry creation failed %@ %@",error,params);

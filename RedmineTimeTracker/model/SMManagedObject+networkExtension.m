@@ -11,7 +11,7 @@
 #import "SMUpdateOperation.h"
 #import <objc/runtime.h>
 #import "AFHTTPRequestOperation.h"
-static char *smoohClassPrefix = "T@\"SM";
+#import "NSString+Date.h"
 
 
 @implementation SMManagedObject (NetworkExtension)
@@ -37,7 +37,7 @@ static char *smoohClassPrefix = "T@\"SM";
     
 }
 
--(void)updateWithDict:(NSDictionary*)dict andSet:(NSMutableSet *)set{
+-(void)updateWithDict:(NSDictionary*)dict{
     if(self.managedObjectContext == nil){
         LOG_INFO(@"object has been deleted %@",self);
         return;
@@ -46,58 +46,38 @@ static char *smoohClassPrefix = "T@\"SM";
         LOG_INFO(@"object has changed and will not be updated %@",self);
         return;
     }
+    if([self valueForKey:@"n_updated_on"] != nil && [dict valueForKey:@"updated_on"]){
+        NSDate *lastUpdateOnServer = ((NSString*)[dict valueForKey:@"updated_on"]).toDate;
+        if([lastUpdateOnServer isEqual:self.n_updated_on]){
+            return;
+        }
+    }
     
-    NSEnumerator *enumerator = [dict keyEnumerator];
-    id key;
-    while ((key = [enumerator nextObject])) {
-        id val = [dict objectForKey:key];
-        if(val != nil &&  val != [NSNull null]){
-            NSString *newKey = [@"n_" stringByAppendingString:key];
-            objc_property_t theProperty =
-            class_getProperty([self class], [newKey UTF8String]);
-            if(theProperty){
-                const char * propertyAttrs = property_getAttributes(theProperty);
-                if((strncmp(propertyAttrs,smoohClassPrefix,strlen(smoohClassPrefix)) == 0)){
-                    NSArray *listItems = [[NSString stringWithFormat:@"%s",propertyAttrs ] componentsSeparatedByString:@"\""];
-                    NSString *className = [listItems objectAtIndex:1];
+    NSEntityDescription *desc = self.entity;
+    NSDictionary *propertiesByName =[desc propertiesByName];
+    for(NSString *key in [propertiesByName allKeys]){
+        if([key hasPrefix:@"n_"]){
+            NSObject *val = [dict valueForKey:[key substringFromIndex:2]];
+            if(val){
+                if([propertiesByName[key] isKindOfClass:[NSAttributeDescription class]]){
+                    NSAttributeDescription *attrDesc = propertiesByName[key];
+                    if([attrDesc.attributeValueClassName isEqualToString:@"NSDate"]){
+                        val = ((NSString*)val).toDate;
+                    }
+                    if(! [val isEqual:[self valueForKey:key]]){
+                        [self setValue:val forKey:key];
+                    }
+                } else if([propertiesByName[key] isKindOfClass:[NSRelationshipDescription class]]){
+                    NSRelationshipDescription *relDesc = propertiesByName[key];
+                    SMManagedObject *newObject = [self valueForKey:key];
                     int n_id = [[val valueForKey:@"id"]intValue];
-                    SMManagedObject *newObject = [self valueForKey:newKey];
                     if(newObject == nil || [[newObject valueForKey:@"n_id"] intValue] != n_id ) {
-                        newObject = [SMManagedObject findOrCreateById:n_id andEntity:className inContext:self.managedObjectContext];
+                        newObject = [SMManagedObject findOrCreateById:n_id andEntity:relDesc.destinationEntity.name inContext:self.managedObjectContext];
                     }
-                    [newObject updateWithDict:val andSet:set];
-                    [set addObject:newObject.objectID];
-                    if(! [newObject isEqual:[self valueForKey:newKey]]){
-                        [self setValue:newObject forKey:newKey];
-                    }
+                    [newObject updateWithDict:(NSDictionary*)val];
+                } else {
+                    LOG_WARN(@"unknown description %@",propertiesByName[key]);
                 }
-                else if(strcmp(propertyAttrs,"T@\"NSDate\",&,D,N") == 0){
-                    NSDate *newDate;
-                    NSString *dateString = val;
-                    if(dateString.length == 20){
-                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-                        newDate = [dateFormatter dateFromString:dateString];
-                    } else {
-                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-                        newDate = [dateFormatter dateFromString:dateString];
-                    }
-                    if(newDate == nil){
-                        LOG_ERR(@"did fail to parse date %@",dateString);
-                    }
-                    if(! [newDate isEqual:[self valueForKey:newKey]]){
-                        [self setValue:newDate forKey:newKey];
-                    }
-                    
-                }
-                else {
-                    if(! [val isEqual:[self valueForKey:newKey]]){
-                        [self setValue:val forKey:newKey];
-                    }
-                }
-            } else {
-                LOG_ERR(@"did not find property %@",newKey);
             }
         }
     }
@@ -117,32 +97,29 @@ static char *smoohClassPrefix = "T@\"SM";
             }
         }
         
-        
-        
-        NSMutableSet *set = [NSMutableSet new];
         for(NSDictionary *dict in respArray){
             int n_id = [[dict objectForKey:@"id"] intValue];
-
+            
             SMManagedObject *managedObject = toDelete[@(n_id)];
             if(managedObject){
                 [toDelete removeObjectForKey:@(n_id)];
             } else {
                 managedObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
             }
-            [managedObject updateWithDict:dict andSet:set];
+            [managedObject updateWithDict:dict];
         }
         
-       if(delete){
-           for (SMManagedObject *managedObject in toDelete.allValues){
-                    if(managedObject.changed){
-                        LOG_WARN(@"recreate object %@",managedObject);
-                        managedObject.n_id = nil;
-                    } else {
-                        [context deleteObject:managedObject];
-                        LOG_WARN(@"delete object %@",managedObject);
-                    }
+        if(delete){
+            for (SMManagedObject *managedObject in toDelete.allValues){
+                if(managedObject.changed){
+                    LOG_WARN(@"recreate object %@",managedObject);
+                    managedObject.n_id = nil;
+                } else {
+                    [context deleteObject:managedObject];
+                    LOG_WARN(@"delete object %@",managedObject);
                 }
             }
+        }
     } completion:completion];
 }
 

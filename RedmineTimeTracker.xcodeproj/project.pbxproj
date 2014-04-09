@@ -47,6 +47,7 @@
 		CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */; };
 		CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */; };
 		CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */; };
+		CF885EF718F5C1F5004ACAE2 /* NSString+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */; };
 		CF8A1AF616B7AC1300ED429E /* SMTimeEntry+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */; };
 		CF8A1B0216B7AFFD00ED429E /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0116B7AFFD00ED429E /* SMPriority.m */; };
 		CF8A1B0516B7AFFD00ED429E /* SMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0416B7AFFD00ED429E /* SMStatus.m */; };
@@ -152,6 +153,8 @@
 		CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		CF885EF218F5A80D004ACAE2 /* SMCoreDataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCoreDataSingleton.h; sourceTree = "<group>"; };
 		CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCoreDataSingleton.m; sourceTree = "<group>"; };
+		CF885EF518F5C1F5004ACAE2 /* NSString+Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Date.h"; sourceTree = "<group>"; };
+		CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Date.m"; sourceTree = "<group>"; };
 		CF8A1AF416B7AC1300ED429E /* SMTimeEntry+networkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMTimeEntry+networkExtension.h"; sourceTree = "<group>"; };
 		CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+networkExtension.m"; sourceTree = "<group>"; };
 		CF8A1B0016B7AFFD00ED429E /* SMPriority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPriority.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				CF114BCD16B6DF4D0033346D /* SMTimeEntry+DisplayThingi.m */,
 				CF8A1AF416B7AC1300ED429E /* SMTimeEntry+networkExtension.h */,
 				CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */,
+				CF885EF518F5C1F5004ACAE2 /* NSString+Date.h */,
+				CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
 				CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */,
 				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
+				CF885EF718F5C1F5004ACAE2 /* NSString+Date.m in Sources */,
 				CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */,
 				CF31D21416BE880100E81902 /* ApplicationTrackerWindowController.m in Sources */,
 				CF31D22D16BE961000E81902 /* SMApplicationTracker.m in Sources */,
