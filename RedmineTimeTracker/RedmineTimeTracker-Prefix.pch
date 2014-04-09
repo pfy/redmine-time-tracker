@@ -24,8 +24,8 @@
 #import <Cocoa/Cocoa.h>
 
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "AppDelegate.h"
+#import "SMCoreDataSingleton.h"
 
-    #define SAVE_APP_CONTEXT [(AppDelegate*)[NSApplication sharedApplication].delegate saveContext];
+    #define SAVE_APP_CONTEXT SMSaveContext(SMMainContext());
 
 #endif

@@ -20,9 +20,6 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,retain) NSOperationQueue *asyncDbQueue;
 @property (nonatomic,weak)  IBOutlet NSOutlineView *outlineView;
 @property (nonatomic,strong) TrackingWindowController *trackingVc;
@@ -36,8 +33,7 @@
 @property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
 @property (nonatomic,strong)  ApplicationTrackerWindowController *applicationTrackerWindowController;
 
-- (IBAction)saveAction:(id)sender;
-- (void)saveContext;
+
 -(void)showPreferences;
 -(void)showAppTracker;
 

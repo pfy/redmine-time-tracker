@@ -10,6 +10,7 @@
 #import "SMManagedObject+networkExtension.h"
 #import "SMHttpClient.h"
 #import "SMActivity.h"
+#import "SMIssue.h"
 @implementation SMTimeEntry (networkExtension)
 -(void)createRequest:(SMHttpClient *)client{
     NSString *path = @"time_entries.json";

@@ -10,6 +10,7 @@
 #import "DDHotKeyCenter.h"
 #import "SMCurrentUser+trackingExtension.h"
 #import "SMTimeEntry+DisplayThingi.h"
+#import "AppDelegate.h"
 
 @implementation StatusBarMenu
 -(id)init{

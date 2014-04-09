@@ -7,6 +7,7 @@
 //
 
 #import "ActiveApplicationTracker.h"
+#import "AppDelegate.h"
 
 @implementation ActiveApplicationTracker
 
@@ -24,8 +25,7 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMApplicationTracker"];
     request.predicate = predicate;
-    NSManagedObjectContext *context =  [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
-    
+    NSManagedObjectContext *context =  SMMainContext();
     NSArray *objects = [context executeFetchRequest:request error:nil];
     SMApplicationTracker *tracker;
     if(objects.count > 0){

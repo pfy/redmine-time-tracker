@@ -8,6 +8,8 @@
 
 #import "IssueValueTransformer.h"
 #import "NSAttributedString+hyperlink.h"
+#import "SMCurrentUser+trackingExtension.h"
+
 
 @implementation IssueValueTransformer
 + (Class)transformedValueClass {

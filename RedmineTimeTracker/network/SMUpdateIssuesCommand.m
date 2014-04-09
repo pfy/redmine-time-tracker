@@ -8,7 +8,7 @@
 
 #import "SMUpdateIssuesCommand.h"
 #import "SMManagedObject+networkExtension.h"
-
+#import "AppDelegate.h"
 @implementation SMUpdateIssuesCommand
 -(void)run:(SMNetworkUpdate *)networkUpdateCenter{
     self.allIssues = [NSMutableArray new];

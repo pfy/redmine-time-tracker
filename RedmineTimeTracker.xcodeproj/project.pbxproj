@@ -46,6 +46,7 @@
 		CF88452816B17767008B87FC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844E816B17767008B87FC /* AFURLConnectionOperation.m */; };
 		CF88452916B17767008B87FC /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */; };
 		CF88452A16B17767008B87FC /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */; };
+		CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */; };
 		CF8A1AF616B7AC1300ED429E /* SMTimeEntry+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */; };
 		CF8A1B0216B7AFFD00ED429E /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0116B7AFFD00ED429E /* SMPriority.m */; };
 		CF8A1B0516B7AFFD00ED429E /* SMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0416B7AFFD00ED429E /* SMStatus.m */; };
@@ -149,6 +150,8 @@
 		CF8844EA16B17767008B87FC /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		CF8844EB16B17767008B87FC /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		CF8844EC16B17767008B87FC /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		CF885EF218F5A80D004ACAE2 /* SMCoreDataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCoreDataSingleton.h; sourceTree = "<group>"; };
+		CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCoreDataSingleton.m; sourceTree = "<group>"; };
 		CF8A1AF416B7AC1300ED429E /* SMTimeEntry+networkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMTimeEntry+networkExtension.h"; sourceTree = "<group>"; };
 		CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+networkExtension.m"; sourceTree = "<group>"; };
 		CF8A1B0016B7AFFD00ED429E /* SMPriority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPriority.h; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 		CF10AED816B177D5008F9741 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				CF885EEE18F5A7CE004ACAE2 /* core-data-helpers */,
 				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
 				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
 				CF31D22B16BE961000E81902 /* SMApplicationTracker.h */,
@@ -425,6 +429,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		CF885EEE18F5A7CE004ACAE2 /* core-data-helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CF885EF218F5A80D004ACAE2 /* SMCoreDataSingleton.h */,
+				CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */,
+			);
+			path = "core-data-helpers";
+			sourceTree = "<group>";
+		};
 		CFABD41A16B1899C00C93A0D /* gui */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +587,7 @@
 				CFBDBB0616BA8E4600FD9982 /* ProjectValueTransformer.m in Sources */,
 				CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */,
 				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
+				CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */,
 				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
 				CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */,
 				CF31D21416BE880100E81902 /* ApplicationTrackerWindowController.m in Sources */,
@@ -668,7 +682,7 @@
 		CF8844D416B045E9008B87FC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";
@@ -682,7 +696,7 @@
 		CF8844D516B045E9008B87FC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";

@@ -10,8 +10,7 @@
 
 @implementation SMCurrentUser (trackingExtension)
 +(SMCurrentUser*)findOrCreate{
-   NSManagedObjectContext *context =  [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
-    
+    NSManagedObjectContext *context =  SMMainContext();
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"SMCurrentUser" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];

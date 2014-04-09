@@ -8,6 +8,7 @@
 
 #import "TimeIssueRowView.h"
 #import "SMRedmineUser.h"
+#import "SMCurrentUser+trackingExtension.h"
 @interface TimeIssueRowView ()
 @property (nonatomic,strong) SMCurrentUser* user;
 @end

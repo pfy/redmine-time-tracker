@@ -14,7 +14,7 @@
 -(id)init{
     self = [super init];
     if(self){
-        NSManagedObjectContext *context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+        NSManagedObjectContext *context = SMMainContext();
         BOOL result;
         self.issuesArrayController = [[NSArrayController alloc] initWithContent:nil];
         [self.issuesArrayController setManagedObjectContext:context];

@@ -8,15 +8,14 @@
 
 #import "SMUpdateOperation.h"
 #import "AppDelegate.h"
+#import "SMCoreDataSingleton.h"
 
 @implementation SMUpdateOperation
 -(void)main{
     int max_faults = 10;
     while(max_faults){
         
-        NSManagedObjectContext __autoreleasing *context = [[NSManagedObjectContext alloc]init];
-        [context setPersistentStoreCoordinator:[(AppDelegate*)[NSApplication sharedApplication].delegate persistentStoreCoordinator]];
-        [context setUndoManager:nil];
+        NSManagedObjectContext *context = SMTemporaryBGContext();
         
         NSError __autoreleasing *error = error;
         @try {

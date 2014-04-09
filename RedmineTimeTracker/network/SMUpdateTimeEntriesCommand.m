@@ -8,7 +8,7 @@
 
 #import "SMUpdateTimeEntriesCommand.h"
 #import "SMManagedObject+networkExtension.h"
-
+#import "AppDelegate.h"
 @implementation SMUpdateTimeEntriesCommand
 -(void)run:(SMNetworkUpdate *)networkUpdateCenter{
     self.center = networkUpdateCenter;

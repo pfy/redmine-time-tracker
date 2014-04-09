@@ -8,15 +8,13 @@
 
 #import "SMUploadCommand.h"
 #import "SMManagedObject+networkExtension.h"
-
 @implementation SMUploadCommand
 -(void)run:(SMNetworkUpdate *)networkUpdateCenter{
     self.center = networkUpdateCenter;
     self.client = self.center.client;
     
     
-    NSManagedObjectContext *context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
-    
+    NSManagedObjectContext *context = SMMainContext();
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMManagedObject"];
     request.predicate  =  [NSPredicate predicateWithFormat:@"changed = %@",[NSNumber numberWithBool:YES] ];
     NSArray *fetched = [context executeFetchRequest:request error:nil];

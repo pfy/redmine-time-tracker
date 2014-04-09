@@ -22,7 +22,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
 {
     self = [super initWithWindow:window];
     if (self) {
-        self.context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+        self.context = SMMainContext();
 
         // Initialization code here.
     }

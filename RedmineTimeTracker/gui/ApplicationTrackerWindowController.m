@@ -27,7 +27,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    NSManagedObjectContext *context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+    NSManagedObjectContext *context = SMMainContext();
     [self.applicationEntryArrayController setManagedObjectContext:context];
     [self.applicationEntryArrayController setEntityName:@"SMApplicationTracker"];
     

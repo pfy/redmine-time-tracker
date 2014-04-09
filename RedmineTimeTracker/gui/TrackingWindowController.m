@@ -7,7 +7,7 @@
 //
 
 #import "TrackingWindowController.h"
-
+#import "AppDelegate.h"
 @interface TrackingWindowController ()
 
 @end
@@ -19,7 +19,7 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
-        self.context = [(AppDelegate*)[NSApplication sharedApplication].delegate managedObjectContext];
+        self.context = SMMainContext();
     }
     
     return self;

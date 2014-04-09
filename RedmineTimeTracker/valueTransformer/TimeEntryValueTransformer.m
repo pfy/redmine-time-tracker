@@ -8,6 +8,7 @@
 
 #import "TimeEntryValueTransformer.h"
 #import "NSAttributedString+hyperlink.h"
+#import "SMCurrentUser+trackingExtension.h"
 
 @implementation TimeEntryValueTransformer
 + (Class)transformedValueClass {
