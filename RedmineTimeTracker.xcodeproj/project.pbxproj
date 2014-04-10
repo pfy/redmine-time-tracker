@@ -11,7 +11,6 @@
 		CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */; };
 		CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */; };
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
-		CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */; };
 		CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */; };
 		CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */; };
 		CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9716B68EC60033346D /* StartTrackingWindowController.m */; };
@@ -48,6 +47,7 @@
 		CF885F1318F6949F004ACAE2 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885F0818F6949F004ACAE2 /* AFURLRequestSerialization.m */; };
 		CF885F1418F6949F004ACAE2 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885F0A18F6949F004ACAE2 /* AFURLResponseSerialization.m */; };
 		CF885F1518F6949F004ACAE2 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF885F0C18F6949F004ACAE2 /* AFURLSessionManager.m */; };
+		CF885F1718F6988A004ACAE2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF885F1618F6988A004ACAE2 /* Security.framework */; };
 		CF8A1AF616B7AC1300ED429E /* SMTimeEntry+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */; };
 		CF8A1B0216B7AFFD00ED429E /* SMPriority.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0116B7AFFD00ED429E /* SMPriority.m */; };
 		CF8A1B0516B7AFFD00ED429E /* SMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A1B0416B7AFFD00ED429E /* SMStatus.m */; };
@@ -83,8 +83,6 @@
 		CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMManagedObject+networkExtension.m"; sourceTree = "<group>"; };
 		CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMUpdateOperation.h; sourceTree = "<group>"; };
 		CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMUpdateOperation.m; sourceTree = "<group>"; };
-		CF10AEFE16B17B4C008F9741 /* SMHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHttpClient.h; sourceTree = "<group>"; };
-		CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHttpClient.m; sourceTree = "<group>"; };
 		CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
 		CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
 		CF114B9616B68EC60033346D /* StartTrackingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartTrackingWindowController.h; sourceTree = "<group>"; };
@@ -155,6 +153,7 @@
 		CF885F0A18F6949F004ACAE2 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		CF885F0B18F6949F004ACAE2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		CF885F0C18F6949F004ACAE2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		CF885F1618F6988A004ACAE2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CF8A1AF416B7AC1300ED429E /* SMTimeEntry+networkExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMTimeEntry+networkExtension.h"; sourceTree = "<group>"; };
 		CF8A1AF516B7AC1300ED429E /* SMTimeEntry+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMTimeEntry+networkExtension.m"; sourceTree = "<group>"; };
 		CF8A1B0016B7AFFD00ED429E /* SMPriority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPriority.h; sourceTree = "<group>"; };
@@ -209,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF885F1718F6988A004ACAE2 /* Security.framework in Frameworks */,
 				CFBDBB0016B9789300FD9982 /* IOKit.framework in Frameworks */,
 				CFBDBAFE16B9788700FD9982 /* Carbon.framework in Frameworks */,
 				CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */,
@@ -265,8 +265,6 @@
 		CF10AEFD16B17B34008F9741 /* network */ = {
 			isa = PBXGroup;
 			children = (
-				CF10AEFE16B17B4C008F9741 /* SMHttpClient.h */,
-				CF10AEFF16B17B4C008F9741 /* SMHttpClient.m */,
 				CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */,
 				CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */,
 				CF2EBDFF16B8364200CA2BAA /* SMNetworkUpdateCommand.h */,
@@ -342,6 +340,7 @@
 		CF8844B516B045E9008B87FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF885F1618F6988A004ACAE2 /* Security.framework */,
 				CFBDBAFF16B9789300FD9982 /* IOKit.framework */,
 				CFBDBAFD16B9788700FD9982 /* Carbon.framework */,
 				CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */,
@@ -489,7 +488,7 @@
 		CF8844A916B045E9008B87FC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "smooh GmbH";
 				TargetAttributes = {
 					CF8844B116B045E9008B87FC = {
@@ -545,7 +544,6 @@
 				CF10AEDB16B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld in Sources */,
 				CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */,
 				CF885F1118F6949F004ACAE2 /* AFSecurityPolicy.m in Sources */,
-				CF10AF0016B17B4C008F9741 /* SMHttpClient.m in Sources */,
 				CFABD41416B1826900C93A0D /* SMNetworkUpdate.m in Sources */,
 				CFABD42616B1A06500C93A0D /* StatusBarMenu.m in Sources */,
 				CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */,
@@ -629,7 +627,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -659,7 +656,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -686,7 +682,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";
 				INFOPLIST_FILE = "RedmineTimeTracker/RedmineTimeTracker-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -700,7 +696,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RedmineTimeTracker/RedmineTimeTracker-Prefix.pch";
 				INFOPLIST_FILE = "RedmineTimeTracker/RedmineTimeTracker-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

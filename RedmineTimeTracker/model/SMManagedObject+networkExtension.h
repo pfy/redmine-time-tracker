@@ -7,15 +7,13 @@
 //
 
 #import "SMManagedObject.h"
-#import "AFHTTPClient.h"
 #import "SMUpdateOperation.h"
-#import "SMHttpClient.h"
-
+#import "AFNetworking.h"
 typedef void (^VoidBlock)(SMManagedObject *newSelf);
 typedef void (^noneBlock)();
 
 @interface SMManagedObject (NetworkExtension)
--(void)createRequest:(SMHttpClient*)client;
+-(void)createRequest:(AFHTTPRequestOperationManager*)client;
 -(void)updateWithDict:(NSDictionary*)dict;
 +(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(bool)delete completion:(noneBlock)completion;
 -(void)scheduleOperationWithBlock:(VoidBlock)block;

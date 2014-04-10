@@ -7,7 +7,6 @@
 //
 
 #import "SMNetworkUpdate.h"
-#import "SMHttpClient.h"
 #import "SMManagedObject+networkExtension.h"
 #import "SMCurrentUser+trackingExtension.h"
 #import "AppDelegate.h"
@@ -23,8 +22,14 @@
 
 -(void)update{
     if(self.user.authToken && self.user.serverUrl && self.allCommands.count == 0 ){
-        self.client = [[SMHttpClient alloc]initWithBaseURL: [NSURL URLWithString: self.user.serverUrl]];
-         [self.client setDefaultHeader:@"X-Redmine-API-Key" value:self.user.authToken];
+        
+        AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:self.user.serverUrl]];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        self.client = manager;
+        
+        [self.client.requestSerializer setValue:self.user.authToken forHTTPHeaderField:@"X-Redmine-API-Key"];
+        
         [self.allCommands addObject:[SMUploadCommand new]];
         [self.allCommands addObject:[SMUpdateTimeEntriesCommand new]];
         [self.allCommands addObject:[SMUpdateIssuesCommand new]];
@@ -61,6 +66,8 @@
 -(id)init{
     self = [super init];
     if(self){
+ 
+        
         self.allCommands = [NSMutableArray new];
         self.running = NO;
         self.timer =     [NSTimer scheduledTimerWithTimeInterval:60.0

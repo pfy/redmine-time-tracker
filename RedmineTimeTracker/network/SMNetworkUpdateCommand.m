@@ -29,7 +29,7 @@
     NSString *urlWithOffset =[NSString stringWithFormat:url,offset];
     
     LOG_INFO(@"fetch %@",urlWithOffset);
-    [self.center.client getPath:urlWithOffset parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.center.client GET:urlWithOffset parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //LOG_INFO(@"issues requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
             int totalCount = [responseObject[@"total_count"] intValue];

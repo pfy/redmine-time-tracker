@@ -8,11 +8,11 @@
 
 #import "SMTimeEntry+networkExtension.h"
 #import "SMManagedObject+networkExtension.h"
-#import "SMHttpClient.h"
+
 #import "SMActivity.h"
 #import "SMIssue.h"
 @implementation SMTimeEntry (networkExtension)
--(void)createRequest:(SMHttpClient *)client{
+-(void)createRequest:(AFHTTPRequestOperationManager *)client{
     NSString *path = @"time_entries.json";
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -27,7 +27,7 @@
                              @"comments": self.n_comments}};
     if(self.n_id){
         path = [NSString stringWithFormat:@"/time_entries/%@.json",self.n_id];
-        [client putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [client PUT:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry updated %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
                 newSelf.changed = @NO;
@@ -37,7 +37,7 @@
         } ];
     } else {
     
-    [client postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         LOG_INFO(@"time entry created %@",responseObject);
         [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
             self.changed = @NO;

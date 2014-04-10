@@ -17,7 +17,7 @@
 @implementation SMManagedObject (NetworkExtension)
 
 
--(void)createRequest:(SMHttpClient *)client{
+-(void)createRequest:(AFHTTPRequestOperationManager *)client{
     
 }
 

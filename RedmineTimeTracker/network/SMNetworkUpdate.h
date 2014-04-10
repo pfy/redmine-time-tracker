@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SMCurrentUser+trackingExtension.h"
-#import "SMHttpClient.h"
+#import "AFNetworking.h"
 @class SMNetworkUpdateCommand;
 
 @interface SMNetworkUpdate : NSObject
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,weak) SMCurrentUser *user;
-@property (nonatomic,strong) SMHttpClient *client;
+@property (nonatomic,strong) AFHTTPRequestOperationManager *client;
 @property (nonatomic,strong) NSMutableArray *allCommands;
 
 @property (nonatomic,assign) bool running;
