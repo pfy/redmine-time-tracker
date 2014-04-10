@@ -175,8 +175,7 @@ void SMSaveContext(NSManagedObjectContext *context) {
         [contexts addObject:tmp];
         tmp = tmp.parentContext;
     }
-    
-    
+
      void(^fullBlock)() = nil;
     for (NSManagedObjectContext *tmp in contexts.reverseObjectEnumerator) {
         void(^tmpBlock)() = ^(){
