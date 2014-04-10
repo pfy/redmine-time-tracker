@@ -168,41 +168,34 @@ NSManagedObjectContext *SMTemporaryBGContext()
 {
     return [[SMCoreDataSingleton sharedManager] createTemporaryBackgroundContext];
 }
-void SMSaveContext(NSManagedObjectContext *context) {
-    NSMutableArray *contexts = [NSMutableArray new];
-    NSManagedObjectContext *tmp = context;
-    while(tmp){
-        [contexts addObject:tmp];
-        tmp = tmp.parentContext;
+
+void __sm_private_save(NSManagedObjectContext *context){
+    if(![context hasChanges])
+        return;
+    __autoreleasing NSError *error = nil;
+    if (![context save:&error]) {
+        LOG_ERR(@"Unresolved error %@, %@", error, [error userInfo]);
+    } else {
+        if(context == SMMainContext()){
+            LOG_INFO(@"MainContext %@ saved successfull",context);
+        } else if(context == [[SMCoreDataSingleton sharedManager]backgroundSavingContext]){
+            LOG_INFO(@"BackgroundContext %@ saved successfull",context);
+        } else {
+            LOG_INFO(@"context %@ saved successfull",context);
+        }
+        if(context.parentContext){
+            [context.parentContext performBlock:^{
+                __sm_private_save(context.parentContext);
+            }];
+        }
     }
 
-     void(^fullBlock)() = nil;
-    for (NSManagedObjectContext *tmp in contexts.reverseObjectEnumerator) {
-        void(^tmpBlock)() = ^(){
-        __autoreleasing NSError *error = nil;
-        if (![tmp save:&error]) {
-            LOG_ERR(@"Unresolved error %@, %@", error, [error userInfo]);
-        } else {
-            if(tmp == SMMainContext()){
-                LOG_INFO(@"MainContext %@ saved successfull",tmp);
-            } else if(tmp == [[SMCoreDataSingleton sharedManager]backgroundSavingContext]){
-                LOG_INFO(@"BackgroundContext %@ saved successfull",tmp);
-            } else {
-            LOG_INFO(@"context %@ saved successfull",tmp);
-            }
-            if(fullBlock)fullBlock();
-        }
-    };
-        fullBlock = ^() {
-            if(tmp == context){
-                [tmp performBlockAndWait:tmpBlock];
-            } else {
-                [tmp performBlock:tmpBlock];
-            }
-        };
-    }
-    if(fullBlock)
-        fullBlock();
+}
+
+void SMSaveContext(NSManagedObjectContext *context) {
+    [context performBlockAndWait:^{
+        __sm_private_save(context);
+    }];
 }
 
 @end
