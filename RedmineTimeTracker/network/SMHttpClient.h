@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 smooh GmbH. All rights reserved.
 //
 
-#import "AFHTTPClient.h"
+#import "AF"
 #import "SMCurrentUser+trackingExtension.h"
 
 @interface SMHttpClient : AFHTTPClient
