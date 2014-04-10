@@ -23,6 +23,9 @@
                                                         selector:@selector(update)
                                                         userInfo:nil
                                                          repeats:YES];
+        if([self.timer respondsToSelector:@selector(setTolerance:)]){
+            [self.timer setTolerance:10.0];
+        }
     }
     return self;
 }

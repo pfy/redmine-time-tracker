@@ -58,11 +58,14 @@ self.currentTracker.seconds = @(delta);
     self = [super init];
     if(self){
         self.lastUpdate = [NSDate date];
-        self.timer =     [NSTimer scheduledTimerWithTimeInterval:1.0
+        self.timer =     [NSTimer scheduledTimerWithTimeInterval:10.0
                                                           target:self
                                                         selector:@selector(update)
                                                         userInfo:nil
                                                          repeats:YES];
+        if([self.timer respondsToSelector:@selector(setTolerance:)]){
+            [self.timer setTolerance:10.0];
+        }
 
     }
     return self;

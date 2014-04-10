@@ -27,7 +27,6 @@
         manager.responseSerializer = [AFJSONResponseSerializer serializer];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         self.client = manager;
-        
         [self.client.requestSerializer setValue:self.user.authToken forHTTPHeaderField:@"X-Redmine-API-Key"];
         
         [self.allCommands addObject:[SMUploadCommand new]];
@@ -75,6 +74,9 @@
                                                         selector:@selector(update)
                                                         userInfo:nil
                                                          repeats:YES];
+        if([self.timer respondsToSelector:@selector(setTolerance:)]){
+            [self.timer setTolerance:10.0];
+        }
         self.user = [SMCurrentUser findOrCreate];
         [self.user addObserver:self forKeyPath:@"authToken" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         [self.user addObserver:self forKeyPath:@"serverUrl" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
@@ -85,9 +87,7 @@
 
 -(void)dealloc{
     [self.timer invalidate];
-    self.timer = nil;
-    self.user = nil;
-    self.allCommands = nil;
+        ///!!!: FIXME: Remove observers
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     [self update];
