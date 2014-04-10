@@ -29,7 +29,7 @@
     NSArray __autoreleasing *array = [context executeFetchRequest:fetchRequest error:nil];
     SMManagedObject *managedObject = nil;
     if(array.count > 0){
-        managedObject = [array objectAtIndex:0];
+        managedObject = array[0];
     } else {
         managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     }
@@ -99,7 +99,7 @@
         }
         
         for(NSDictionary *dict in respArray){
-            int n_id = [[dict objectForKey:@"id"] intValue];
+            int n_id = [dict[@"id"] intValue];
             
             SMManagedObject *managedObject = toDelete[@(n_id)];
             if(managedObject){

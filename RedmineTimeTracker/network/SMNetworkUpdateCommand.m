@@ -32,9 +32,9 @@
     [self.center.client getPath:urlWithOffset parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //LOG_INFO(@"issues requested %@",responseObject);
         if([responseObject isKindOfClass:[NSDictionary class]]){
-            int totalCount = [[responseObject objectForKey:@"total_count"] intValue];
-            int limit = [[responseObject objectForKey:@"limit"] intValue];
-            [allObjects addObjectsFromArray:[responseObject objectForKey:key]];
+            int totalCount = [responseObject[@"total_count"] intValue];
+            int limit = [responseObject[@"limit"] intValue];
+            [allObjects addObjectsFromArray:responseObject[key]];
             
             if(offset+limit < totalCount){
                 [[NSOperationQueue currentQueue] addOperationWithBlock:^{

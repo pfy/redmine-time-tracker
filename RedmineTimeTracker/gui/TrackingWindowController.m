@@ -34,7 +34,7 @@
     NSPredicate *firstPredicate = [NSPredicate predicateWithFormat:@"n_spent_on >= %@", firstDate];
     NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"n_spent_on < %@", secondDate];
     
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:firstPredicate,secondPredicate, nil]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[firstPredicate,secondPredicate]];
     
 
     self.timeEntryArrayController.fetchPredicate = predicate;
@@ -95,8 +95,7 @@
 }
 
 - (NSArray *)timeEntrySortDescriptors{
-    return [NSArray arrayWithObjects:
-            [NSSortDescriptor sortDescriptorWithKey:@"n_user" ascending:NO comparator:^NSComparisonResult(id obj1, id obj2) {
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_user" ascending:NO comparator:^NSComparisonResult(id obj1, id obj2) {
         SMRedmineUser *user = [SMCurrentUser findOrCreate].n_user;
         if( obj1 == user && obj2 == user){
             return 0;
@@ -106,7 +105,7 @@
         return -1;
     }],
             [NSSortDescriptor sortDescriptorWithKey:@"n_updated_on"
-                                          ascending:NO],nil];
+                                          ascending:NO]];
 }
 
 -(void)refresh:(id)sender{

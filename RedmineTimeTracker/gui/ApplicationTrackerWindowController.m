@@ -62,7 +62,7 @@
     NSPredicate *firstPredicate = [NSPredicate predicateWithFormat:@"spent_on >= %@", firstDate];
     NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"spent_on < %@", secondDate];
     
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:firstPredicate,secondPredicate, nil]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[firstPredicate,secondPredicate]];
     
     
     self.applicationEntryArrayController.fetchPredicate = predicate;

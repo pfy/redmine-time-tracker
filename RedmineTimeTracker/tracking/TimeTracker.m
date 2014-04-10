@@ -53,8 +53,8 @@
             LOG_INFO(@"user has been idle since %f seconds",self.idleTimePassed);
         }
         
-        self.user.currentTimeEntry.n_hours = [NSNumber numberWithDouble:oldVal];
-        self.user.currentTimeEntry.changed = [NSNumber numberWithBool:YES];
+        self.user.currentTimeEntry.n_hours = @(oldVal);
+        self.user.currentTimeEntry.changed = @YES;
         self.user.currentTimeEntry.n_updated_on = newDate;
 
     }

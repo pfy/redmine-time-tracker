@@ -18,7 +18,7 @@
     NSArray *array = [context executeFetchRequest:fetchRequest error:nil];
     SMCurrentUser *managedObject = nil;
     if(array.count > 0){
-        managedObject = [array objectAtIndex:0];
+        managedObject = array[0];
     } else {
         managedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     }

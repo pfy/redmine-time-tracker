@@ -42,7 +42,7 @@
 }
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item{
     if(item == nil){
-        return [[self.issuesArrayController arrangedObjects] objectAtIndex:index ];
+        return [self.issuesArrayController arrangedObjects][index];
     }
     return 0;
 }

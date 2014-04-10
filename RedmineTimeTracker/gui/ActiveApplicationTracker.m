@@ -21,7 +21,7 @@
     NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"spent_on < %@", secondDate];
     NSPredicate *thirdPredicate = [NSPredicate predicateWithFormat:@"app_name = %@", name];
 
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:firstPredicate,secondPredicate,thirdPredicate, nil]];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[firstPredicate,secondPredicate,thirdPredicate]];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMApplicationTracker"];
     request.predicate = predicate;
@@ -29,7 +29,7 @@
     NSArray *objects = [context executeFetchRequest:request error:nil];
     SMApplicationTracker *tracker;
     if(objects.count > 0){
-        tracker = [objects objectAtIndex:0];
+        tracker = objects[0];
     } else {
         tracker = [NSEntityDescription insertNewObjectForEntityForName:@"SMApplicationTracker" inManagedObjectContext:context];
         tracker.app_name = name;
@@ -44,13 +44,13 @@
     NSTimeInterval delta = [now timeIntervalSinceDate:self.lastUpdate];
     self.lastUpdate = now;
     NSDictionary *activeApp = [NSWorkspace sharedWorkspace].activeApplication;
-    NSString *appName = [activeApp objectForKey:@"NSApplicationName"];
+    NSString *appName = activeApp[@"NSApplicationName"];
 
     if(!self.currentTracker|| ! [self.currentTracker.app_name isEqualToString:appName]){
         self.currentTracker = [self trackerForName:appName andDate:now];
     }
     delta += [self.currentTracker.seconds doubleValue];
-self.currentTracker.seconds = [NSNumber numberWithDouble:delta];
+self.currentTracker.seconds = @(delta);
 }
 
 

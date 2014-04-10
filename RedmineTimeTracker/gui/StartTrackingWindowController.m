@@ -68,7 +68,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         NSError *error;
         NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
         projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@",self.currentProject];
-        SMProjects *currentProject = [[self.context executeFetchRequest:projectFetchRequest error:&error] objectAtIndex:0];
+        SMProjects *currentProject = [self.context executeFetchRequest:projectFetchRequest error:&error][0];
         if(error){
             LOG_ERR(@"error happend %@",error);
             error = nil;
@@ -76,7 +76,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         
         NSFetchRequest *issueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
         issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject =  %@ and n_project=%@",self.currentIssue,currentProject];
-        SMIssue *currentIssue = [[self.context executeFetchRequest:issueFetchRequest error:&error] objectAtIndex:0];
+        SMIssue *currentIssue = [self.context executeFetchRequest:issueFetchRequest error:&error][0];
         if(error){
             LOG_ERR(@"error happend %@",error);
             error = nil;
@@ -86,7 +86,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         entry.n_project = currentProject;
         entry.n_comments = [self.commentTextView stringValue];
         entry.n_user = [SMCurrentUser findOrCreate].n_user;
-        entry.changed = [NSNumber numberWithBool:YES];
+        entry.changed = @YES;
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
 
         SAVE_APP_CONTEXT
@@ -115,13 +115,11 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
 
 
 - (NSArray *)projectSortDescriptors {
-    return [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:@"n_name"
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name"
                                           ascending:YES selector:@selector(caseInsensitiveCompare:)]];
 }
 - (NSArray *)issueSortDescriptors {
-    return [NSArray arrayWithObject:
-            [NSSortDescriptor sortDescriptorWithKey:@"n_subject"
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_subject"
                                           ascending:YES selector:@selector(caseInsensitiveCompare:)]];
 }
 

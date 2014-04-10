@@ -18,24 +18,19 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSDictionary dictionaryWithObjectsAndKeys:
-                            self.n_issue.n_id,@"issue_id",
-                           [ dateFormatter stringFromDate:self.n_spent_on ] ,@"spent_on",
-                             self.n_hours,@"hours",
+    NSDictionary *params = @{@"time_entry": @{@"issue_id": self.n_issue.n_id,
+                           @"spent_on": [ dateFormatter stringFromDate:self.n_spent_on ],
+                             @"hours": self.n_hours,
                              
                              // FIXME !
-                             [NSNumber numberWithInt:9],@"activity_id",
-                             self.n_comments,@"comments",
-                             nil],
-                            @"time_entry"
-                            , nil];
+                             @"activity_id": @9,
+                             @"comments": self.n_comments}};
     if(self.n_id){
         path = [NSString stringWithFormat:@"/time_entries/%@.json",self.n_id];
         [client putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry updated %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
-                newSelf.changed = [NSNumber numberWithBool:NO];
+                newSelf.changed = @NO;
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             LOG_WARN(@"time entry update failed %@",error);
@@ -45,8 +40,8 @@
     [client postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         LOG_INFO(@"time entry created %@",responseObject);
         [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
-            self.changed = [NSNumber numberWithBool:NO];
-            [self updateWithDict:[responseObject objectForKey:@"time_entry"]];
+            self.changed = @NO;
+            [self updateWithDict:responseObject[@"time_entry"]];
         }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_WARN(@"time entry creation failed %@ %@",error,params);

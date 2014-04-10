@@ -16,7 +16,7 @@
     
     NSManagedObjectContext *context = SMMainContext();
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMManagedObject"];
-    request.predicate  =  [NSPredicate predicateWithFormat:@"changed = %@",[NSNumber numberWithBool:YES] ];
+    request.predicate  =  [NSPredicate predicateWithFormat:@"changed = %@",@YES ];
     NSArray *fetched = [context executeFetchRequest:request error:nil];
     for (SMManagedObject *obj in fetched){
         [obj createRequest:self.client];
