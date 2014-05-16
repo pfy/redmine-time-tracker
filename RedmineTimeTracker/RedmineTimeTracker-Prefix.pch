@@ -26,6 +26,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import <SystemConfiguration/SystemConfiguration.h>
+#import "NSApplication+Information.h"
 #import "SMCoreDataSingleton.h"
 
     #define SAVE_APP_CONTEXT SMSaveContext(SMMainContext());

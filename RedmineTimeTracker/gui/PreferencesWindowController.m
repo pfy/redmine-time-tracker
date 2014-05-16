@@ -51,11 +51,16 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
--(void)dealloc{
+- (void)windowWillClose:(NSNotification *)notification
+{
+    // Maybe safe the things here too?
+}
+
+- (void)dealloc {
     self.user = nil;
 }
 
--(void)donePressed:(id)sender{
+- (void)donePressed:(id)sender {
     self.user.serverUrl = [self.hostnameTextField stringValue];
     self.user.authToken = [self.tokenTextField stringValue];
     self.user.workdayDuration = @(self.workdayDurationField.floatValue);

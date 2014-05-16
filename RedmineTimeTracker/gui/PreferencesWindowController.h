@@ -10,7 +10,7 @@
 #import "MASShortcutView.h"
 #import "SMCurrentUser+trackingExtension.h"
 
-@interface PreferencesWindowController : NSWindowController
+@interface PreferencesWindowController : NSWindowController <NSWindowDelegate>
 
 @property (nonatomic,weak) IBOutlet NSTextField *hostnameTextField;
 @property (nonatomic,weak) IBOutlet NSTextField *tokenTextField;

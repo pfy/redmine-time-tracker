@@ -14,6 +14,7 @@
 		070020DE192651E500EBE9CF /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D4192651E500EBE9CF /* MASShortcut.m */; };
 		070020DF192651E500EBE9CF /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */; };
 		070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D8192651E500EBE9CF /* MASShortcutView.m */; };
+		070020ED192691CE00EBE9CF /* NSApplication+Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020EC192691CE00EBE9CF /* NSApplication+Information.m */; };
 		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */; };
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
@@ -103,6 +104,8 @@
 		070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
 		070020D7192651E500EBE9CF /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
 		070020D8192651E500EBE9CF /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
+		070020EB192691CE00EBE9CF /* NSApplication+Information.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+Information.h"; sourceTree = "<group>"; };
+		070020EC192691CE00EBE9CF /* NSApplication+Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+Information.m"; sourceTree = "<group>"; };
 		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateProjectsCommand.h; sourceTree = "<group>"; };
 		079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateProjectsCommand.m; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
 				CF885EF518F5C1F5004ACAE2 /* NSString+Date.h */,
 				CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */,
+				070020EB192691CE00EBE9CF /* NSApplication+Information.h */,
+				070020EC192691CE00EBE9CF /* NSApplication+Information.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -714,6 +719,7 @@
 				CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */,
 				CF885F1518F6949F004ACAE2 /* AFURLSessionManager.m in Sources */,
 				CF885F1218F6949F004ACAE2 /* AFURLConnectionOperation.m in Sources */,
+				070020ED192691CE00EBE9CF /* NSApplication+Information.m in Sources */,
 				07E4E074192391A20089431A /* SMStatisticsWindowController.m in Sources */,
 				CFBDBB0F16BA9D2700FD9982 /* TimeEntryValueTransformer.m in Sources */,
 				CF885F0E18F6949F004ACAE2 /* AFHTTPRequestOperationManager.m in Sources */,

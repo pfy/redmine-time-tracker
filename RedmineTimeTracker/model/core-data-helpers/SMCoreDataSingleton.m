@@ -155,8 +155,10 @@
 #pragma mark - Application's Documents directory
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory
-                                                   inDomains:NSUserDomainMask] lastObject];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory
+                                                inDomains:NSUserDomainMask] lastObject];
+    return [appSupportURL URLByAppendingPathComponent:[NSApp identifier]];
 }
 
 NSManagedObjectContext *SMMainContext()

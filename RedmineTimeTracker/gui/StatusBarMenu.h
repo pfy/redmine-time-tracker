@@ -13,6 +13,7 @@
 #import "SMTimeEntry+DisplayThingi.h"
 
 @interface StatusBarMenu : NSObject
+
 @property (nonatomic,strong) NSStatusItem *statusItem;
 @property (nonatomic,strong) NSMenu *statusMenu;
 @property (strong) NSMenuItem *createNewIssueMenuItem;

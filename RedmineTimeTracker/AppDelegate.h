@@ -20,7 +20,8 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (nonatomic,weak)  IBOutlet NSOutlineView *outlineView;
+@property (nonatomic,weak) IBOutlet NSOutlineView *outlineView;
+
 @property (nonatomic,strong) TrackingWindowController *trackingVc;
 @property (nonatomic,strong) TimeTracker *timeTracker;
 @property (nonatomic,strong) PreferencesWindowController *preferences;
@@ -29,7 +30,6 @@
 @property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
 @property (nonatomic,strong) ActiveApplicationTracker *activeApplicationTracker;
 @property (nonatomic,strong) ApplicationTrackerWindowController *applicationTrackerWindowController;
-
 
 -(void)showPreferences;
 -(void)showAppTracker;

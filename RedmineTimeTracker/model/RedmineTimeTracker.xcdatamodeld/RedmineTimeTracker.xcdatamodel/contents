@@ -12,8 +12,8 @@
     <entity name="SMCurrentUser" representedClassName="SMCurrentUser" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="authToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serverUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="workdayDuration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="workdayDurationTolerance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="workdayDuration" optional="YES" attributeType="Double" minValueString="0.1" maxValueString="24" defaultValueString="8.4" syncable="YES"/>
+        <attribute name="workdayDurationTolerance" optional="YES" attributeType="Double" minValueString="0.01" maxValueString="24" defaultValueString="0.2" syncable="YES"/>
         <relationship name="currentTimeEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="currentUser" inverseEntity="SMTimeEntry" syncable="YES"/>
         <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="currentUser" inverseEntity="SMRedmineUser" syncable="YES"/>
     </entity>
@@ -92,7 +92,7 @@
     <elements>
         <element name="SMActivity" positionX="43" positionY="321" width="128" height="75"/>
         <element name="SMApplicationTracker" positionX="-189" positionY="126" width="128" height="88"/>
-        <element name="SMCurrentUser" positionX="160" positionY="192" width="128" height="133"/>
+        <element name="SMCurrentUser" positionX="160" positionY="192" width="128" height="135"/>
         <element name="SMHotKey" positionX="-144" positionY="72" width="128" height="90"/>
         <element name="SMIssue" positionX="225" positionY="108" width="128" height="285"/>
         <element name="SMManagedObject" positionX="216" positionY="-63" width="128" height="105"/>

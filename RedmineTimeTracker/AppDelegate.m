@@ -33,16 +33,6 @@
     LOG_INFO(@"App Started");
 }
 
-// Returns the directory the application uses to store the Core Data store file. This code uses a directory named "ch.smooh.RedmineTimeTracker" in the user's Application Support directory.
-- (NSURL *)applicationFilesDirectory
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory
-                                                inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:@"ch.smooh.RedmineTimeTracker"];
-}
-
-
 -(void)showPreferences{
     self.preferences = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindowController"];
     [self.preferences showWindow:self];
@@ -54,7 +44,5 @@
     self.applicationTrackerWindowController = [[ApplicationTrackerWindowController alloc] initWithWindowNibName:@"ApplicationTrackerWindowController"];
     [self.applicationTrackerWindowController showWindow:self];
 }
-
-
 
 @end
