@@ -33,7 +33,6 @@
 
 @property (strong, nonatomic) id trackerName;
 @property (strong, nonatomic) id currentProjectName;
-@property BOOL dueDatePickerEnabled;
 @property (readonly) NSArray *trackersSortDescriptors;
 @property (readonly) NSArray *projectSortDescriptors;
 @property (readonly) NSArray *parentIssueSortDescriptors;
