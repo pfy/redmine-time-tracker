@@ -31,8 +31,8 @@
 @property (strong) IBOutlet NSArrayController *projectArrayController;
 @property (strong) IBOutlet NSArrayController *parentIssueArrayController;
 
-@property (strong, nonatomic) id trackerName;
 @property (strong, nonatomic) id currentProjectName;
+
 @property (readonly) NSArray *trackersSortDescriptors;
 @property (readonly) NSArray *projectSortDescriptors;
 @property (readonly) NSArray *parentIssueSortDescriptors;
