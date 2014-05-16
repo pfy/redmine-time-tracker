@@ -21,12 +21,11 @@
 -(void)run:(SMNetworkUpdate*)networkUpdateCenter{
     self.allObjects = [NSMutableArray new];
     self.center = networkUpdateCenter;
-
 }
 
 -(void)fetchWithUrl:(NSString*)url andKey:(NSString*)key toEntity:(NSString*)entity andOffset:(int)offset{
-    NSMutableArray __block *allObjects = self.allObjects;
-    NSString *urlWithOffset =[NSString stringWithFormat:url,offset];
+    __block NSMutableArray *allObjects = self.allObjects;
+    NSString *urlWithOffset = [NSString stringWithFormat:url, offset];
     
     LOG_INFO(@"fetch %@",urlWithOffset);
     [self.center.client GET:urlWithOffset parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -38,7 +37,7 @@
             
             if(offset+limit < totalCount){
                 [[NSOperationQueue currentQueue] addOperationWithBlock:^{
-                    [ self fetchWithUrl:url andKey:key toEntity:entity andOffset:offset+limit ];
+                    [self fetchWithUrl:url andKey:key toEntity:entity andOffset:offset+limit ];
                 }];
             } else {
                 /* we are done */
@@ -50,9 +49,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         LOG_ERR(@"error happend %@",error);
         [self.center queueItemFailed:self];
-    } ];
-    
-    
+    }];
 }
 
 @end

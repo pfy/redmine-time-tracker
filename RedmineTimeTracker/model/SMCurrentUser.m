@@ -15,6 +15,8 @@
 
 @dynamic authToken;
 @dynamic serverUrl;
+@dynamic workdayDuration;
+@dynamic workdayDurationTolerance;
 @dynamic currentTimeEntry;
 @dynamic n_user;
 

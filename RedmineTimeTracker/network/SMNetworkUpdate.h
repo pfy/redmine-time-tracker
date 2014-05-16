@@ -12,7 +12,7 @@
 @class SMNetworkUpdateCommand;
 
 @interface SMNetworkUpdate : NSObject
-@property (nonatomic,retain) NSTimer *timer;
+@property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,weak) SMCurrentUser *user;
 @property (nonatomic,strong) AFHTTPRequestOperationManager *client;
 @property (nonatomic,strong) NSMutableArray *allCommands;

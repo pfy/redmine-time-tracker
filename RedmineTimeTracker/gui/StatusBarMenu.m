@@ -19,17 +19,22 @@
     if(self){
         self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         
-        self.statusMenu = [NSMenu new];
+        self.createNewIssueMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create Issue" action:@selector(createNewIssue) keyEquivalent:@""];
+        self.createNewIssueMenuItem.target = self;
+        
         self.startTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Start Tracking"  action:@selector(startTracking) keyEquivalent:@"1"];
         [self.startTrackingMenuItem setTarget:self];
         
         self.stopTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Stop Tracking"  action:@selector(stopTracking) keyEquivalent:@"2"];
         [self.stopTrackingMenuItem setTarget:self];
-        [self.statusMenu setAutoenablesItems:NO];
         
+        self.statusMenu = [NSMenu new];
+        [self.statusMenu setAutoenablesItems:NO];
+        [self.statusMenu addItem:self.createNewIssueMenuItem];
         [self.statusMenu addItem:self.startTrackingMenuItem];
         [self.statusMenu addItem:self.stopTrackingMenuItem];
-        NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @""];
+        
+        NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @","];
         [preferencesMenuItem setTarget:self];
         [self.statusMenu addItem:preferencesMenuItem];
         
@@ -37,9 +42,9 @@
         [applicationTrackerMenuItem setTarget:[NSApplication sharedApplication].delegate];
         [self.statusMenu addItem:applicationTrackerMenuItem];
         
-        [_statusItem setMenu:self.statusMenu];
-        [_statusItem setTitle:@"Aaarbeeeiiiit"];
-        [_statusItem setHighlightMode:YES];
+        [self.statusItem setMenu:self.statusMenu];
+        [self.statusItem setTitle:@"Aaarbeeeiiiit"];
+        [self.statusItem setHighlightMode:YES];
         [self registerHotkey];
         
         self.user = [SMCurrentUser findOrCreate];
@@ -62,13 +67,20 @@
     [app showPreferences];
 }
 
+- (void)createNewIssue
+{
+    SMNewIssueWindowController *issueWindowController = [[SMNewIssueWindowController alloc] initWithWindowNibName:NSStringFromClass([SMNewIssueWindowController class])];
+    [issueWindowController showWindow:self.createNewIssueMenuItem];
+    self.createNewIssueWindowController = issueWindowController;
+}
+
 -(void)startTracking{
     LOG_WARN(@"====== START TRARCKING =======");
     
     self.startTrackingWindowController = [[StartTrackingWindowController alloc] initWithWindowNibName:@"StartTrackingWindowController"];
     [self.startTrackingWindowController showWindow:self];
-    
 }
+
 -(void)stopTracking{
     LOG_WARN(@"====== STOP TRARCKING =======");
     [SMCurrentUser findOrCreate].currentTimeEntry = nil;

@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) NSString * authToken;
 @property (nonatomic, retain) NSString * serverUrl;
+@property (nonatomic, retain) NSNumber * workdayDuration;
+@property (nonatomic, retain) NSNumber * workdayDurationTolerance;
 @property (nonatomic, retain) SMTimeEntry *currentTimeEntry;
 @property (nonatomic, retain) SMRedmineUser *n_user;
 

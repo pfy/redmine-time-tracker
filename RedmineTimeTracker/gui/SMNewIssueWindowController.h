@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SMNewIssueWindowController : NSWindowController
+@interface SMNewIssueWindowController : NSWindowController <NSTextViewDelegate>
 
 @property (weak) IBOutlet NSTextField *trackerLabel;
 @property (weak) IBOutlet NSPopUpButton *trackerPopUp;
@@ -23,9 +23,22 @@
 @property (weak) IBOutlet NSComboBox *parentIssueCombo;
 @property (weak) IBOutlet NSTextField *dueDateLabel;
 @property (weak) IBOutlet NSDatePicker *dueDatePicker;
+@property (weak) IBOutlet NSButton *dueDateEnabledCheckBox;
 @property (weak) IBOutlet NSTextField *estimatedTimeLabel;
 @property (weak) IBOutlet NSTextField *estimatedTimeField;
 @property (weak) IBOutlet NSButton *createButton;
+@property (strong) IBOutlet NSArrayController *trackerArrayController;
+@property (strong) IBOutlet NSArrayController *projectArrayController;
+@property (strong) IBOutlet NSArrayController *parentIssueArrayController;
+
+@property (strong, nonatomic) id trackerName;
+@property (strong, nonatomic) id currentProjectName;
+@property BOOL dueDatePickerEnabled;
+@property (readonly) NSArray *trackersSortDescriptors;
+@property (readonly) NSArray *projectSortDescriptors;
+@property (readonly) NSArray *parentIssueSortDescriptors;
+
+@property (strong) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)createIssue:(id)sender;
 

@@ -15,10 +15,12 @@
 #import "SMUpdateIssuesCommand.h"
 #import "SMUpdateTimeEntriesCommand.h"
 #import "SMUploadCommand.h"
+#import "SMUpdateProjectsCommand.h"
+#import "SMUpdateTrackersCommand.h"
+#import "SMUpdateActivitiesCommand.h"
 
 
 @implementation SMNetworkUpdate
-
 
 -(void)update{
     if(self.user.authToken && self.user.serverUrl && self.allCommands.count == 0 ){
@@ -30,10 +32,13 @@
         [self.client.requestSerializer setValue:self.user.authToken forHTTPHeaderField:@"X-Redmine-API-Key"];
         
         [self.allCommands addObject:[SMUploadCommand new]];
+        [self.allCommands addObject:[SMUpdateActivitiesCommand new]];
+        [self.allCommands addObject:[SMUpdateTrackersCommand new]];
         [self.allCommands addObject:[SMUpdateTimeEntriesCommand new]];
         [self.allCommands addObject:[SMUpdateIssuesCommand new]];
+        [self.allCommands addObject:[SMUpdateProjectsCommand new]];
         [self.allCommands addObject:[SMUpdateCurrentUserCommand new]];
-        [self runNext ];
+        [self runNext];
     }
 }
 
@@ -65,11 +70,11 @@
     if (self) {
         self.allCommands = [NSMutableArray new];
         self.running = NO;
-        self.timer =     [NSTimer scheduledTimerWithTimeInterval:60.0
-                                                          target:self
-                                                        selector:@selector(update)
-                                                        userInfo:nil
-                                                         repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                      target:self
+                                                    selector:@selector(update)
+                                                    userInfo:nil
+                                                     repeats:YES];
         if([self.timer respondsToSelector:@selector(setTolerance:)]){
             [self.timer setTolerance:10.0];
         }
@@ -84,7 +89,10 @@
 -(void)dealloc{
     [self.timer invalidate];
     // !!!: FIXME: Remove observers
+//    [self.user removeObserver:self forKeyPath:@"authToken"];
+//    [self.user removeObserver:self forKeyPath:@"serverUrl"];
 }
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     [self update];
 }

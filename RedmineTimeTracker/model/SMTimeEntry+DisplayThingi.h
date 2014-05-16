@@ -9,6 +9,7 @@
 #import "SMTimeEntry.h"
 
 @interface SMTimeEntry (DisplayThingi)
--(NSString*)formattedTime;
+
+@property (nonatomic, strong, readonly) NSString *formattedTime;
 
 @end
