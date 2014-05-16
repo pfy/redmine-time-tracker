@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		070020C619264BAE00EBE9CF /* SMIssue+NetworkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020C519264BAE00EBE9CF /* SMIssue+NetworkExtension.m */; };
 		070020C919264D0800EBE9CF /* SMHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020C819264D0800EBE9CF /* SMHotKey.m */; };
+		070020DC192651E500EBE9CF /* MASShortcut+Monitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D0192651E500EBE9CF /* MASShortcut+Monitoring.m */; };
+		070020DD192651E500EBE9CF /* MASShortcut+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D2192651E500EBE9CF /* MASShortcut+UserDefaults.m */; };
+		070020DE192651E500EBE9CF /* MASShortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D4192651E500EBE9CF /* MASShortcut.m */; };
+		070020DF192651E500EBE9CF /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */; };
+		070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D8192651E500EBE9CF /* MASShortcutView.m */; };
 		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */; };
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
@@ -89,6 +94,16 @@
 		070020C519264BAE00EBE9CF /* SMIssue+NetworkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMIssue+NetworkExtension.m"; sourceTree = "<group>"; };
 		070020C719264D0800EBE9CF /* SMHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHotKey.h; sourceTree = "<group>"; };
 		070020C819264D0800EBE9CF /* SMHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHotKey.m; sourceTree = "<group>"; };
+		070020CF192651E500EBE9CF /* MASShortcut+Monitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+Monitoring.h"; sourceTree = "<group>"; };
+		070020D0192651E500EBE9CF /* MASShortcut+Monitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+Monitoring.m"; sourceTree = "<group>"; };
+		070020D1192651E500EBE9CF /* MASShortcut+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcut+UserDefaults.h"; sourceTree = "<group>"; };
+		070020D2192651E500EBE9CF /* MASShortcut+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcut+UserDefaults.m"; sourceTree = "<group>"; };
+		070020D3192651E500EBE9CF /* MASShortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcut.h; sourceTree = "<group>"; };
+		070020D4192651E500EBE9CF /* MASShortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcut.m; sourceTree = "<group>"; };
+		070020D5192651E500EBE9CF /* MASShortcutView+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASShortcutView+UserDefaults.h"; sourceTree = "<group>"; };
+		070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASShortcutView+UserDefaults.m"; sourceTree = "<group>"; };
+		070020D7192651E500EBE9CF /* MASShortcutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASShortcutView.h; sourceTree = "<group>"; };
+		070020D8192651E500EBE9CF /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
 		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateProjectsCommand.h; sourceTree = "<group>"; };
 		079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateProjectsCommand.m; sourceTree = "<group>"; };
@@ -293,15 +308,77 @@
 			name = "CoreData+Extensions";
 			sourceTree = "<group>";
 		};
+		070020CC192651E500EBE9CF /* MASShortcut */ = {
+			isa = PBXGroup;
+			children = (
+				070020CF192651E500EBE9CF /* MASShortcut+Monitoring.h */,
+				070020D0192651E500EBE9CF /* MASShortcut+Monitoring.m */,
+				070020D1192651E500EBE9CF /* MASShortcut+UserDefaults.h */,
+				070020D2192651E500EBE9CF /* MASShortcut+UserDefaults.m */,
+				070020D3192651E500EBE9CF /* MASShortcut.h */,
+				070020D4192651E500EBE9CF /* MASShortcut.m */,
+				070020D5192651E500EBE9CF /* MASShortcutView+UserDefaults.h */,
+				070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */,
+				070020D7192651E500EBE9CF /* MASShortcutView.h */,
+				070020D8192651E500EBE9CF /* MASShortcutView.m */,
+			);
+			path = MASShortcut;
+			sourceTree = "<group>";
+		};
+		070020E3192652F900EBE9CF /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				CF31D21116BE880100E81902 /* ApplicationTrackerWindowController.h */,
+				CF31D21216BE880100E81902 /* ApplicationTrackerWindowController.m */,
+				CF31D21316BE880100E81902 /* ApplicationTrackerWindowController.xib */,
+				CF114B9616B68EC60033346D /* StartTrackingWindowController.h */,
+				CF114B9716B68EC60033346D /* StartTrackingWindowController.m */,
+				CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */,
+				CF114B9E16B6CBED0033346D /* TrackingWindowController.h */,
+				CF114B9F16B6CBED0033346D /* TrackingWindowController.m */,
+				CF114BA016B6CBED0033346D /* TrackingWindowController.xib */,
+			);
+			name = Tracking;
+			sourceTree = "<group>";
+		};
+		070020E41926530300EBE9CF /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				CF8A1B2616B7CFE400ED429E /* PreferencesWindowController.h */,
+				CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */,
+				CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
+		070020E51926530F00EBE9CF /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				07E4E071192391A20089431A /* SMStatisticsWindowController.h */,
+				07E4E072192391A20089431A /* SMStatisticsWindowController.m */,
+				07E4E073192391A20089431A /* SMStatisticsWindowController.xib */,
+			);
+			name = Statistics;
+			sourceTree = "<group>";
+		};
+		070020E61926531400EBE9CF /* NewIssue */ = {
+			isa = PBXGroup;
+			children = (
+				07E4E0771924FDCB0089431A /* SMNewIssueWindowController.h */,
+				07E4E0781924FDCB0089431A /* SMNewIssueWindowController.m */,
+				07E4E0791924FDCB0089431A /* SMNewIssueWindowController.xib */,
+			);
+			name = NewIssue;
+			sourceTree = "<group>";
+		};
 		CF10AED816B177D5008F9741 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				CF885EEE18F5A7CE004ACAE2 /* core-data-helpers */,
-				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
-				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
-				CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */,
 				070020CA1926510100EBE9CF /* CoreData */,
 				070020CB1926511B00EBE9CF /* CoreData+Extensions */,
+				CF885EEE18F5A7CE004ACAE2 /* CoreData Helpers */,
+				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
+				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
 				CF885EF518F5C1F5004ACAE2 /* NSString+Date.h */,
 				CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */,
 			);
@@ -446,17 +523,20 @@
 			isa = PBXGroup;
 			children = (
 				CF885EF918F6949F004ACAE2 /* AFNetworking */,
+				070020CC192651E500EBE9CF /* MASShortcut */,
 				CF114B7316B6880D0033346D /* DDHotKey */,
 			);
 			path = addins;
 			sourceTree = "<group>";
 		};
-		CF885EEE18F5A7CE004ACAE2 /* core-data-helpers */ = {
+		CF885EEE18F5A7CE004ACAE2 /* CoreData Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CF10AED916B177D5008F9741 /* RedmineTimeTracker.xcdatamodeld */,
 				CF885EF218F5A80D004ACAE2 /* SMCoreDataSingleton.h */,
 				CF885EF318F5A80D004ACAE2 /* SMCoreDataSingleton.m */,
 			);
+			name = "CoreData Helpers";
 			path = "core-data-helpers";
 			sourceTree = "<group>";
 		};
@@ -490,32 +570,18 @@
 		CFABD41A16B1899C00C93A0D /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				070020E3192652F900EBE9CF /* Tracking */,
+				070020E41926530300EBE9CF /* Preferences */,
+				070020E51926530F00EBE9CF /* Statistics */,
+				070020E61926531400EBE9CF /* NewIssue */,
 				CFABD42416B1A06500C93A0D /* StatusBarMenu.h */,
 				CFABD42516B1A06500C93A0D /* StatusBarMenu.m */,
 				CFABD42A16B1A49800C93A0D /* IssuesList.h */,
 				CFABD42B16B1A49800C93A0D /* IssuesList.m */,
-				CF114B9616B68EC60033346D /* StartTrackingWindowController.h */,
-				CF114B9716B68EC60033346D /* StartTrackingWindowController.m */,
-				CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */,
-				CF114B9E16B6CBED0033346D /* TrackingWindowController.h */,
-				CF114B9F16B6CBED0033346D /* TrackingWindowController.m */,
-				CF114BA016B6CBED0033346D /* TrackingWindowController.xib */,
-				CF8A1B2616B7CFE400ED429E /* PreferencesWindowController.h */,
-				CF8A1B2716B7CFE400ED429E /* PreferencesWindowController.m */,
-				CF8A1B2816B7CFE500ED429E /* PreferencesWindowController.xib */,
 				CF2EBDFC16B7E5C400CA2BAA /* TimeIssueRowView.h */,
 				CF2EBDFD16B7E5C400CA2BAA /* TimeIssueRowView.m */,
 				CFBDBB1316BADEFF00FD9982 /* CaseIntensitiveComboBoxCell.h */,
 				CFBDBB1416BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m */,
-				CF31D21116BE880100E81902 /* ApplicationTrackerWindowController.h */,
-				CF31D21216BE880100E81902 /* ApplicationTrackerWindowController.m */,
-				CF31D21316BE880100E81902 /* ApplicationTrackerWindowController.xib */,
-				07E4E071192391A20089431A /* SMStatisticsWindowController.h */,
-				07E4E072192391A20089431A /* SMStatisticsWindowController.m */,
-				07E4E073192391A20089431A /* SMStatisticsWindowController.xib */,
-				07E4E0771924FDCB0089431A /* SMNewIssueWindowController.h */,
-				07E4E0781924FDCB0089431A /* SMNewIssueWindowController.m */,
-				07E4E0791924FDCB0089431A /* SMNewIssueWindowController.xib */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -598,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070020DD192651E500EBE9CF /* MASShortcut+UserDefaults.m in Sources */,
 				CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */,
 				CF8844C316B045E9008B87FC /* main.m in Sources */,
 				CF885F0D18F6949F004ACAE2 /* AFHTTPRequestOperation.m in Sources */,
@@ -616,6 +683,7 @@
 				CF114BA116B6CBED0033346D /* TrackingWindowController.m in Sources */,
 				CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */,
 				CF114BC716B6D9A60033346D /* TimeTracker.m in Sources */,
+				070020DF192651E500EBE9CF /* MASShortcutView+UserDefaults.m in Sources */,
 				079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */,
 				CF114BCE16B6DF4E0033346D /* SMTimeEntry+DisplayThingi.m in Sources */,
 				CF8A1AF616B7AC1300ED429E /* SMTimeEntry+networkExtension.m in Sources */,
@@ -638,6 +706,7 @@
 				CF2EBE0116B8364200CA2BAA /* SMNetworkUpdateCommand.m in Sources */,
 				CF885F1018F6949F004ACAE2 /* AFNetworkReachabilityManager.m in Sources */,
 				CF2EBE0416B836F700CA2BAA /* SMUpdateIssuesCommand.m in Sources */,
+				070020DC192651E500EBE9CF /* MASShortcut+Monitoring.m in Sources */,
 				CF2EBE0716B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m in Sources */,
 				CF2EBE0A16B8372700CA2BAA /* SMUpdateCurrentUserCommand.m in Sources */,
 				CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */,
@@ -645,7 +714,9 @@
 				CFBDBB0616BA8E4600FD9982 /* ProjectValueTransformer.m in Sources */,
 				CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */,
 				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
+				070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */,
 				CF885F0F18F6949F004ACAE2 /* AFHTTPSessionManager.m in Sources */,
+				070020DE192651E500EBE9CF /* MASShortcut.m in Sources */,
 				CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */,
 				CF885F1518F6949F004ACAE2 /* AFURLSessionManager.m in Sources */,
 				CF885F1218F6949F004ACAE2 /* AFURLConnectionOperation.m in Sources */,
@@ -802,7 +873,8 @@
 				CF10AEDA16B177D5008F9741 /* 0.2.xcdatamodel */,
 			);
 			currentVersion = 07E4E0761924E96B0089431A /* RedmineTimeTracker.xcdatamodel */;
-			path = RedmineTimeTracker.xcdatamodeld;
+			name = RedmineTimeTracker.xcdatamodeld;
+			path = ../RedmineTimeTracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

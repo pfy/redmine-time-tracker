@@ -1,3 +1,6 @@
 [submodule "RedmineTimeTracker/addins/AFNetworking"]
 	path = RedmineTimeTracker/addins/AFNetworking
 	url = https://github.com/AFNetworking/AFNetworking.git
+[submodule "RedmineTimeTracker/addins/MASShortcut"]
+	path = RedmineTimeTracker/addins/MASShortcut
+	url = git@github.com:shpakovski/MASShortcut.git
