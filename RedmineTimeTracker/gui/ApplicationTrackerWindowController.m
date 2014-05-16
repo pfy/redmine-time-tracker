@@ -14,7 +14,7 @@
 
 @implementation ApplicationTrackerWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
@@ -39,19 +39,22 @@
     [self addObserver:self forKeyPath:@"currentDate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     
     self.currentDate = [NSDate date];
-
+    
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 -(IBAction)today:(id)sender{
     self.currentDate = [NSDate date];
 }
+
 -(IBAction)nextDay:(id)sender{
     self.currentDate = [self.currentDate dateByAddingTimeInterval:24*3600];
 }
+
 -(IBAction)prevDay:(id)sender{
     self.currentDate = [self.currentDate dateByAddingTimeInterval:-24*3600];
 }
+
 -(void)updateFetcher{
     self.currentDateString = [self.formatter stringFromDate:self.currentDate];
     NSCalendar *calendar = [NSCalendar currentCalendar]; // gets default calendar
@@ -76,6 +79,7 @@
         [self updateFetcher];
     }
 }
+
 -(void)dealloc{
     [self removeObserver:self forKeyPath:@"currentDate"];
 }

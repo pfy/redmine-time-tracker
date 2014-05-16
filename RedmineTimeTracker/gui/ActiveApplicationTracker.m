@@ -20,7 +20,7 @@
     NSPredicate *firstPredicate = [NSPredicate predicateWithFormat:@"spent_on >= %@", firstDate];
     NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"spent_on < %@", secondDate];
     NSPredicate *thirdPredicate = [NSPredicate predicateWithFormat:@"app_name = %@", name];
-
+    
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[firstPredicate,secondPredicate,thirdPredicate]];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMApplicationTracker"];
@@ -45,16 +45,16 @@
     self.lastUpdate = now;
     NSDictionary *activeApp = [NSWorkspace sharedWorkspace].activeApplication;
     NSString *appName = activeApp[@"NSApplicationName"];
-
+    
     if(!self.currentTracker|| ! [self.currentTracker.app_name isEqualToString:appName]){
         self.currentTracker = [self trackerForName:appName andDate:now];
     }
     delta += [self.currentTracker.seconds doubleValue];
-self.currentTracker.seconds = @(delta);
+    self.currentTracker.seconds = @(delta);
 }
 
 
--(id)init{
+-(instancetype)init{
     self = [super init];
     if(self){
         self.lastUpdate = [NSDate date];
@@ -66,7 +66,7 @@ self.currentTracker.seconds = @(delta);
         if([self.timer respondsToSelector:@selector(setTolerance:)]){
             [self.timer setTolerance:10.0];
         }
-
+        
     }
     return self;
 }

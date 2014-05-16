@@ -13,7 +13,8 @@
 #import "AppDelegate.h"
 
 @implementation StatusBarMenu
--(id)init{
+
+-(instancetype)init{
     self = [super init];
     if(self){
         self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -56,17 +57,17 @@
 
 -(void)preferences{
     LOG_INFO(@"show preferences");
-
+    
     AppDelegate *app = [NSApplication sharedApplication].delegate;
     [app showPreferences];
 }
-         
+
 -(void)startTracking{
     LOG_WARN(@"====== START TRARCKING =======");
     
     self.startTrackingWindowController = [[StartTrackingWindowController alloc] initWithWindowNibName:@"StartTrackingWindowController"];
     [self.startTrackingWindowController showWindow:self];
-
+    
 }
 -(void)stopTracking{
     LOG_WARN(@"====== STOP TRARCKING =======");
@@ -77,7 +78,7 @@
 -(void)registerHotkey{
     DDHotKeyCenter *center = [DDHotKeyCenter sharedHotKeyCenter];
     [center registerHotKeyWithKeyCode:18 modifierFlags:NSCommandKeyMask target:self action:@selector(startTracking) object:nil];
-       [center registerHotKeyWithKeyCode:19 modifierFlags:NSCommandKeyMask target:self action:@selector(stopTracking) object:nil];
+    [center registerHotKeyWithKeyCode:19 modifierFlags:NSCommandKeyMask target:self action:@selector(stopTracking) object:nil];
 }
 -(void)setEntry:(SMTimeEntry *)entry{
     if(entry != _entry){
@@ -93,7 +94,7 @@
         [_statusItem setTitle:[NSString stringWithFormat:@"%@",self.entry.formattedTime]];
     } else {
         [_statusItem setTitle:@"Idle"];
-
+        
     }
 }
 

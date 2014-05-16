@@ -9,9 +9,9 @@
 #import "IssuesList.h"
 #import "SMIssue.h"
 
-
 @implementation IssuesList
--(id)init{
+
+-(instancetype)init{
     self = [super init];
     if(self){
         NSManagedObjectContext *context = SMMainContext();
@@ -19,11 +19,10 @@
         self.issuesArrayController = [[NSArrayController alloc] initWithContent:nil];
         [self.issuesArrayController setManagedObjectContext:context];
         [self.issuesArrayController setEntityName:@"SMIssue"];
-        NSError *error;
-        if ([self.issuesArrayController fetchWithRequest:nil merge:YES error:&error] == NO)
+        __autoreleasing NSError *error;
+        if ([self.issuesArrayController fetchWithRequest:nil merge:YES error:&error] == NO) {
             result = NO;
-        else
-        {
+        } else {
             //do all that other pageArrayController configuration stuff
             result = [self.issuesArrayController setSelectionIndex:0];
         }
@@ -37,15 +36,18 @@
     }
     return 0;
 }
+
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item{
     return NO;
 }
+
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item{
     if(item == nil){
         return [self.issuesArrayController arrangedObjects][index];
     }
     return 0;
 }
+
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item{
     return nil;
 }

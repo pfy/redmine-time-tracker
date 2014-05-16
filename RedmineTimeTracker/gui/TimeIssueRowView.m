@@ -15,7 +15,7 @@
 
 @implementation TimeIssueRowView
 
-- (id)initWithFrame:(NSRect)frame
+- (instancetype)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -47,7 +47,6 @@
     } else {
         [self.pauseButton setHidden:YES];
     }
-    
 }
 
 -(IBAction)pressPause:(id)sender{
@@ -56,11 +55,10 @@
     } else {
         [self.objectValue setCurrentUser:[SMCurrentUser findOrCreate]];
     }
-    
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     [self updateState];
-    
 }
+
 @end

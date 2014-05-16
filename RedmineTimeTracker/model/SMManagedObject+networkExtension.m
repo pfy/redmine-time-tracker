@@ -87,7 +87,7 @@
 }
 
 
-+(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(bool)delete completion:(noneBlock)completion{
++(void)update:(NSString*)entityName withArray:(NSArray*)respArray delete:(BOOL)delete completion:(noneBlock)completion{
     [self scheduleUpdateOperationWithBlock:^(NSManagedObjectContext *context) {
         NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:entityName];
         NSArray *allObjects = [context executeFetchRequest:r error:nil];

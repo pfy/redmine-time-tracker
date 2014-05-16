@@ -50,23 +50,19 @@
     [self.allCommands removeObject:cmd];
     self.running = NO;
     LOG_INFO(@"finished %@",cmd);
-
+    
     [self runNext];
 }
 -(void)queueItemFailed:(SMNetworkUpdateCommand *)cmd{
     self.running = NO;
     LOG_INFO(@"aborted %@",cmd);
-
+    
     [self.allCommands removeAllObjects];
 }
 
-
-
--(id)init{
+-(instancetype)init{
     self = [super init];
-    if(self){
- 
-        
+    if (self) {
         self.allCommands = [NSMutableArray new];
         self.running = NO;
         self.timer =     [NSTimer scheduledTimerWithTimeInterval:60.0
@@ -87,7 +83,7 @@
 
 -(void)dealloc{
     [self.timer invalidate];
-        ///!!!: FIXME: Remove observers
+    // !!!: FIXME: Remove observers
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     [self update];

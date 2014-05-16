@@ -12,7 +12,8 @@
 
 
 @implementation TimeTracker
--(id)init {
+
+-(instancetype)init {
     self = [super init];
     if(self){
         self.user = [SMCurrentUser findOrCreate];
@@ -30,7 +31,6 @@
     return self;
 }
 
-
 -(void)update{
     NSDate *newDate = [NSDate date];
     double timePassed = [newDate timeIntervalSinceDate:self.lastTick]/3600.0;
@@ -46,7 +46,7 @@
             seconds -= houres*3600;
             int minutes = seconds/ 60;
             seconds -= minutes*60;
-            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"You have been idle since %02d:%02d:%02d, remove time ? ",houres,minutes,seconds] defaultButton:@"Ok"  alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@""];
+            NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"You have been idle since %02d:%02d:%02d, remove idle time?",houres,minutes,seconds] defaultButton:@"Remove"  alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@""];
             [NSApp activateIgnoringOtherApps:YES];
 
             NSInteger resp = [alert runModal];

@@ -14,7 +14,7 @@
 
 @implementation PreferencesWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
@@ -50,7 +50,7 @@
     LOG_INFO(@"did save user %@",self.user);
     SAVE_APP_CONTEXT;
     [self.window close];
-
+    
 }
 
 

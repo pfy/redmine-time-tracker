@@ -14,16 +14,16 @@
 
 @implementation TrackingWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
         self.context = SMMainContext();
     }
-    
     return self;
 }
+
 -(void)updateFetcher{
     self.currentDateString = [self.formatter stringFromDate:self.currentDate];
     NSCalendar *calendar = [NSCalendar currentCalendar]; // gets default calendar

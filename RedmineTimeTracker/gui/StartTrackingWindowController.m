@@ -11,19 +11,18 @@
 #import "SMCurrentUser+trackingExtension.h"
 static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
 
-
 @interface StartTrackingWindowController ()
 
 @end
 
 @implementation StartTrackingWindowController
 
-- (id)initWithWindow:(NSWindow *)window
+- (instancetype)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
     if (self) {
         self.context = SMMainContext();
-
+        
         // Initialization code here.
     }
     
@@ -52,12 +51,8 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     
     
     self.currentProject = [[NSUserDefaults standardUserDefaults]objectForKey:recentProjectDefaultsKey];
-
+    
     LOG_INFO(@"fetched objects %@",[[self.projectArrayController arrangedObjects] valueForKey:@"n_name"]);
-    
-    
-    
-    
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -88,39 +83,36 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.changed = @YES;
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
-
+        
         SAVE_APP_CONTEXT
         [[NSUserDefaults standardUserDefaults]setValue:self.currentProject forKey:recentProjectDefaultsKey];
         
         [self.window close];
     }
-
+    
 }
 -(IBAction)cancelTracking:(id)sender{
     [self.window close];
 }
-
-
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if([keyPath isEqualToString:@"currentProject"]){
         NSError *error;
         self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project.n_name = %@",self.currentProject];
         [self.issueArrayController fetchWithRequest:nil merge:NO error:&error];
-       // LOG_INFO(@"fetch complete, got %@ objects",self.issueArrayController.arrangedObjects);
+        // LOG_INFO(@"fetch complete, got %@ objects",self.issueArrayController.arrangedObjects);
     } else if ([keyPath isEqualToString:@"currentIssue"]){
         
     }
 }
 
-
 - (NSArray *)projectSortDescriptors {
     return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name"
-                                          ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+                                           ascending:YES selector:@selector(caseInsensitiveCompare:)]];
 }
 - (NSArray *)issueSortDescriptors {
     return @[[NSSortDescriptor sortDescriptorWithKey:@"n_subject"
-                                          ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+                                           ascending:YES selector:@selector(caseInsensitiveCompare:)]];
 }
 
 @end

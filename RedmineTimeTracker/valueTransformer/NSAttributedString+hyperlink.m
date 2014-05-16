@@ -9,7 +9,7 @@
 #import "NSAttributedString+hyperlink.h"
 
 @implementation NSAttributedString (hyperlink)
-+(id)hyperlinkFromString:(NSString*)inString withURL:(NSURL*)aURL
++ (instancetype)hyperlinkFromString:(NSString*)inString withURL:(NSURL*)aURL
 {
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString: inString];
     NSRange range = NSMakeRange(0, [attrString length]);
@@ -26,6 +26,6 @@
     
     [attrString endEditing];
     
-    return attrString;
+    return [attrString copy];
 }
 @end

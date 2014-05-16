@@ -17,7 +17,7 @@
 @property (nonatomic,strong) AFHTTPRequestOperationManager *client;
 @property (nonatomic,strong) NSMutableArray *allCommands;
 
-@property (nonatomic,assign) bool running;
+@property (nonatomic,assign) BOOL running;
 
 -(void)update;
 -(void)queueItemFinished:(SMNetworkUpdateCommand*)cmd;

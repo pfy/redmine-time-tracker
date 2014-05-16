@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8E5EC952-F629-4D28-987C-54F58A65037E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RedmineTimeTracker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>411929A5-8ABB-4CAF-A99C-EC712C738D6E</key>
+		<string>ssh://www.smooh.ch:2222/redminetimetracker</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RedmineTimeTracker.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>411929A5-8ABB-4CAF-A99C-EC712C738D6E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://www.smooh.ch:2222/redminetimetracker</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>411929A5-8ABB-4CAF-A99C-EC712C738D6E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>411929A5-8ABB-4CAF-A99C-EC712C738D6E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>redminetimetracker</string>
+		</dict>
+	</array>
+</dict>
+</plist>

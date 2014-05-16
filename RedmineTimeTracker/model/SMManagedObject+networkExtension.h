@@ -15,7 +15,7 @@ typedef void (^noneBlock)();
 @interface SMManagedObject (NetworkExtension)
 -(void)createRequest:(AFHTTPRequestOperationManager*)client;
 -(void)updateWithDict:(NSDictionary*)dict;
-+(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(bool)delete completion:(noneBlock)completion;
++(void)update:(NSString*)entityName withArray:(NSArray*)objects delete:(BOOL)delete completion:(noneBlock)completion;
 -(void)scheduleOperationWithBlock:(VoidBlock)block;
 +(void)scheduleUpdateOperationWithBlock:(ContextBlock) block completion:(noneBlock)completion;
 @end

@@ -14,17 +14,17 @@
 @implementation SMTimeEntry (networkExtension)
 -(void)createRequest:(AFHTTPRequestOperationManager *)client{
     NSString *path = @"time_entries.json";
-
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     NSDictionary *params = @{@"time_entry": @{@"issue_id": self.n_issue.n_id,
-                           @"spent_on": [ dateFormatter stringFromDate:self.n_spent_on ],
-                             @"hours": self.n_hours,
-                             
-                             // FIXME !
-                             @"activity_id": @9,
-                             @"comments": self.n_comments}};
+                                              @"spent_on": [ dateFormatter stringFromDate:self.n_spent_on ],
+                                              @"hours": self.n_hours,
+                                              
+                                              // FIXME !
+                                              @"activity_id": @9,
+                                              @"comments": self.n_comments}};
     if(self.n_id){
         path = [NSString stringWithFormat:@"/time_entries/%@.json",self.n_id];
         [client PUT:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -36,20 +36,17 @@
             LOG_WARN(@"time entry update failed %@",error);
         } ];
     } else {
-    
-    [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        LOG_INFO(@"time entry created %@",responseObject);
-        [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
-            self.changed = @NO;
-            [self updateWithDict:responseObject[@"time_entry"]];
-        }];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        LOG_WARN(@"time entry creation failed %@ %@",error,params);
-    } ];
+        
+        [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            LOG_INFO(@"time entry created %@",responseObject);
+            [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
+                self.changed = @NO;
+                [self updateWithDict:responseObject[@"time_entry"]];
+            }];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            LOG_WARN(@"time entry creation failed %@ %@",error,params);
+        } ];
     }
-
-    
-    
 }
 
 @end
