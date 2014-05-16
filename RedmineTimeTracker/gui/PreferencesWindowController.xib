@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -7,9 +7,14 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PreferencesWindowController">
             <connections>
+                <outlet property="createNewIssueShortcutView" destination="047-mI-0o5" id="MCM-A4-X0C"/>
                 <outlet property="hostnameTextField" destination="5" id="21"/>
+                <outlet property="startTrackingShortcutView" destination="Xyk-JJ-CdO" id="McG-Ts-aeJ"/>
+                <outlet property="stopTrackingShortcutView" destination="lK9-7f-dOH" id="rwG-Af-lDr"/>
                 <outlet property="tokenTextField" destination="13" id="22"/>
                 <outlet property="window" destination="1" id="3"/>
+                <outlet property="workdayDurationField" destination="3m3-wF-aU1" id="pXp-IQ-Mbr"/>
+                <outlet property="workdayDurationToleranceField" destination="CAT-fW-JX6" id="ZMO-5X-E2s"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -130,7 +135,7 @@
                             <action selector="donePressed:" target="-2" id="57"/>
                         </connections>
                     </button>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xyk-JJ-CdO">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Xyk-JJ-CdO" customClass="MASShortcutView">
                         <rect key="frame" x="218" y="200" width="150" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -147,7 +152,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="lK9-7f-dOH">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="lK9-7f-dOH" customClass="MASShortcutView">
                         <rect key="frame" x="218" y="173" width="150" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
@@ -163,7 +168,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="047-mI-0o5">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="047-mI-0o5" customClass="MASShortcutView">
                         <rect key="frame" x="218" y="146" width="150" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>

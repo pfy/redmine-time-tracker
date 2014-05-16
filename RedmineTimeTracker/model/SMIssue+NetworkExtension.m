@@ -58,7 +58,7 @@
                 [self updateWithDict:responseObject[@"issue"]];
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            LOG_WARN(@"Issue creation failed %@ %@",error,params);
+            LOG_WARN(@"Issue creation failed %@ %@", error, params);
         }];
     }
 }

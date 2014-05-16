@@ -26,7 +26,6 @@
 		CF10AEDD16B17845008F9741 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10AEDC16B17845008F9741 /* SystemConfiguration.framework */; };
 		CF10AEF616B179EF008F9741 /* SMManagedObject+networkExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */; };
 		CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */; };
-		CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */; };
 		CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9716B68EC60033346D /* StartTrackingWindowController.m */; };
 		CF114B9A16B68EC70033346D /* StartTrackingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */; };
 		CF114BA116B6CBED0033346D /* TrackingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF114B9F16B6CBED0033346D /* TrackingWindowController.m */; };
@@ -124,8 +123,6 @@
 		CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMManagedObject+networkExtension.m"; sourceTree = "<group>"; };
 		CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMUpdateOperation.h; sourceTree = "<group>"; };
 		CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMUpdateOperation.m; sourceTree = "<group>"; };
-		CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
-		CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
 		CF114B9616B68EC60033346D /* StartTrackingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartTrackingWindowController.h; sourceTree = "<group>"; };
 		CF114B9716B68EC60033346D /* StartTrackingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartTrackingWindowController.m; sourceTree = "<group>"; };
 		CF114B9816B68EC60033346D /* StartTrackingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartTrackingWindowController.xib; sourceTree = "<group>"; };
@@ -418,15 +415,6 @@
 			path = network;
 			sourceTree = "<group>";
 		};
-		CF114B7316B6880D0033346D /* DDHotKey */ = {
-			isa = PBXGroup;
-			children = (
-				CF114B7C16B6880D0033346D /* DDHotKeyCenter.h */,
-				CF114B7D16B6880D0033346D /* DDHotKeyCenter.m */,
-			);
-			path = DDHotKey;
-			sourceTree = "<group>";
-		};
 		CF114BC416B6D9790033346D /* tracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,7 +520,6 @@
 			children = (
 				CF885EF918F6949F004ACAE2 /* AFNetworking */,
 				070020CC192651E500EBE9CF /* MASShortcut */,
-				CF114B7316B6880D0033346D /* DDHotKey */,
 			);
 			path = addins;
 			sourceTree = "<group>";
@@ -686,7 +673,6 @@
 				079C1EE4192641C700F61B4B /* SMUpdateActivitiesCommand.m in Sources */,
 				CFABD42916B1A07800C93A0D /* ActiveApplicationTracker.m in Sources */,
 				CFABD42C16B1A49800C93A0D /* IssuesList.m in Sources */,
-				CF114B8B16B6880D0033346D /* DDHotKeyCenter.m in Sources */,
 				CF114B9916B68EC70033346D /* StartTrackingWindowController.m in Sources */,
 				CF114BA116B6CBED0033346D /* TrackingWindowController.m in Sources */,
 				CF114BC316B6D36D0033346D /* SMCurrentUser+trackingExtension.m in Sources */,

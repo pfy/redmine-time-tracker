@@ -7,6 +7,7 @@
 //
 
 #import "PreferencesWindowController.h"
+#import "MASShortcutView+UserDefaults.h"
 
 @interface PreferencesWindowController ()
 
@@ -31,10 +32,20 @@
     [[self window] setLevel:NSFloatingWindowLevel];
     [[self window] makeKeyWindow];
     [NSApp activateIgnoringOtherApps:YES];
-    if(self.user.serverUrl)
+    
+    self.startTrackingShortcutView.associatedUserDefaultsKey = @"SMStartTrackingShortcut";
+    self.stopTrackingShortcutView.associatedUserDefaultsKey = @"SMStopTrackingShortcut";
+    self.createNewIssueShortcutView.associatedUserDefaultsKey = @"SMNewIssueShortcut";
+    
+    if (self.user.serverUrl) {
         [self.hostnameTextField setStringValue:self.user.serverUrl];
-    if(self.user.authToken)
+    }
+    if (self.user.authToken) {
         [self.tokenTextField setStringValue:self.user.authToken];
+    }
+    
+    self.workdayDurationField.floatValue = self.user.workdayDuration.floatValue;
+    self.workdayDurationToleranceField.floatValue = self.user.workdayDurationTolerance.floatValue;
     
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
@@ -44,15 +55,15 @@
     self.user = nil;
 }
 
--(IBAction)donePressed:(id)sender{
+-(void)donePressed:(id)sender{
     self.user.serverUrl = [self.hostnameTextField stringValue];
     self.user.authToken = [self.tokenTextField stringValue];
-    LOG_INFO(@"did save user %@",self.user);
+    self.user.workdayDuration = @(self.workdayDurationField.floatValue);
+    self.user.workdayDurationTolerance = @(self.workdayDurationToleranceField.floatValue);
+    LOG_INFO(@"Did save user %@", self.user);
+    
     SAVE_APP_CONTEXT;
     [self.window close];
-    
 }
-
-
 
 @end

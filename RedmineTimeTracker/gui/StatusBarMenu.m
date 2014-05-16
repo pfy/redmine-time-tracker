@@ -7,26 +7,40 @@
 //
 
 #import "StatusBarMenu.h"
-#import "DDHotKeyCenter.h"
 #import "SMCurrentUser+trackingExtension.h"
 #import "SMTimeEntry+DisplayThingi.h"
 #import "AppDelegate.h"
+#import "MASShortcut+UserDefaults.h"
+//#import "DDHotKeyCenter.h"
+
+@interface StatusBarMenu ()
+@property (nonatomic, strong, readonly) NSSet *shortcutKeys;
+@end
 
 @implementation StatusBarMenu
+@synthesize shortcutKeys = _shortcutKeys;
 
 -(instancetype)init{
     self = [super init];
     if(self){
         self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         
-        self.createNewIssueMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create Issue" action:@selector(createNewIssue) keyEquivalent:@""];
+        self.createNewIssueMenuItem = [[NSMenuItem alloc] initWithTitle:@"Create Issue"
+                                                                 action:@selector(createNewIssue)
+                                                          keyEquivalent:@""];
         self.createNewIssueMenuItem.target = self;
         
-        self.startTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Start Tracking"  action:@selector(startTracking) keyEquivalent:@"1"];
+        self.startTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Start Tracking"
+                                                                action:@selector(startTracking)
+                                                         keyEquivalent:@""];
         [self.startTrackingMenuItem setTarget:self];
         
-        self.stopTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Stop Tracking"  action:@selector(stopTracking) keyEquivalent:@"2"];
+        self.stopTrackingMenuItem = [[NSMenuItem alloc] initWithTitle:@"Stop Tracking"
+                                                               action:@selector(stopTracking)
+                                                        keyEquivalent:@""];
         [self.stopTrackingMenuItem setTarget:self];
+        
+        [self configureMenuItemsWithShortcuts];
         
         self.statusMenu = [NSMenu new];
         [self.statusMenu setAutoenablesItems:NO];
@@ -34,11 +48,15 @@
         [self.statusMenu addItem:self.startTrackingMenuItem];
         [self.statusMenu addItem:self.stopTrackingMenuItem];
         
-        NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences" action:@selector(preferences) keyEquivalent: @","];
+        NSMenuItem *preferencesMenuItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
+                                                                     action:@selector(preferences)
+                                                              keyEquivalent: @""];
         [preferencesMenuItem setTarget:self];
         [self.statusMenu addItem:preferencesMenuItem];
         
-        NSMenuItem *applicationTrackerMenuItem = [[NSMenuItem alloc]initWithTitle:@"Applications" action:@selector(showAppTracker) keyEquivalent:@""];
+        NSMenuItem *applicationTrackerMenuItem = [[NSMenuItem alloc] initWithTitle:@"Applications"
+                                                                            action:@selector(showAppTracker)
+                                                                     keyEquivalent:@""];
         [applicationTrackerMenuItem setTarget:[NSApplication sharedApplication].delegate];
         [self.statusMenu addItem:applicationTrackerMenuItem];
         
@@ -48,11 +66,20 @@
         [self registerHotkey];
         
         self.user = [SMCurrentUser findOrCreate];
-        [self.user addObserver:self forKeyPath:@"currentTimeEntry" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [self.user addObserver:self forKeyPath:@"currentTimeEntry"
+                       options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                       context:nil];
         [self updateStatusText];
-        LOG_INFO(@"statusItem %@",_statusItem);
+        LOG_INFO(@"statusItem %@", _statusItem);
+        
+        [self addShortcutObservers];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [self removeShortcutObservers];
 }
 
 -(BOOL)validateMenuItem:(NSMenuItem*)item{
@@ -87,15 +114,76 @@
     SAVE_APP_CONTEXT
 }
 
--(void)registerHotkey{
-    DDHotKeyCenter *center = [DDHotKeyCenter sharedHotKeyCenter];
-    [center registerHotKeyWithKeyCode:18 modifierFlags:NSCommandKeyMask target:self action:@selector(startTracking) object:nil];
-    [center registerHotKeyWithKeyCode:19 modifierFlags:NSCommandKeyMask target:self action:@selector(stopTracking) object:nil];
+- (NSSet *)shortcutKeys
+{
+    if (!_shortcutKeys) {
+        _shortcutKeys = [NSSet setWithArray:@[@"SMStartTrackingShortcut",
+                                              @"SMStopTrackingShortcut",
+                                              @"SMNewIssueShortcut"]];
+    }
+    return _shortcutKeys;
 }
+
+- (void)addShortcutObservers
+{
+    [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
+        NSString *keyPath = [@"values." stringByAppendingString:key];
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
+                                                                  forKeyPath:keyPath
+                                                                     options:(NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew)
+                                                                     context:nil];
+    }];
+}
+
+- (void)removeShortcutObservers
+{
+    [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
+        NSString *keyPath = [@"values." stringByAppendingString:key];
+        [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:keyPath];
+    }];
+}
+
+- (void)configureMenuItemsWithShortcuts
+{
+    [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
+        NSString *keyPath = [@"values." stringByAppendingString:key];
+        NSData *data = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:keyPath];
+        MASShortcut *shortcut = [MASShortcut shortcutWithData:data];
+        NSString *keyEquiv = shortcut.keyCodeStringForKeyEquivalent ?: @"";
+        NSUInteger *modifierMask = shortcut.modifierFlags;
+        if ([keyPath isEqualToString:@"values.SMStartTrackingShortcut"]) {
+            self.startTrackingMenuItem.keyEquivalent = keyEquiv;
+            self.startTrackingMenuItem.keyEquivalentModifierMask = modifierMask;
+        }
+        if ([keyPath isEqualToString:@"values.SMStopTrackingShortcut"]) {
+            self.stopTrackingMenuItem.keyEquivalent = keyEquiv;
+            self.stopTrackingMenuItem.keyEquivalentModifierMask = modifierMask;
+        }
+        if ([keyPath isEqualToString:@"values.SMNewIssueShortcut"]) {
+            self.createNewIssueMenuItem.keyEquivalent = keyEquiv;
+            self.createNewIssueMenuItem.keyEquivalentModifierMask = modifierMask;
+        }
+    }];
+}
+
+- (void)registerHotkey {
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMStartTrackingShortcut" handler:^{
+        [self startTracking];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMStopTrackingShortcut" handler:^{
+        [self stopTracking];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMNewIssueShortcut" handler:^{
+        [self createNewIssue];
+    }];
+}
+
 -(void)setEntry:(SMTimeEntry *)entry{
-    if(entry != _entry){
+    if (entry != _entry){
         [_entry removeObserver:self forKeyPath:@"formattedTime"];
-        [entry addObserver:self forKeyPath:@"formattedTime" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [entry addObserver:self forKeyPath:@"formattedTime"
+                   options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                   context:nil];
         _entry = entry;
     }
 }
@@ -103,15 +191,24 @@
 -(void)updateStatusText{
     [self setEntry:self.user.currentTimeEntry];
     if(self.entry){
-        [_statusItem setTitle:[NSString stringWithFormat:@"%@",self.entry.formattedTime]];
+        [_statusItem setTitle:[NSString stringWithFormat:@"%@", self.entry.formattedTime]];
     } else {
         [_statusItem setTitle:@"Idle"];
         
     }
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    [self updateStatusText];
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
+    if (object == [NSUserDefaultsController sharedUserDefaultsController]) {
+        [self configureMenuItemsWithShortcuts];
+    } else if (object == self.entry) {
+        [self updateStatusText];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 @end
