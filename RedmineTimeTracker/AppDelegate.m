@@ -12,38 +12,33 @@
 
 @implementation AppDelegate
 
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+    // Insert code here to initialize your application
     self.timeTracker = [TimeTracker new];
     
-    
-   self.updateCenter = [SMNetworkUpdate new];
-   [self.updateCenter  update];
+    self.updateCenter = [SMNetworkUpdate new];
+    [self.updateCenter  update];
     SMCurrentUser *user = [SMCurrentUser findOrCreate];
-    if(!user.serverUrl || !user.authToken){
+    if (!user.serverUrl || !user.authToken) {
         [self showPreferences];
     }
     
-    
     self.statusBarMenu = [StatusBarMenu new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
- 
     
-
     self.trackingVc = [[TrackingWindowController alloc] initWithWindowNibName:@"TrackingWindowController"];
     [self.trackingVc showWindow:self];
-
+    
     LOG_INFO(@"App Started");
-    // Insert code here to initialize your application
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "ch.smooh.RedmineTimeTracker" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory
+                                                inDomains:NSUserDomainMask] lastObject];
     return [appSupportURL URLByAppendingPathComponent:@"ch.smooh.RedmineTimeTracker"];
 }
 

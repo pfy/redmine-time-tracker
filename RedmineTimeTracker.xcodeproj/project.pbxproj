@@ -371,6 +371,29 @@
 			name = NewIssue;
 			sourceTree = "<group>";
 		};
+		070020E71926745E00EBE9CF /* Network Update Commands */ = {
+			isa = PBXGroup;
+			children = (
+				CF2EBDFF16B8364200CA2BAA /* SMNetworkUpdateCommand.h */,
+				CF2EBE0016B8364200CA2BAA /* SMNetworkUpdateCommand.m */,
+				079C1EDF192616C900F61B4B /* SMUpdateTrackersCommand.h */,
+				079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */,
+				079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */,
+				079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */,
+				CF2EBE0216B836F700CA2BAA /* SMUpdateIssuesCommand.h */,
+				CF2EBE0316B836F700CA2BAA /* SMUpdateIssuesCommand.m */,
+				CF2EBE0516B8371300CA2BAA /* SMUpdateTimeEntriesCommand.h */,
+				CF2EBE0616B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m */,
+				079C1EE2192641C700F61B4B /* SMUpdateActivitiesCommand.h */,
+				079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */,
+				CF2EBE0816B8372600CA2BAA /* SMUpdateCurrentUserCommand.h */,
+				CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */,
+				CF2EBE0B16B8373700CA2BAA /* SMUploadCommand.h */,
+				CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */,
+			);
+			name = "Network Update Commands";
+			sourceTree = "<group>";
+		};
 		CF10AED816B177D5008F9741 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,22 +413,7 @@
 			children = (
 				CFABD41216B1826900C93A0D /* SMNetworkUpdate.h */,
 				CFABD41316B1826900C93A0D /* SMNetworkUpdate.m */,
-				CF2EBDFF16B8364200CA2BAA /* SMNetworkUpdateCommand.h */,
-				CF2EBE0016B8364200CA2BAA /* SMNetworkUpdateCommand.m */,
-				079C1EDF192616C900F61B4B /* SMUpdateTrackersCommand.h */,
-				079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */,
-				079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */,
-				079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */,
-				CF2EBE0216B836F700CA2BAA /* SMUpdateIssuesCommand.h */,
-				CF2EBE0316B836F700CA2BAA /* SMUpdateIssuesCommand.m */,
-				CF2EBE0516B8371300CA2BAA /* SMUpdateTimeEntriesCommand.h */,
-				CF2EBE0616B8371300CA2BAA /* SMUpdateTimeEntriesCommand.m */,
-				079C1EE2192641C700F61B4B /* SMUpdateActivitiesCommand.h */,
-				079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */,
-				CF2EBE0816B8372600CA2BAA /* SMUpdateCurrentUserCommand.h */,
-				CF2EBE0916B8372700CA2BAA /* SMUpdateCurrentUserCommand.m */,
-				CF2EBE0B16B8373700CA2BAA /* SMUploadCommand.h */,
-				CF2EBE0C16B8373800CA2BAA /* SMUploadCommand.m */,
+				070020E71926745E00EBE9CF /* Network Update Commands */,
 			);
 			path = network;
 			sourceTree = "<group>";

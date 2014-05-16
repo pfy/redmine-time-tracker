@@ -19,37 +19,46 @@
 {
     NSString *path = @"issues.json";
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] initWithDateFormat:@"yyyy-MM-dd"
-                                                            allowNaturalLanguage:NO];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
-    NSDictionary *params = @{@"issue": @{@"project_id": self.n_project.n_id,
-                                         @"tracker_id": self.n_tracker.n_id,
-                                         @"subject": self.n_subject,
-                                         @"description": self.n_description,
-                                         @"due_date": [dateFormatter stringFromDate:self.n_due_date],
-                                         @"estimated_hours": self.n_estimated_hours,
-                                         @"assigned_to_id": self.n_assigned_to.n_id,
-                                         @"parent_issue_id": self.n_parent.n_id ?: [NSNull null]
-                                         }};
+    NSMutableDictionary *issueParams = [NSMutableDictionary dictionary];
+    issueParams[@"project_id"] = self.n_project.n_id;
+    issueParams[@"tracker_id"] = self.n_tracker.n_id;
+    issueParams[@"subject"] = self.n_subject;
+    issueParams[@"description"] = self.n_description;
+    if (self.n_due_date) {
+        issueParams[@"due_date"] = [dateFormatter stringFromDate:self.n_due_date];
+    }
+    if (self.n_estimated_hours.floatValue > 0.0f) {
+        issueParams[@"estimated_hours"] = self.n_estimated_hours;
+    }
+    if (self.n_assigned_to) {
+        issueParams[@"assigned_to_id"] = self.n_assigned_to.n_id;
+    }
+    if (self.n_parent) {
+        issueParams[@"parent_issue_id"] = self.n_parent.n_id;
+    }
+    NSDictionary *params = @{@"issue": [issueParams copy]};
     if (self.n_id) {
         path = [NSString stringWithFormat:@"/issues/%@.json", self.n_id];
         [client PUT:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            LOG_INFO(@"issue updated %@", responseObject);
+            LOG_INFO(@"Issue updated %@", responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
                 newSelf.changed = @NO;
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            LOG_WARN(@"issue update failed %@", error);
+            LOG_WARN(@"Issue update failed %@", error);
         }];
     } else {
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            LOG_INFO(@"time entry created %@",responseObject);
+            LOG_INFO(@"Issue created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
                 self.changed = @NO;
                 [self updateWithDict:responseObject[@"issue"]];
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            LOG_WARN(@"time entry creation failed %@ %@",error,params);
+            LOG_WARN(@"Issue creation failed %@ %@",error,params);
         }];
     }
 }

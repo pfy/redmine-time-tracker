@@ -26,11 +26,9 @@
 @property (nonatomic,strong) PreferencesWindowController *preferences;
 @property (nonatomic,strong) SMNetworkUpdate *updateCenter;
 
-
-
 @property (nonatomic,strong) StatusBarMenu  *statusBarMenu;
-@property (nonatomic,strong)  ActiveApplicationTracker *activeApplicationTracker;
-@property (nonatomic,strong)  ApplicationTrackerWindowController *applicationTrackerWindowController;
+@property (nonatomic,strong) ActiveApplicationTracker *activeApplicationTracker;
+@property (nonatomic,strong) ApplicationTrackerWindowController *applicationTrackerWindowController;
 
 
 -(void)showPreferences;

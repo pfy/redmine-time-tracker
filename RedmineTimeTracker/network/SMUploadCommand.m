@@ -13,23 +13,27 @@
     self.center = networkUpdateCenter;
     self.client = self.center.client;
     
-    
     NSManagedObjectContext *context = SMMainContext();
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SMManagedObject"];
-    request.predicate  =  [NSPredicate predicateWithFormat:@"changed = %@",@YES ];
-    NSArray *fetched = [context executeFetchRequest:request error:nil];
+    request.predicate = [NSPredicate predicateWithFormat:@"changed = %@", @YES];
+    __autoreleasing NSError *error;
+    NSArray *fetched = [context executeFetchRequest:request error:&error];
+    if (error) LOG_ERR(@"Error while fetching changed items: %@", error);
     for (SMManagedObject *obj in fetched){
         [obj createRequest:self.client];
     }
-    [self.client.operationQueue addObserver:self forKeyPath:@"operationCount" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self.client.operationQueue addObserver:self forKeyPath:@"operationCount"
+                                    options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                                    context:nil];
     [self check];
 }
 
 -(void)dealloc{
-    [self.client.operationQueue  removeObserver:self forKeyPath:@"operationCount"];
+    [self.client.operationQueue removeObserver:self forKeyPath:@"operationCount"];
     self.client = nil;
     self.center = nil;
 }
+
 -(void)check{
     if(self.client.operationQueue.operationCount == 0){
         [self.center queueItemFinished:self];
