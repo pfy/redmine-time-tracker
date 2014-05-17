@@ -17,11 +17,6 @@
         <relationship name="currentTimeEntry" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMTimeEntry" inverseName="currentUser" inverseEntity="SMTimeEntry" syncable="YES"/>
         <relationship name="n_user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SMRedmineUser" inverseName="currentUser" inverseEntity="SMRedmineUser" syncable="YES"/>
     </entity>
-    <entity name="SMHotKey" representedClassName="SMHotKey" syncable="YES">
-        <attribute name="keyIdentifier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="modifierFlags" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-    </entity>
     <entity name="SMIssue" representedClassName="SMIssue" parentEntity="SMManagedObject" syncable="YES">
         <attribute name="n_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="n_done_ratio" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -93,7 +88,6 @@
         <element name="SMActivity" positionX="43" positionY="321" width="128" height="75"/>
         <element name="SMApplicationTracker" positionX="-189" positionY="126" width="128" height="88"/>
         <element name="SMCurrentUser" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="SMHotKey" positionX="-144" positionY="72" width="128" height="90"/>
         <element name="SMIssue" positionX="225" positionY="108" width="128" height="285"/>
         <element name="SMManagedObject" positionX="216" positionY="-63" width="128" height="105"/>
         <element name="SMPriority" positionX="385" positionY="153" width="128" height="75"/>
