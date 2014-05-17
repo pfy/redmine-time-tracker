@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SMNewTimeEntryWindowController">
             <connections>
+                <outlet property="activityArrayController" destination="JJF-aV-ko4" id="439-xw-KlA"/>
                 <outlet property="activityLabel" destination="ILf-5Z-F4g" id="92L-hv-4q3"/>
                 <outlet property="activityPopup" destination="eTf-lq-Fs1" id="Api-kb-0D6"/>
                 <outlet property="cancelButton" destination="zw0-FZ-n22" id="Y9d-UC-h65"/>
@@ -16,8 +17,10 @@
                 <outlet property="dateLabel" destination="LNA-N2-2pA" id="73l-tM-Va8"/>
                 <outlet property="datePicker" destination="ND8-13-tvg" id="iX0-W0-LS9"/>
                 <outlet property="descriptionField" destination="kpd-oM-Y2s" id="Vjf-Sh-Dar"/>
+                <outlet property="issueArrayController" destination="QVG-SU-CBN" id="pkY-SX-fKK"/>
                 <outlet property="issueComboBox" destination="rdl-Km-edx" id="4Hn-oP-pjh"/>
                 <outlet property="issueLabel" destination="lZq-LL-vcc" id="Nzo-nT-0ns"/>
+                <outlet property="projectArrayController" destination="4Gw-QB-7lE" id="KY7-E3-Xs4"/>
                 <outlet property="projectComboBox" destination="lDt-vs-e4l" id="BQD-Be-bUU"/>
                 <outlet property="projectLabel" destination="MWY-cv-61r" id="Bi6-Hf-8Zg"/>
                 <outlet property="timeField" destination="0ei-yP-30R" id="Nfu-JK-hVK"/>
@@ -30,10 +33,10 @@
         <window title="New Time Entry" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="522" height="370"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="contentRect" x="196" y="240" width="440" height="370"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="522" height="370"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="370"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ILf-5Z-F4g">
@@ -77,7 +80,7 @@
                         </textFieldCell>
                     </textField>
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rdl-Km-edx">
-                        <rect key="frame" x="102" y="231" width="403" height="26"/>
+                        <rect key="frame" x="102" y="231" width="321" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="e2g-fV-IVq" customClass="CaseIntensitiveComboBoxCell">
                             <font key="font" metaFont="system"/>
@@ -87,6 +90,7 @@
                         <connections>
                             <binding destination="QVG-SU-CBN" name="content" keyPath="arrangedObjects" id="XjJ-pg-sag"/>
                             <binding destination="QVG-SU-CBN" name="contentValues" keyPath="arrangedObjects.n_subject" previousBinding="XjJ-pg-sag" id="UTh-ni-6vi"/>
+                            <binding destination="-2" name="value" keyPath="self.selectedIssueSubject" previousBinding="UTh-ni-6vi" id="fGn-9e-OoC"/>
                         </connections>
                     </comboBox>
                     <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lZq-LL-vcc">
@@ -108,7 +112,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LNA-N2-2pA">
-                        <rect key="frame" x="300" y="208" width="34" height="17"/>
+                        <rect key="frame" x="259" y="208" width="34" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="Qt8-fP-s4v">
                             <font key="font" metaFont="system"/>
@@ -117,7 +121,7 @@
                         </textFieldCell>
                     </textField>
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lDt-vs-e4l">
-                        <rect key="frame" x="102" y="259" width="403" height="26"/>
+                        <rect key="frame" x="102" y="259" width="321" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="FQj-52-Ibn"/>
@@ -131,6 +135,7 @@
                         <connections>
                             <binding destination="4Gw-QB-7lE" name="content" keyPath="arrangedObjects" id="RMx-h4-nwZ"/>
                             <binding destination="4Gw-QB-7lE" name="contentValues" keyPath="arrangedObjects.n_name" previousBinding="RMx-h4-nwZ" id="Cm8-AC-cz4"/>
+                            <binding destination="-2" name="value" keyPath="self.currentProjectName" previousBinding="Cm8-AC-cz4" id="jQX-Fp-vpF"/>
                         </connections>
                     </comboBox>
                     <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-aL-bo6">
@@ -143,20 +148,20 @@
                         </textFieldCell>
                     </textField>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewl-I1-gpI">
-                        <rect key="frame" x="102" y="62" width="400" height="135"/>
+                        <rect key="frame" x="102" y="62" width="318" height="135"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="xxN-LM-kan">
-                            <rect key="frame" x="1" y="1" width="398" height="133"/>
+                            <rect key="frame" x="1" y="1" width="316" height="133"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="hNC-5O-gFA">
-                                    <rect key="frame" x="0.0" y="0.0" width="398" height="133"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="398" height="133"/>
+                                    <size key="minSize" width="316" height="133"/>
                                     <size key="maxSize" width="587" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="398" height="133"/>
+                                    <size key="minSize" width="316" height="133"/>
                                     <size key="maxSize" width="587" height="10000000"/>
                                     <connections>
                                         <outlet property="delegate" destination="-2" id="3xp-Dv-2Pb"/>
@@ -174,12 +179,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lzf-wV-UBG">
-                            <rect key="frame" x="383" y="1" width="16" height="133"/>
+                            <rect key="frame" x="301" y="1" width="16" height="133"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4nT-32-amY">
-                        <rect key="frame" x="432" y="18" width="70" height="25"/>
+                        <rect key="frame" x="350" y="18" width="70" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="sJ2-rz-HPG"/>
@@ -211,7 +216,7 @@ Gw
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpd-oM-Y2s">
-                        <rect key="frame" x="18" y="333" width="486" height="17"/>
+                        <rect key="frame" x="18" y="333" width="404" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" title="Multiline Description" id="lWZ-E7-apb">
                             <font key="font" metaFont="system"/>
@@ -220,7 +225,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ND8-13-tvg">
-                        <rect key="frame" x="352" y="205" width="153" height="27"/>
+                        <rect key="frame" x="311" y="205" width="112" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="V9X-Fo-fIA">
                             <font key="font" metaFont="system"/>
@@ -232,9 +237,9 @@ Gw
                         </datePickerCell>
                     </datePicker>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0ei-yP-30R">
-                        <rect key="frame" x="102" y="205" width="150" height="22"/>
+                        <rect key="frame" x="102" y="205" width="109" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CIm-Cq-f38">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="CIm-Cq-f38">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="gYV-Nx-ITe">
                                 <real key="minimum" value="0.0"/>
                                 <metadata>
@@ -305,8 +310,8 @@ Gw
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
         </window>
-        <arrayController id="QVG-SU-CBN" userLabel="IssueArrayController"/>
-        <arrayController id="4Gw-QB-7lE" userLabel="ProjectArrayController"/>
         <arrayController id="JJF-aV-ko4" userLabel="ActivityArrayController"/>
+        <arrayController id="4Gw-QB-7lE" userLabel="ProjectArrayController"/>
+        <arrayController id="QVG-SU-CBN" userLabel="IssueArrayController"/>
     </objects>
 </document>

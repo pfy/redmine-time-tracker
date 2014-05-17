@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SMNewTimeEntryWindowController : NSWindowController <NSTextViewDelegate>
+
 @property (weak) IBOutlet NSTextField *descriptionField;
 @property (weak) IBOutlet NSTextField *activityLabel;
 @property (weak) IBOutlet NSPopUpButton *activityPopup;
@@ -25,8 +26,16 @@
 @property (weak) IBOutlet NSButton *cancelButton;
 @property (weak) IBOutlet NSButton *createButton;
 
+@property (strong) IBOutlet NSArrayController *activityArrayController;
+@property (strong) IBOutlet NSArrayController *projectArrayController;
+@property (strong) IBOutlet NSArrayController *issueArrayController;
+
+@property (nonatomic) id currentProjectName;
+@property (nonatomic) id selectedIssueSubject;
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 - (IBAction)createTimeEntry:(id)sender;
 - (IBAction)cancelTimeEntry:(id)sender;
-
 
 @end

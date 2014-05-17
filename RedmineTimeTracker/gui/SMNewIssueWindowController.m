@@ -101,7 +101,7 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
             SMIssue *parentIssue = [[self.managedObjectContext executeFetchRequest:parentIssueFetchRequest
                                                                              error:&error] firstObject];
             if (error) {
-                LOG_ERR(@"Error while fetching parent issue: %@",error);
+                LOG_ERR(@"Error while fetching parent issue: %@", error);
                 error = nil;
             }
             issue.n_parent = parentIssue;
@@ -111,8 +111,9 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         issue.n_tracker = self.trackerArrayController.arrangedObjects[self.trackerPopUp.indexOfSelectedItem];
         issue.n_subject = self.titleField.stringValue;
         issue.n_description = self.descriptionTextView.string;
-        issue.n_estimated_hours = @(self.estimatedTimeField.floatValue);
+        issue.n_estimated_hours = @(self.estimatedTimeField.doubleValue);
         issue.n_assigned_to = [SMCurrentUser findOrCreate].n_user;
+        issue.n_author = [SMCurrentUser findOrCreate].n_user;
         
         if (self.dueDateEnabledCheckBox.state == NSOnState) {
             issue.n_due_date = self.dueDatePicker.dateValue;
@@ -123,8 +124,7 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
         
-        AppDelegate *app = [NSApp delegate];
-        [app.updateCenter update];
+        PERFORM_SYNC;
         
         [self.window close];
     }

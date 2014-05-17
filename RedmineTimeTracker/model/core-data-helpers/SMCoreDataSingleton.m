@@ -7,6 +7,7 @@
 //
 
 #import "SMCoreDataSingleton.h"
+
 @interface SMCoreDataSingleton()
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectContext *backgroundSavingContext;
@@ -18,13 +19,11 @@
 
 @implementation SMCoreDataSingleton
 
-
-
 + (instancetype)sharedManager
 {
     static id SharedManager = nil;
+    static dispatch_once_t SharedManagerToken;
     @synchronized(self) {
-        static dispatch_once_t SharedManagerToken;
         dispatch_once(&SharedManagerToken, ^{
             SharedManager = [[[self class] alloc] init];
         });
@@ -38,8 +37,6 @@
     }
     return self;
 }
-
-
 
 #pragma mark - Core Data stack
 - (NSManagedObjectContext *)backgroundSavingContext
@@ -150,17 +147,26 @@
     return tempContext;
 }
 
-
-
 #pragma mark - Application's Documents directory
 - (NSURL *)applicationDocumentsDirectory
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *appSupportURL = [[fileManager URLsForDirectory:NSApplicationSupportDirectory
                                                 inDomains:NSUserDomainMask] lastObject];
-    return [appSupportURL URLByAppendingPathComponent:[NSApp identifier]];
+    appSupportURL = [appSupportURL URLByAppendingPathComponent:[NSApp identifier]];
+    BOOL isDir = NO;
+    BOOL exists = [fileManager fileExistsAtPath:appSupportURL.absoluteString isDirectory:&isDir];
+    if (!exists || (exists && !isDir)) {
+        __autoreleasing NSError *error;
+        [fileManager createDirectoryAtURL:appSupportURL withIntermediateDirectories:NO attributes:nil error:&error];
+        if (error) {
+            LOG_ERR(@"Failed to create app support folder: %@", error);
+        }
+    }
+    return appSupportURL;
 }
 
+#pragma mark - Helper Methods
 NSManagedObjectContext *SMMainContext()
 {
     return [[SMCoreDataSingleton sharedManager] managedObjectContext];

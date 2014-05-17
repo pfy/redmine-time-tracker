@@ -19,18 +19,17 @@
 {
     NSString *path = @"issues.json";
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
     NSMutableDictionary *issueParams = [NSMutableDictionary dictionary];
     issueParams[@"project_id"] = self.n_project.n_id;
     issueParams[@"tracker_id"] = self.n_tracker.n_id;
     issueParams[@"subject"] = self.n_subject;
     issueParams[@"description"] = self.n_description;
     if (self.n_due_date) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         issueParams[@"due_date"] = [dateFormatter stringFromDate:self.n_due_date];
     }
-    if (self.n_estimated_hours.floatValue > 0.0f) {
+    if (self.n_estimated_hours.doubleValue > 0.0) {
         issueParams[@"estimated_hours"] = self.n_estimated_hours;
     }
     if (self.n_assigned_to) {

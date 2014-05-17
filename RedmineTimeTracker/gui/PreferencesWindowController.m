@@ -46,8 +46,8 @@
         [self.tokenTextField becomeFirstResponder];
     }
     
-    self.workdayDurationField.floatValue = self.user.workdayDuration.floatValue;
-    self.workdayDurationToleranceField.floatValue = self.user.workdayDurationTolerance.floatValue;
+    self.workdayDurationField.doubleValue = self.user.workdayDuration.doubleValue;
+    self.workdayDurationToleranceField.doubleValue = self.user.workdayDurationTolerance.doubleValue;
     
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.

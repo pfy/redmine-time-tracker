@@ -36,7 +36,6 @@
             LOG_WARN(@"time entry update failed %@",error);
         }];
     } else {
-        
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {

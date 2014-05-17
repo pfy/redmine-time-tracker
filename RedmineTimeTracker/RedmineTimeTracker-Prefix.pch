@@ -28,7 +28,9 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "NSApplication+Information.h"
 #import "SMCoreDataSingleton.h"
+#import "AppDelegate.h"
 
     #define SAVE_APP_CONTEXT SMSaveContext(SMMainContext())
+    #define PERFORM_SYNC [[(AppDelegate *)[NSApp delegate] updateCenter] update]
 
 #endif

@@ -7,6 +7,10 @@
 //
 
 #import "SMNewTimeEntryWindowController.h"
+#import "SMTimeEntry.h"
+#import "SMCurrentUser+trackingExtension.h"
+
+static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject";
 
 @interface SMNewTimeEntryWindowController ()
 
@@ -19,6 +23,7 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        self.managedObjectContext = SMMainContext();
     }
     return self;
 }
@@ -28,11 +33,54 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [[self window] setLevel:NSFloatingWindowLevel];
+    [[self window] makeKeyWindow];
+    [NSApp activateIgnoringOtherApps:YES];
+    
+    self.descriptionField.stringValue = @"";
+    
+    self.datePicker.dateValue = [NSDate date];
+    self.datePicker.maxDate = [NSDate date];
+    
+    self.activityArrayController.managedObjectContext = self.managedObjectContext;
+    self.activityArrayController.entityName = @"SMActivity";
+    
+    __autoreleasing NSError *error;
+    if (![self.activityArrayController fetchWithRequest:nil merge:YES error:&error]) {
+        LOG_ERR(@"Activity Array Controller failed to fetch: %@", error);
+        error = nil;
+    }
+    
+    self.projectArrayController.managedObjectContext = self.managedObjectContext;
+    self.projectArrayController.entityName = @"SMProjects";
+    
+    if (![self.projectArrayController fetchWithRequest:nil merge:YES error:&error]) {
+        LOG_ERR(@"Project Array Controller failed to fetch: %@", error);
+        error = nil;
+    }
+    
+    self.issueArrayController.managedObjectContext = self.managedObjectContext;
+    self.issueArrayController.entityName = @"SMIssue";
+    
+    self.currentProjectName = [[NSUserDefaults standardUserDefaults] objectForKey:SMRecentProjectUserDefaultsKey];
 }
 
 - (void)cancelOperation:(id)sender
 {
     [self.window performClose:sender];
+}
+
+- (void)setCurrentProjectName:(id)currentProjectName
+{
+    if (![_currentProjectName isEqual:currentProjectName]) {
+        _currentProjectName = currentProjectName;
+        self.issueArrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"n_project.n_name = %@", self.currentProjectName];
+        __autoreleasing NSError *error;
+        if (![self.issueArrayController fetchWithRequest:nil merge:NO error:&error]) {
+            LOG_ERR(@"Parent Issue Array Controller failed to fetch: %@", error);
+            error = nil;
+        }
+    }
 }
 
 #pragma mark - NSTextViewDelegate
@@ -51,7 +99,42 @@
 
 
 - (void)createTimeEntry:(id)sender {
-    
+    if (self.timeField.doubleValue > 0.0 && self.selectedIssueSubject && self.commentTextView.string.length > 0) {
+        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
+                                                           inManagedObjectContext:self.managedObjectContext];
+        __autoreleasing NSError *error;
+        NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
+        projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@", self.currentProjectName];
+        SMProjects *project = [[self.managedObjectContext executeFetchRequest:projectFetchRequest error:&error] firstObject];
+        if (error) {
+            LOG_ERR(@"Failed to fetch project: %@",error);
+            error = nil;
+        }
+        
+        NSFetchRequest *issueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
+        issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject = %@ AND n_project = %@", self.selectedIssueSubject, project];
+        SMIssue *issue = [[self.managedObjectContext executeFetchRequest:issueFetchRequest error:&error] firstObject];
+        if (error) {
+            LOG_ERR(@"Failed to fetch issue: %@",error);
+            error = nil;
+        }
+        
+        entry.n_activity = [self.activityArrayController arrangedObjects][self.activityPopup.indexOfSelectedItem];
+        entry.n_issue = issue;
+        entry.n_spent_on = self.datePicker.dateValue;
+        entry.n_hours = @(self.timeField.doubleValue);
+        entry.n_project = project;
+        entry.n_comments = [self.commentTextView string];
+        entry.n_user = [SMCurrentUser findOrCreate].n_user;
+        entry.changed = @YES;
+        
+        SAVE_APP_CONTEXT;
+        [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
+        
+        PERFORM_SYNC;
+        
+        [self.window close];
+    }
 }
 
 - (void)cancelTimeEntry:(id)sender {
