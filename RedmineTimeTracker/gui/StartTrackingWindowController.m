@@ -99,7 +99,7 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         entry.changed = @YES;
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
         
-        SAVE_APP_CONTEXT
+        SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProject forKey:recentProjectDefaultsKey];
         
         [self.window close];

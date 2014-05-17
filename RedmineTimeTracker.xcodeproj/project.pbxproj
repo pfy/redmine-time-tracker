@@ -14,6 +14,8 @@
 		070020DF192651E500EBE9CF /* MASShortcutView+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D6192651E500EBE9CF /* MASShortcutView+UserDefaults.m */; };
 		070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020D8192651E500EBE9CF /* MASShortcutView.m */; };
 		070020ED192691CE00EBE9CF /* NSApplication+Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020EC192691CE00EBE9CF /* NSApplication+Information.m */; };
+		070020F11927376C00EBE9CF /* SMNewTimeEntryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020EF1927376C00EBE9CF /* SMNewTimeEntryWindowController.m */; };
+		070020F21927376C00EBE9CF /* SMNewTimeEntryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070020F01927376C00EBE9CF /* SMNewTimeEntryWindowController.xib */; };
 		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */; };
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
@@ -103,6 +105,9 @@
 		070020D8192651E500EBE9CF /* MASShortcutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASShortcutView.m; sourceTree = "<group>"; };
 		070020EB192691CE00EBE9CF /* NSApplication+Information.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+Information.h"; sourceTree = "<group>"; };
 		070020EC192691CE00EBE9CF /* NSApplication+Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+Information.m"; sourceTree = "<group>"; };
+		070020EE1927376C00EBE9CF /* SMNewTimeEntryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNewTimeEntryWindowController.h; sourceTree = "<group>"; };
+		070020EF1927376C00EBE9CF /* SMNewTimeEntryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNewTimeEntryWindowController.m; sourceTree = "<group>"; };
+		070020F01927376C00EBE9CF /* SMNewTimeEntryWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMNewTimeEntryWindowController.xib; sourceTree = "<group>"; };
 		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateProjectsCommand.h; sourceTree = "<group>"; };
 		079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateProjectsCommand.m; sourceTree = "<group>"; };
@@ -389,6 +394,16 @@
 			name = "Network Update Commands";
 			sourceTree = "<group>";
 		};
+		070020F31927377000EBE9CF /* TimeEntry */ = {
+			isa = PBXGroup;
+			children = (
+				070020EE1927376C00EBE9CF /* SMNewTimeEntryWindowController.h */,
+				070020EF1927376C00EBE9CF /* SMNewTimeEntryWindowController.m */,
+				070020F01927376C00EBE9CF /* SMNewTimeEntryWindowController.xib */,
+			);
+			name = TimeEntry;
+			sourceTree = "<group>";
+		};
 		CF10AED816B177D5008F9741 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,6 +584,7 @@
 				070020E41926530300EBE9CF /* Preferences */,
 				070020E51926530F00EBE9CF /* Statistics */,
 				070020E61926531400EBE9CF /* NewIssue */,
+				070020F31927377000EBE9CF /* TimeEntry */,
 				CFABD42416B1A06500C93A0D /* StatusBarMenu.h */,
 				CFABD42516B1A06500C93A0D /* StatusBarMenu.m */,
 				CFABD42A16B1A49800C93A0D /* IssuesList.h */,
@@ -649,6 +665,7 @@
 				CF31D21516BE880100E81902 /* ApplicationTrackerWindowController.xib in Resources */,
 				07E4E07B1924FDCB0089431A /* SMNewIssueWindowController.xib in Resources */,
 				0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */,
+				070020F21927376C00EBE9CF /* SMNewTimeEntryWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +678,7 @@
 			files = (
 				070020DD192651E500EBE9CF /* MASShortcut+UserDefaults.m in Sources */,
 				CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */,
+				070020F11927376C00EBE9CF /* SMNewTimeEntryWindowController.m in Sources */,
 				CF8844C316B045E9008B87FC /* main.m in Sources */,
 				CF885F0D18F6949F004ACAE2 /* AFHTTPRequestOperation.m in Sources */,
 				CF8844CA16B045E9008B87FC /* AppDelegate.m in Sources */,

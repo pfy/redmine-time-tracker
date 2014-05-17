@@ -111,7 +111,7 @@
 -(void)stopTracking{
     LOG_WARN(@"====== STOP TRARCKING =======");
     [SMCurrentUser findOrCreate].currentTimeEntry = nil;
-    SAVE_APP_CONTEXT
+    SAVE_APP_CONTEXT;
 }
 
 - (NSSet *)shortcutKeys

@@ -126,10 +126,10 @@ Gw
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-4b-gPE">
-                        <rect key="frame" x="102" y="189" width="109" height="25"/>
+                        <rect key="frame" x="102" y="189" width="125" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="6AV-F1-0CJ"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="6AV-F1-0CJ"/>
                         </constraints>
                         <popUpButtonCell key="cell" type="roundTextured" title="Development" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="3NI-Im-7uW" id="Ovv-rx-K0u">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

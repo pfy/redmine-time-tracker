@@ -120,7 +120,7 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         
         issue.changed = @YES;
         
-        SAVE_APP_CONTEXT
+        SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
         
         AppDelegate *app = [NSApp delegate];

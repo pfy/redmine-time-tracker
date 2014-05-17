@@ -40,8 +40,10 @@
     if (self.user.serverUrl) {
         [self.hostnameTextField setStringValue:self.user.serverUrl];
     }
-    if (self.user.authToken) {
+    if (self.user.authToken.length > 0) {
         [self.tokenTextField setStringValue:self.user.authToken];
+    } else {
+        [self.tokenTextField becomeFirstResponder];
     }
     
     self.workdayDurationField.floatValue = self.user.workdayDuration.floatValue;
