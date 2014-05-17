@@ -38,7 +38,7 @@
     
 
     self.timeEntryArrayController.fetchPredicate = predicate;
-    __weak NSError *error;
+    __autoreleasing NSError *error;
     [self.timeEntryArrayController fetchWithRequest:nil merge:YES error:&error];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
@@ -64,11 +64,19 @@
     [self updateSpinner];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if([keyPath isEqualToString:@"currentDate"]){
-        [self updateFetcher];
-    } else {
-        [self updateSpinner];
+    if (object == self) {
+        if([keyPath isEqualToString:@"currentDate"]){
+            [self updateFetcher];
+            return;
+        }
     }
+    if (object == [(AppDelegate *)[NSApp delegate] updateCenter]) {
+        if ([keyPath isEqualToString:@"running"]) {
+            [self updateSpinner];
+            return;
+        }
+    }
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 -(void)updateSpinner{
     AppDelegate *app = [NSApplication sharedApplication].delegate;
@@ -104,12 +112,12 @@
         }
         return -1;
     }],
-            [NSSortDescriptor sortDescriptorWithKey:@"n_updated_on"
-                                          ascending:NO]];
+             [NSSortDescriptor sortDescriptorWithKey:@"n_updated_on"
+                                           ascending:NO]];
 }
 
 -(void)refresh:(id)sender{
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    AppDelegate *app = [NSApp delegate];
     [app.updateCenter update];
 }
 

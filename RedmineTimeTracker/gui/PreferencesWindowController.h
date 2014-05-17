@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MASShortcutView.h"
+#import "MASShortcutView+UserDefaults.h"
 #import "SMCurrentUser+trackingExtension.h"
 
 @interface PreferencesWindowController : NSWindowController <NSWindowDelegate>
@@ -16,7 +16,9 @@
 @property (nonatomic,weak) IBOutlet NSTextField *tokenTextField;
 @property (weak) IBOutlet MASShortcutView *startTrackingShortcutView;
 @property (weak) IBOutlet MASShortcutView *stopTrackingShortcutView;
+@property (weak) IBOutlet MASShortcutView *createNewTimeEntryShortcutView;
 @property (weak) IBOutlet MASShortcutView *createNewIssueShortcutView;
+@property (weak) IBOutlet MASShortcutView *applicationTrackerShortcutView;
 @property (weak) IBOutlet NSTextField *workdayDurationField;
 @property (weak) IBOutlet NSTextField *workdayDurationToleranceField;
 

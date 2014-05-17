@@ -19,9 +19,11 @@
     SMSaveContext(context);
     
 }
+
 -(void)dealloc{
     self.block = nil;
 }
+
 +(SMUpdateOperation*)operationWithBlock:(ContextBlock) block{
     SMUpdateOperation *operation = [SMUpdateOperation new];
     operation.block = block;

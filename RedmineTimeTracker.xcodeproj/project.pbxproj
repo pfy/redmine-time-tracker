@@ -121,6 +121,7 @@
 		07C8C3F819278E3900BD6AC6 /* SMWindowsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWindowsManager.m; sourceTree = "<group>"; };
 		07C8C3FA1927949F00BD6AC6 /* NSWindowController+ClassNibName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+ClassNibName.h"; sourceTree = "<group>"; };
 		07C8C3FB1927949F00BD6AC6 /* NSWindowController+ClassNibName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+ClassNibName.m"; sourceTree = "<group>"; };
+		07C8C3FD1927AA0200BD6AC6 /* SMShortcutKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SMShortcutKeys.h; path = gui/SMShortcutKeys.h; sourceTree = "<group>"; };
 		07E4E071192391A20089431A /* SMStatisticsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatisticsWindowController.h; sourceTree = "<group>"; };
 		07E4E072192391A20089431A /* SMStatisticsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatisticsWindowController.m; sourceTree = "<group>"; };
 		07E4E073192391A20089431A /* SMStatisticsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMStatisticsWindowController.xib; sourceTree = "<group>"; };
@@ -518,6 +519,7 @@
 				CF8844C816B045E9008B87FC /* AppDelegate.h */,
 				CF8844C916B045E9008B87FC /* AppDelegate.m */,
 				CF8844CB16B045E9008B87FC /* MainMenu.xib */,
+				07C8C3FD1927AA0200BD6AC6 /* SMShortcutKeys.h */,
 				CF8844BD16B045E9008B87FC /* Supporting Files */,
 			);
 			path = RedmineTimeTracker;

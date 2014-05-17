@@ -9,7 +9,12 @@
 #import "SMStatusBarMenu.h"
 #import "SMCurrentUser+trackingExtension.h"
 #import "SMTimeEntry+DisplayThingi.h"
+#import "SMShortcutKeys.h"
 #import "MASShortcut+UserDefaults.h"
+
+extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
+    return [@"values." stringByAppendingString:userDefaultsKey];
+}
 
 @interface SMStatusBarMenu ()
 @property (nonatomic, strong, readonly) NSSet *shortcutKeys;
@@ -88,29 +93,41 @@
 - (NSSet *)shortcutKeys
 {
     if (!_shortcutKeys) {
-        _shortcutKeys = [NSSet setWithArray:@[@"SMStartTrackingShortcut",
-                                              @"SMStopTrackingShortcut",
-                                              @"SMNewIssueShortcut"]];
+        _shortcutKeys = [NSSet setWithArray:@[SMStartTrackingShortcutKey,
+                                              SMStopTrackingShortcutKey,
+                                              SMNewTimeEntryShortcutKey,
+                                              SMNewIssueShortcutKey,
+                                              SMStatisticsShortcutKey,
+                                              SMApplicationTrackerShortcutKey]];
     }
     return _shortcutKeys;
 }
 
 - (void)registerHotkey {
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMStartTrackingShortcut" handler:^{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMStartTrackingShortcutKey handler:^{
         [self.windowsManager showStartTrackingWindow:self.startTrackingMenuItem];
     }];
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMStopTrackingShortcut" handler:^{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMStopTrackingShortcutKey handler:^{
         [self stopTracking];
     }];
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:@"SMNewIssueShortcut" handler:^{
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMNewTimeEntryShortcutKey handler:^{
+        [self.windowsManager showNewTimeEntryWindow:self.createNewTimeEntryMenuItem];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMNewIssueShortcutKey handler:^{
         [self.windowsManager showNewIssueWindow:self.createNewIssueMenuItem];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMStatisticsShortcutKey handler:^{
+        [self.windowsManager showStatisticsWindow:self.statusItem];
+    }];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:SMApplicationTrackerShortcutKey handler:^{
+        [self.windowsManager showApplicationTrackerWindow:self.applicationsTrackerMenuItem];
     }];
 }
 
 - (void)addShortcutObservers
 {
     [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
-        NSString *keyPath = [@"values." stringByAppendingString:key];
+        NSString *keyPath = SMUserDefaultsKeyPathForKey(key);
         [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:keyPath
                                                                      options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
                                                                      context:nil];
@@ -120,18 +137,24 @@
 - (void)removeShortcutObservers
 {
     [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
-        NSString *keyPath = [@"values." stringByAppendingString:key];
+        NSString *keyPath = SMUserDefaultsKeyPathForKey(key);
         [[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:keyPath];
     }];
 }
 
 - (void)configureMenuItemsWithShortcuts
 {
-    [self configureMenuItemsWithShortcutsForKeyPath:nil];
+    [self.shortcutKeys enumerateObjectsUsingBlock:^(NSString *key, BOOL *stop) {
+        [self configureMenuItemsWithShortcutsForKeyPath:SMUserDefaultsKeyPathForKey(key)];
+    }];
 }
 
 - (void)configureMenuItemsWithShortcutsForKeyPath:(NSString *)keyPath
 {
+    if (!keyPath) {
+        [self configureMenuItemsWithShortcuts];
+        return;
+    }
     MASShortcut *shortcut;
     if (keyPath) {
         NSData *data = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath:keyPath];
@@ -139,24 +162,30 @@
     }
     NSString *keyEquiv = shortcut.keyCodeStringForKeyEquivalent ?: @"";
     NSUInteger *modifierMask = shortcut.modifierFlags;
-    if (!keyPath || [keyPath isEqualToString:@"values.SMStartTrackingShortcut"]) {
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMStartTrackingShortcutKey)]) {
         self.startTrackingMenuItem.keyEquivalent = keyEquiv;
         self.startTrackingMenuItem.keyEquivalentModifierMask = modifierMask;
     }
-    if (!keyPath || [keyPath isEqualToString:@"values.SMStopTrackingShortcut"]) {
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMStopTrackingShortcutKey)]) {
         self.stopTrackingMenuItem.keyEquivalent = keyEquiv;
         self.stopTrackingMenuItem.keyEquivalentModifierMask = modifierMask;
     }
-    if (!keyPath || [keyPath isEqualToString:@"values.SMNewIssueShortcut"]) {
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMNewTimeEntryShortcutKey)]) {
+        self.createNewTimeEntryMenuItem.keyEquivalent = keyEquiv;
+        self.createNewTimeEntryMenuItem.keyEquivalentModifierMask = modifierMask;
+    }
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMNewIssueShortcutKey)]) {
         self.createNewIssueMenuItem.keyEquivalent = keyEquiv;
         self.createNewIssueMenuItem.keyEquivalentModifierMask = modifierMask;
     }
-}
-
-#pragma mark - Menu Item
-- (BOOL)validateMenuItem:(NSMenuItem *)item
-{
-    return YES;
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMStatisticsShortcutKey)]) {
+//        self.createNewIssueMenuItem.keyEquivalent = keyEquiv;
+//        self.createNewIssueMenuItem.keyEquivalentModifierMask = modifierMask;
+    }
+    if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMApplicationTrackerShortcutKey)]) {
+        self.applicationsTrackerMenuItem.keyEquivalent = keyEquiv;
+        self.applicationsTrackerMenuItem.keyEquivalentModifierMask = modifierMask;
+    }
 }
 
 #pragma mark - Tracking
@@ -194,7 +223,7 @@
 {
     if (object == [NSUserDefaultsController sharedUserDefaultsController]) {
         [self configureMenuItemsWithShortcutsForKeyPath:keyPath];
-    } else if (object == self.entry) {
+    } else if (object == self.user || object == self.entry) {
         [self updateStatusText];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

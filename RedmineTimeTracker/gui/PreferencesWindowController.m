@@ -7,11 +7,12 @@
 //
 
 #import "PreferencesWindowController.h"
-#import "MASShortcutView+UserDefaults.h"
+#import "SMShortcutKeys.h"
 
 @interface PreferencesWindowController ()
 
 @end
+
 
 @implementation PreferencesWindowController
 
@@ -29,13 +30,16 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     [[self window] setLevel:NSFloatingWindowLevel];
     [[self window] makeKeyWindow];
     [NSApp activateIgnoringOtherApps:YES];
     
-    self.startTrackingShortcutView.associatedUserDefaultsKey = @"SMStartTrackingShortcut";
-    self.stopTrackingShortcutView.associatedUserDefaultsKey = @"SMStopTrackingShortcut";
-    self.createNewIssueShortcutView.associatedUserDefaultsKey = @"SMNewIssueShortcut";
+    self.startTrackingShortcutView.associatedUserDefaultsKey = SMStartTrackingShortcutKey;
+    self.stopTrackingShortcutView.associatedUserDefaultsKey = SMStopTrackingShortcutKey;
+    self.createNewTimeEntryShortcutView.associatedUserDefaultsKey = SMNewTimeEntryShortcutKey;
+    self.createNewIssueShortcutView.associatedUserDefaultsKey = SMNewIssueShortcutKey;
+    self.applicationTrackerShortcutView.associatedUserDefaultsKey = SMApplicationTrackerShortcutKey;
     
     if (self.user.serverUrl) {
         [self.hostnameTextField setStringValue:self.user.serverUrl];
@@ -48,9 +52,6 @@
     
     self.workdayDurationField.doubleValue = self.user.workdayDuration.doubleValue;
     self.workdayDurationToleranceField.doubleValue = self.user.workdayDurationTolerance.doubleValue;
-    
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 - (void)windowWillClose:(NSNotification *)notification
@@ -58,11 +59,13 @@
     // Maybe safe the things here too?
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     self.user = nil;
 }
 
-- (void)donePressed:(id)sender {
+- (void)donePressed:(id)sender
+{
     self.user.serverUrl = [self.hostnameTextField stringValue];
     self.user.authToken = [self.tokenTextField stringValue];
     self.user.workdayDuration = @(self.workdayDurationField.floatValue);

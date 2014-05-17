@@ -119,13 +119,13 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
             error = nil;
         }
         
+        entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.n_activity = [self.activityArrayController arrangedObjects][self.activityPopup.indexOfSelectedItem];
+        entry.n_project = project;
         entry.n_issue = issue;
         entry.n_spent_on = self.datePicker.dateValue;
         entry.n_hours = @(self.timeField.doubleValue);
-        entry.n_project = project;
         entry.n_comments = [self.commentTextView string];
-        entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.changed = @YES;
         
         SAVE_APP_CONTEXT;
