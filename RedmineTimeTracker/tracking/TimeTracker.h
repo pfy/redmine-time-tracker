@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SMCurrentUser.h"
 #import "IdleTime.h"
+
 @interface TimeTracker : NSObject
+
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,strong) SMCurrentUser *user;
 @property (nonatomic,strong) NSDate *lastTick;

@@ -14,6 +14,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    self.dayRoutineTracker = [SMDayRoutineTracker new];
     self.timeTracker = [TimeTracker new];
     self.activeApplicationTracker = [ActiveApplicationTracker new];
     

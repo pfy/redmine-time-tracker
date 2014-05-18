@@ -81,8 +81,8 @@
 
 - (void)showStatisticsWindow:(id)sender
 {
-    self.statisticsWindowController = [SMStatisticsWindowController windowControllerWithNib];
-    [self.statisticsWindowController showWindow:sender];
+//    self.statisticsWindowController = [SMStatisticsWindowController windowControllerWithNib];
+//    [self.statisticsWindowController showWindow:sender];
 }
 
 - (void)showApplicationTrackerWindow:(id)sender

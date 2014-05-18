@@ -8,14 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 #import "SMStatusBarMenu.h"
-#import "ActiveApplicationTracker.h"
+#import "SMDayRoutineTracker.h"
 #import "TimeTracker.h"
+#import "ActiveApplicationTracker.h"
 #import "SMNetworkUpdate.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (nonatomic,strong) SMStatusBarMenu *statusBarMenu;
 
+@property (nonatomic,strong) SMDayRoutineTracker *dayRoutineTracker;
 @property (nonatomic,strong) TimeTracker *timeTracker;
 @property (nonatomic,strong) ActiveApplicationTracker *activeApplicationTracker;
 

@@ -78,7 +78,6 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         __autoreleasing NSError *error;
         if (![self.issueArrayController fetchWithRequest:nil merge:NO error:&error]) {
             LOG_ERR(@"Parent Issue Array Controller failed to fetch: %@", error);
-            error = nil;
         }
     }
 }
