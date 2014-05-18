@@ -19,6 +19,8 @@
 		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		07856E1B1928A9A500DD7061 /* NSDate+SMAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */; };
 		07856E651928B1DE00DD7061 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07856E641928B1DE00DD7061 /* EventKit.framework */; };
+		07856EA91928D81400DD7061 /* SMStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856EA81928D81400DD7061 /* SMStatistics.m */; };
+		07856EAC1928F2EA00DD7061 /* SMStatisticsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */; };
 		079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */; };
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
 		079C1EE4192641C700F61B4B /* SMUpdateActivitiesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */; };
@@ -117,6 +119,10 @@
 		07856E191928A9A500DD7061 /* NSDate+SMAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SMAddons.h"; sourceTree = "<group>"; };
 		07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SMAddons.m"; sourceTree = "<group>"; };
 		07856E641928B1DE00DD7061 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		07856EA71928D81400DD7061 /* SMStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatistics.h; sourceTree = "<group>"; };
+		07856EA81928D81400DD7061 /* SMStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatistics.m; sourceTree = "<group>"; };
+		07856EAA1928F2EA00DD7061 /* SMStatisticsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMStatisticsDataSource.h; path = ../model/SMStatisticsDataSource.h; sourceTree = "<group>"; };
+		07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMStatisticsDataSource.m; path = ../model/SMStatisticsDataSource.m; sourceTree = "<group>"; };
 		079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateProjectsCommand.h; sourceTree = "<group>"; };
 		079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateProjectsCommand.m; sourceTree = "<group>"; };
 		079C1EDF192616C900F61B4B /* SMUpdateTrackersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateTrackersCommand.h; sourceTree = "<group>"; };
@@ -373,6 +379,8 @@
 				07E4E071192391A20089431A /* SMStatisticsWindowController.h */,
 				07E4E072192391A20089431A /* SMStatisticsWindowController.m */,
 				07E4E073192391A20089431A /* SMStatisticsWindowController.xib */,
+				07856EAA1928F2EA00DD7061 /* SMStatisticsDataSource.h */,
+				07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -432,6 +440,8 @@
 				CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */,
 				070020EB192691CE00EBE9CF /* NSApplication+Information.h */,
 				070020EC192691CE00EBE9CF /* NSApplication+Information.m */,
+				07856EA71928D81400DD7061 /* SMStatistics.h */,
+				07856EA81928D81400DD7061 /* SMStatistics.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -604,9 +614,9 @@
 			children = (
 				070020E3192652F900EBE9CF /* Tracking */,
 				070020E41926530300EBE9CF /* Preferences */,
-				070020E51926530F00EBE9CF /* Statistics */,
 				070020E61926531400EBE9CF /* NewIssue */,
 				070020F31927377000EBE9CF /* TimeEntry */,
+				070020E51926530F00EBE9CF /* Statistics */,
 				CFABD42416B1A06500C93A0D /* SMStatusBarMenu.h */,
 				CFABD42516B1A06500C93A0D /* SMStatusBarMenu.m */,
 				07C8C3F719278E3900BD6AC6 /* SMWindowsManager.h */,
@@ -704,6 +714,7 @@
 			files = (
 				070020DD192651E500EBE9CF /* MASShortcut+UserDefaults.m in Sources */,
 				CF10AF0116B17DBB008F9741 /* SMUpdateOperation.m in Sources */,
+				07856EA91928D81400DD7061 /* SMStatistics.m in Sources */,
 				070020F11927376C00EBE9CF /* SMNewTimeEntryWindowController.m in Sources */,
 				CF8844C316B045E9008B87FC /* main.m in Sources */,
 				CF885F0D18F6949F004ACAE2 /* AFHTTPRequestOperation.m in Sources */,
@@ -733,6 +744,7 @@
 				CF885F1418F6949F004ACAE2 /* AFURLResponseSerialization.m in Sources */,
 				CF8A1B0816B7AFFE00ED429E /* SMManagedObject.m in Sources */,
 				CF8A1B0B16B7AFFE00ED429E /* SMTimeEntry.m in Sources */,
+				07856EAC1928F2EA00DD7061 /* SMStatisticsDataSource.m in Sources */,
 				079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */,
 				07C8C3FC1927949F00BD6AC6 /* NSWindowController+ClassNibName.m in Sources */,
 				07D098321928A3D400F2FC28 /* SMDayRoutineTracker.m in Sources */,

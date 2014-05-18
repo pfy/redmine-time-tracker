@@ -45,15 +45,15 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     self.trackerArrayController.managedObjectContext = self.managedObjectContext;
     self.trackerArrayController.entityName = @"SMTrackers";
     
-    __autoreleasing NSError *error = nil;
+    __autoreleasing NSError *error;
     if (![self.trackerArrayController fetchWithRequest:nil merge:YES error:&error]) {
         LOG_ERR(@"Tracker Array Controller failed to fetch: %@", error);
+        error = nil;
     }
     
     self.projectArrayController.managedObjectContext = self.managedObjectContext;
     self.projectArrayController.entityName = @"SMProjects";
     
-    error = nil;
     if (![self.projectArrayController fetchWithRequest:nil merge:YES error:&error]) {
         LOG_ERR(@"Project Array Controller failed to fetch: %@", error);
     }

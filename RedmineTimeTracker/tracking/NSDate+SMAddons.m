@@ -49,9 +49,9 @@
     NSInteger day = [comp weekday];
     NSInteger diff = EKMonday - day;
 
-    NSDateComponents *subtract = [[NSDateComponents alloc] init];
-    subtract.day = diff;
-    return [calendar dateByAddingComponents:subtract toDate:startOfDate options:kNilOptions];
+    NSDateComponents *correction = [[NSDateComponents alloc] init];
+    correction.day = diff;
+    return [calendar dateByAddingComponents:correction toDate:startOfDate options:kNilOptions];
 }
 
 - (NSDate *)workWeekEndDate
@@ -63,9 +63,12 @@
     NSInteger day = [comp weekday];
     NSInteger diff = EKFriday - day;
     
-    NSDateComponents *subtract = [[NSDateComponents alloc] init];
-    subtract.day = diff;
-    return [calendar dateByAddingComponents:subtract toDate:startOfDate options:kNilOptions];
+    NSDateComponents *correction = [[NSDateComponents alloc] init];
+    correction.day = diff;
+    correction.hour = 23;
+    correction.minute = 59;
+    correction.second = 59;
+    return [calendar dateByAddingComponents:correction toDate:startOfDate options:kNilOptions];
 }
 
 - (BOOL)isStartOfWorkWeek

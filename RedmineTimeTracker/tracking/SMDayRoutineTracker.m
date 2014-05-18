@@ -9,6 +9,7 @@
 #import "SMDayRoutineTracker.h"
 #import "SMWindowsManager.h"
 #import "NSDate+SMAddons.h"
+#import "SMStatistics.h"
 
 static NSString *const SMLastStartDayReminderDateKey = @"LastStartDayReminderDate";
 static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
@@ -25,8 +26,6 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
     self = [super init];
     if (self) {
         self.user = [SMCurrentUser findOrCreate];
-        self.lastUpdate = [NSDate date];
-        self.idleTime = [[IdleTime alloc] init];
         NSTimer *updateTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(timerUpdated:) userInfo:nil repeats:YES];
         if ([updateTimer respondsToSelector:@selector(setTolerance:)]) {
             [updateTimer setTolerance:10.0];
@@ -87,7 +86,10 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
     NSTimeInterval dayDurationInterval = self.user.workdayDuration.doubleValue * 3600.0;
     NSTimeInterval tolerance = self.user.workdayDurationTolerance.doubleValue * 3600.0;
     if ([[startRem dateByAddingTimeInterval:dayDurationInterval] isEqualToDate:[NSDate date] withTolerance:tolerance]) {
-        [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindow:self];
+        SMStatistics *stats = [[SMStatistics alloc] init];
+        if (stats.missingTime > 0.0) {
+            [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindow:self];
+        }
         [[SMWindowsManager sharedWindowsManager] showStatisticsWindow:self];
         self.lastEndDayReminderDate = [NSDate date];
         return YES;
