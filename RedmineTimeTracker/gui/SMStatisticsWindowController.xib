@@ -13,6 +13,7 @@
                 <outlet property="statisticsModeControl" destination="fTt-PO-4SF" id="Mgh-bu-XqR"/>
                 <outlet property="statisticsOutlineView" destination="yG9-iF-ROV" id="gbR-Wm-tvj"/>
                 <outlet property="statisticsScrollView" destination="0Yp-nr-QeF" id="Hws-fi-Eqe"/>
+                <outlet property="statisticsTreeController" destination="uZ3-w0-VB2" id="UAb-fb-iqQ"/>
                 <outlet property="totalHoursField" destination="fdu-T2-6ya" id="OeM-Lz-niI"/>
                 <outlet property="totalHoursLabel" destination="o0h-YI-VPp" id="WUt-xa-TkZ"/>
                 <outlet property="totalIssuesField" destination="V9N-ue-nkN" id="Q3b-hU-pPq"/>
@@ -55,7 +56,8 @@
                         <connections>
                             <action selector="changeUser:" target="-2" id="xcS-Uq-c7Y"/>
                             <binding destination="taM-gB-KSo" name="content" keyPath="arrangedObjects" id="O7k-ZY-mCu"/>
-                            <binding destination="taM-gB-KSo" name="contentValues" keyPath="arrangedObjects.n_name" previousBinding="O7k-ZY-mCu" id="rij-i1-B2k"/>
+                            <binding destination="taM-gB-KSo" name="contentValues" keyPath="arrangedObjects.n_name" previousBinding="O7k-ZY-mCu" id="f5K-7A-Dwh"/>
+                            <binding destination="taM-gB-KSo" name="selectedIndex" keyPath="selectionIndex" id="k0e-G0-n1q"/>
                         </connections>
                     </popUpButton>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yp-nr-QeF">
@@ -65,7 +67,7 @@
                             <rect key="frame" x="1" y="17" width="745" height="276"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="ews-B3-cVM" indentationPerLevel="16" outlineTableColumn="cre-pM-EpN" id="yG9-iF-ROV">
+                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="ews-B3-cVM" indentationPerLevel="16" outlineTableColumn="cre-pM-EpN" id="yG9-iF-ROV">
                                     <rect key="frame" x="0.0" y="0.0" width="745" height="276"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -73,20 +75,23 @@
                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="150" minWidth="100" maxWidth="300" id="cre-pM-EpN">
+                                        <tableColumn editable="NO" width="277" minWidth="100" maxWidth="300" id="cre-pM-EpN">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" alignment="left" title="Text Cell" drawsBackground="YES" id="Snh-Xb-pze">
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" alignment="left" title="Text Cell" id="Snh-Xb-pze">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <connections>
+                                                <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.title" id="mrD-xl-C9p"/>
+                                            </connections>
                                         </tableColumn>
-                                        <tableColumn width="50" minWidth="40" maxWidth="100" id="DAx-2v-xtD">
+                                        <tableColumn width="58" minWidth="40" maxWidth="100" id="DAx-2v-xtD">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Hours">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -101,6 +106,16 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <connections>
+                                                <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.hours" id="MCT-Vd-aph">
+                                                    <dictionary key="options">
+                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                        <bool key="NSConditionallySetsEnabled" value="YES"/>
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </tableColumn>
                                         <tableColumn editable="NO" width="100" minWidth="50" maxWidth="100" id="zJN-S0-Alm">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Nr. of Issues">
@@ -109,15 +124,27 @@
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Xf4-xW-U4c">
+                                                <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="Hoh-7s-K3f"/>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                            <connections>
+                                                <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.count" id="9pU-IG-2pE">
+                                                    <dictionary key="options">
+                                                        <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                                        <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                        <bool key="NSConditionallySetsEnabled" value="YES"/>
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <bool key="NSCreatesSortDescriptor" value="NO"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <binding destination="uZ3-w0-VB2" name="content" keyPath="arrangedObjects" id="bV5-he-Frq"/>
+                                        <binding destination="uZ3-w0-VB2" name="content" keyPath="arrangedObjects" id="9rV-ZO-etZ"/>
                                     </connections>
                                 </outlineView>
                             </subviews>
@@ -171,7 +198,7 @@
                         <rect key="frame" x="691" y="70" width="38" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="e6u-aZ-k8Q">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="P1N-hh-DbE"/>
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="Iay-3q-LBW"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -291,7 +318,16 @@
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
         </window>
-        <arrayController id="taM-gB-KSo" userLabel="Users Array Controller"/>
-        <treeController id="uZ3-w0-VB2" userLabel="Statistics Tree Controller"/>
+        <arrayController mode="entity" entityName="SMRedmineUser" id="taM-gB-KSo" userLabel="Users Array Controller">
+            <connections>
+                <binding destination="-2" name="managedObjectContext" keyPath="self.managedObjectContext" id="Rg8-Sj-50r"/>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.usersSortDescriptors" id="hfd-sp-Q5f"/>
+            </connections>
+        </arrayController>
+        <treeController objectClassName="SMStatisticsObject" childrenKeyPath="subentriesController.arrangedObjects" id="uZ3-w0-VB2" userLabel="Statistics Tree Controller">
+            <connections>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.statisticsSortDescriptors" id="Fre-SG-yxH"/>
+            </connections>
+        </treeController>
     </objects>
 </document>

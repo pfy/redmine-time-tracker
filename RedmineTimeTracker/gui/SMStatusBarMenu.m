@@ -50,6 +50,11 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
                                                           keyEquivalent:@""];
         self.createNewIssueMenuItem.target = self.windowsManager;
         
+        self.statisticsMenuItem = [[NSMenuItem alloc] initWithTitle:@"Statistics"
+                                                             action:@selector(showStatisticsWindow:)
+                                                      keyEquivalent:@""];
+        self.statisticsMenuItem.target = self.windowsManager;
+        
         self.applicationsTrackerMenuItem = [[NSMenuItem alloc] initWithTitle:@"Applications"
                                                                       action:@selector(showApplicationTrackerWindow:)
                                                                keyEquivalent:@""];
@@ -66,6 +71,7 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
         [self.statusMenu addItem:self.stopTrackingMenuItem];
         [self.statusMenu addItem:self.createNewTimeEntryMenuItem];
         [self.statusMenu addItem:self.createNewIssueMenuItem];
+        [self.statusMenu addItem:self.statisticsMenuItem];
         [self.statusMenu addItem:self.applicationsTrackerMenuItem];
         [self.statusMenu addItem:self.preferencesMenuItem];
         

@@ -7,6 +7,8 @@
 //
 
 #import "SMStatistics.h"
+#import "SMStatisticsObjects.h"
+#import "SMStatisticsTreeFactory.h"
 #import "NSDate+SMAddons.h"
 #import "SMRedmineUser.h"
 
@@ -15,20 +17,11 @@
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic) SMStatisticsMode mode;
-@property (nonatomic) NSTimeInterval missingTime;
+@property (nonatomic) double missingTime;
+@property (nonatomic, strong) NSArrayController *entriesArrayController;
 @end
 
 @implementation SMStatistics
-
-+ (instancetype)sharedStatistics
-{
-    static SMStatistics *SharedStatistics = nil;
-    static dispatch_once_t SharedStatisticsToken;
-    dispatch_once(&SharedStatisticsToken, ^{
-        SharedStatistics = [[self alloc] init];
-    });
-    return SharedStatistics;
-}
 
 - (instancetype)init
 {
@@ -36,17 +29,35 @@
     if (self) {
         self.user = [SMCurrentUser findOrCreate];
         self.managedObjectContext = SMMainContext();
-        self.statisticsUser = self.user.n_user;
-        [self setDate:[NSDate date] forStatisticsMode:SMDayStatisticsMode];
+        _statisticsUser = self.user.n_user;
+        
+        _mode = SMDayStatisticsMode;
+        _startDate = [NSDate date].dayStartDate;
+        _endDate = [NSDate date].dayEndDate;
+        [self calculateMissingTime];
     }
     return self;
 }
 
+#pragma mark - Properties
 - (void)setStatisticsUser:(SMRedmineUser *)statisticsUser
 {
     if (![_statisticsUser isEqual:statisticsUser]) {
         _statisticsUser = statisticsUser;
-        [self updateValues];
+        [self setupArrayController];
+        // Needed?
+//        [self updateValues];
+    }
+}
+
+- (void)setEntriesArrayController:(NSArrayController *)entriesArrayController
+{
+    if (_entriesArrayController != entriesArrayController) {
+        [_entriesArrayController removeObserver:self forKeyPath:@"arrangedObjects"];
+        _entriesArrayController = entriesArrayController;
+        [_entriesArrayController addObserver:self forKeyPath:@"arrangedObjects"
+                                     options:(NSKeyValueObservingOptionOld |NSKeyValueObservingOptionNew)
+                                     context:nil];
     }
 }
 
@@ -61,13 +72,16 @@
             
         case SMDayStatisticsMode:
         default:
-            self.startDate = date;
-            self.endDate = date;
+            self.startDate = date.dayStartDate;
+            self.endDate = date.dayEndDate;
             break;
     }
-    [self updateValues];
+    [self setupArrayController];
+    // Needed?
+//    [self updateValues];
 }
 
+#pragma mark - Helpers
 - (NSPredicate *)timePredicate
 {
     NSPredicate *afterDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on >= %@", self.startDate];
@@ -77,13 +91,12 @@
                                                        beforeDatePredicate]];
 }
 
-- (void)updateValues
+- (void)setupArrayController
 {
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.statisticsUser];
     NSPredicate *timePredicate = [self timePredicate];
     NSPredicate *predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
-                                                         subpredicates:@[timePredicate,
-                                                                         userPredicate]];
+                                                         subpredicates:@[timePredicate, userPredicate]];
     
     self.entriesArrayController = [[NSArrayController alloc] init];
     self.entriesArrayController.managedObjectContext = self.managedObjectContext;
@@ -94,10 +107,20 @@
     if (![self.entriesArrayController fetchWithRequest:nil merge:YES error:&error]) {
         LOG_ERR(@"Failed to fetch entries: %@", error);
     }
+}
+
+#pragma mark - Values
+- (void)updateValues
+{
+    NSArray *objects = [self.entriesArrayController arrangedObjects];
+    
+    SMStatisticsTreeFactory *factory = [[SMStatisticsTreeFactory alloc] init];
+    [self.statisticsController setContent:[factory projectsForTimeEntries:objects]];
     
     [self calculateMissingTime];
 }
 
+#pragma mark - Missing Time
 - (void)calculateMissingTime
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
@@ -119,8 +142,21 @@
         spent += [spentHours doubleValue];
     }];
     
-    NSTimeInterval diff = (self.user.workdayDuration.doubleValue - self.user.workdayDurationTolerance.doubleValue) - spent;
+    double diff = (self.user.workdayDuration.doubleValue -
+                   self.user.workdayDurationTolerance.doubleValue) - spent;
     self.missingTime = (diff > 0.0) ? diff : 0.0;
+}
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.entriesArrayController && [keyPath isEqualToString:@"arrangedObjects"]) {
+        LOG_INFO(@"Observed entries array controller change");
+        [self updateValues];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 @end

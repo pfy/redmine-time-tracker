@@ -25,6 +25,16 @@
  */
 - (BOOL)isEqualToDate:(NSDate *)date withTolerance:(NSTimeInterval)tolerance;
 
+#pragma mark - Day
+/**
+ *  Returns the date with time set to 00:00:00 of the receiver's date.
+ */
+@property (nonatomic, strong, readonly) NSDate *dayStartDate;
+/**
+ *  Returns the date with time set to 23:59:59 of the receiver's date.
+ */
+@property (nonatomic, strong, readonly) NSDate *dayEndDate;
+
 #pragma mark - Work Week
 /**
  *  Returns the first day of the work week.

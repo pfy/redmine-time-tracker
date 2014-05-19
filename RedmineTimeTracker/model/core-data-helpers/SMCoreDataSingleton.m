@@ -155,7 +155,7 @@
                                                 inDomains:NSUserDomainMask] lastObject];
     appSupportURL = [appSupportURL URLByAppendingPathComponent:[NSApp identifier]];
     BOOL isDir = NO;
-    BOOL exists = [fileManager fileExistsAtPath:appSupportURL.absoluteString isDirectory:&isDir];
+    BOOL exists = [fileManager fileExistsAtPath:[appSupportURL path] isDirectory:&isDir];
     if (!exists || (exists && !isDir)) {
         __autoreleasing NSError *error;
         [fileManager createDirectoryAtURL:appSupportURL withIntermediateDirectories:NO attributes:nil error:&error];

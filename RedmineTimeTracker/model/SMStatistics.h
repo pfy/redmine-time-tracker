@@ -18,13 +18,13 @@ typedef NS_ENUM(NSUInteger, SMStatisticsMode) {
 
 @property (nonatomic, strong) SMRedmineUser *statisticsUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSArrayController *entriesArrayController;
+@property (nonatomic, strong) NSTreeController *statisticsController;
 
 @property (nonatomic, strong, readonly) NSDate *startDate;
 @property (nonatomic, strong, readonly) NSDate *endDate;
 @property (nonatomic, readonly) SMStatisticsMode mode;
 
-@property (nonatomic, readonly) NSTimeInterval missingTime;
+@property (nonatomic, readonly) double missingTime;
 
 - (void)setDate:(NSDate *)date forStatisticsMode:(SMStatisticsMode)mode;
 

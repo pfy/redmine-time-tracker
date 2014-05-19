@@ -21,10 +21,10 @@
 		07856E1B1928A9A500DD7061 /* NSDate+SMAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */; };
 		07856E651928B1DE00DD7061 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07856E641928B1DE00DD7061 /* EventKit.framework */; };
 		07856EA91928D81400DD7061 /* SMStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856EA81928D81400DD7061 /* SMStatistics.m */; };
-		07856EAC1928F2EA00DD7061 /* SMStatisticsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */; };
 		079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */; };
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
 		079C1EE4192641C700F61B4B /* SMUpdateActivitiesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */; };
+		07A0EF1E192A2E0200D6A904 /* SMStatisticsTreeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A0EF1D192A2E0200D6A904 /* SMStatisticsTreeFactory.m */; };
 		07C8C3F919278E3900BD6AC6 /* SMWindowsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8C3F819278E3900BD6AC6 /* SMWindowsManager.m */; };
 		07C8C3FC1927949F00BD6AC6 /* NSWindowController+ClassNibName.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8C3FB1927949F00BD6AC6 /* NSWindowController+ClassNibName.m */; };
 		07D098321928A3D400F2FC28 /* SMDayRoutineTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D098311928A3D400F2FC28 /* SMDayRoutineTracker.m */; };
@@ -119,19 +119,19 @@
 		074C25F51929D20E0074B707 /* SMStatisticsObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatisticsObjects.h; sourceTree = "<group>"; };
 		074C25F61929D20E0074B707 /* SMStatisticsObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatisticsObjects.m; sourceTree = "<group>"; };
 		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
-		07856E191928A9A500DD7061 /* NSDate+SMAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SMAddons.h"; sourceTree = "<group>"; };
-		07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SMAddons.m"; sourceTree = "<group>"; };
+		07856E191928A9A500DD7061 /* NSDate+SMAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+SMAddons.h"; path = "../tracking/NSDate+SMAddons.h"; sourceTree = "<group>"; };
+		07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+SMAddons.m"; path = "../tracking/NSDate+SMAddons.m"; sourceTree = "<group>"; };
 		07856E641928B1DE00DD7061 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		07856EA71928D81400DD7061 /* SMStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatistics.h; sourceTree = "<group>"; };
 		07856EA81928D81400DD7061 /* SMStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatistics.m; sourceTree = "<group>"; };
-		07856EAA1928F2EA00DD7061 /* SMStatisticsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMStatisticsDataSource.h; path = ../model/SMStatisticsDataSource.h; sourceTree = "<group>"; };
-		07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMStatisticsDataSource.m; path = ../model/SMStatisticsDataSource.m; sourceTree = "<group>"; };
 		079C1EDC192615A200F61B4B /* SMUpdateProjectsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateProjectsCommand.h; sourceTree = "<group>"; };
 		079C1EDD192615A200F61B4B /* SMUpdateProjectsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateProjectsCommand.m; sourceTree = "<group>"; };
 		079C1EDF192616C900F61B4B /* SMUpdateTrackersCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateTrackersCommand.h; sourceTree = "<group>"; };
 		079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateTrackersCommand.m; sourceTree = "<group>"; };
 		079C1EE2192641C700F61B4B /* SMUpdateActivitiesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUpdateActivitiesCommand.h; sourceTree = "<group>"; };
 		079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateActivitiesCommand.m; sourceTree = "<group>"; };
+		07A0EF1C192A2E0200D6A904 /* SMStatisticsTreeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatisticsTreeFactory.h; sourceTree = "<group>"; };
+		07A0EF1D192A2E0200D6A904 /* SMStatisticsTreeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatisticsTreeFactory.m; sourceTree = "<group>"; };
 		07C8C3F719278E3900BD6AC6 /* SMWindowsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWindowsManager.h; sourceTree = "<group>"; };
 		07C8C3F819278E3900BD6AC6 /* SMWindowsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWindowsManager.m; sourceTree = "<group>"; };
 		07C8C3FA1927949F00BD6AC6 /* NSWindowController+ClassNibName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+ClassNibName.h"; sourceTree = "<group>"; };
@@ -382,8 +382,6 @@
 				07E4E071192391A20089431A /* SMStatisticsWindowController.h */,
 				07E4E072192391A20089431A /* SMStatisticsWindowController.m */,
 				07E4E073192391A20089431A /* SMStatisticsWindowController.xib */,
-				07856EAA1928F2EA00DD7061 /* SMStatisticsDataSource.h */,
-				07856EAB1928F2EA00DD7061 /* SMStatisticsDataSource.m */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -431,22 +429,42 @@
 			name = TimeEntry;
 			sourceTree = "<group>";
 		};
-		CF10AED816B177D5008F9741 /* model */ = {
+		07A0EF1F192A391800D6A904 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
-				070020CA1926510100EBE9CF /* CoreData */,
-				070020CB1926511B00EBE9CF /* CoreData+Extensions */,
-				CF885EEE18F5A7CE004ACAE2 /* CoreData Helpers */,
-				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
-				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
+				07856EA71928D81400DD7061 /* SMStatistics.h */,
+				07856EA81928D81400DD7061 /* SMStatistics.m */,
+				07A0EF1C192A2E0200D6A904 /* SMStatisticsTreeFactory.h */,
+				07A0EF1D192A2E0200D6A904 /* SMStatisticsTreeFactory.m */,
+				074C25F51929D20E0074B707 /* SMStatisticsObjects.h */,
+				074C25F61929D20E0074B707 /* SMStatisticsObjects.m */,
+			);
+			name = Statistics;
+			sourceTree = "<group>";
+		};
+		07A0EF20192A392400D6A904 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
 				CF885EF518F5C1F5004ACAE2 /* NSString+Date.h */,
 				CF885EF618F5C1F5004ACAE2 /* NSString+Date.m */,
 				070020EB192691CE00EBE9CF /* NSApplication+Information.h */,
 				070020EC192691CE00EBE9CF /* NSApplication+Information.m */,
-				07856EA71928D81400DD7061 /* SMStatistics.h */,
-				07856EA81928D81400DD7061 /* SMStatistics.m */,
-				074C25F51929D20E0074B707 /* SMStatisticsObjects.h */,
-				074C25F61929D20E0074B707 /* SMStatisticsObjects.m */,
+				07856E191928A9A500DD7061 /* NSDate+SMAddons.h */,
+				07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		CF10AED816B177D5008F9741 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				07A0EF1F192A391800D6A904 /* Statistics */,
+				070020CA1926510100EBE9CF /* CoreData */,
+				070020CB1926511B00EBE9CF /* CoreData+Extensions */,
+				CF885EEE18F5A7CE004ACAE2 /* CoreData Helpers */,
+				07A0EF20192A392400D6A904 /* Categories */,
+				CF10AEFB16B17AEC008F9741 /* SMUpdateOperation.h */,
+				CF10AEFC16B17AEC008F9741 /* SMUpdateOperation.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -466,8 +484,6 @@
 			children = (
 				07D098301928A3D400F2FC28 /* SMDayRoutineTracker.h */,
 				07D098311928A3D400F2FC28 /* SMDayRoutineTracker.m */,
-				07856E191928A9A500DD7061 /* NSDate+SMAddons.h */,
-				07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */,
 				CFABD42716B1A07800C93A0D /* ActiveApplicationTracker.h */,
 				CFABD42816B1A07800C93A0D /* ActiveApplicationTracker.m */,
 				CF114BC516B6D9A60033346D /* TimeTracker.h */,
@@ -749,7 +765,6 @@
 				CF885F1418F6949F004ACAE2 /* AFURLResponseSerialization.m in Sources */,
 				CF8A1B0816B7AFFE00ED429E /* SMManagedObject.m in Sources */,
 				CF8A1B0B16B7AFFE00ED429E /* SMTimeEntry.m in Sources */,
-				07856EAC1928F2EA00DD7061 /* SMStatisticsDataSource.m in Sources */,
 				079C1EDE192615A200F61B4B /* SMUpdateProjectsCommand.m in Sources */,
 				07C8C3FC1927949F00BD6AC6 /* NSWindowController+ClassNibName.m in Sources */,
 				07D098321928A3D400F2FC28 /* SMDayRoutineTracker.m in Sources */,
@@ -771,6 +786,7 @@
 				CF2EBE0D16B8373800CA2BAA /* SMUploadCommand.m in Sources */,
 				CFBDBB0316B978AF00FD9982 /* IdleTime.m in Sources */,
 				CFBDBB0616BA8E4600FD9982 /* ProjectValueTransformer.m in Sources */,
+				07A0EF1E192A2E0200D6A904 /* SMStatisticsTreeFactory.m in Sources */,
 				CFBDBB0916BA8FEE00FD9982 /* NSAttributedString+hyperlink.m in Sources */,
 				CFBDBB0C16BA924700FD9982 /* IssueValueTransformer.m in Sources */,
 				070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */,

@@ -7,28 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SMTimeEntry.h"
+#import "SMManagedObject.h"
 
-@class SMStatisticsGroup;
 @interface SMStatisticsObject : NSObject
+
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSNumber *hours;
-@property (nonatomic, weak, readonly) SMStatisticsGroup *parent;
-@end
+@property (nonatomic, readonly) double hours;
+@property (nonatomic, readonly) BOOL isEditable;
 
-@interface SMStatisticsGroup : SMStatisticsObject
-@property (nonatomic, strong) NSSet *subentries;
-+ (instancetype)groupWithTitle:(NSString *)title subentries:(NSSet *)subentries;
-@end
+@property (nonatomic, strong) SMManagedObject *statisticsManagedObject;
 
-@interface SMStatisticsProject : SMStatisticsGroup
+@property (nonatomic, weak) SMStatisticsObject *parent;
+@property (nonatomic, strong) NSArrayController *subentriesController;
+@property (nonatomic, readonly) NSUInteger count;
 
-@end
++ (instancetype)objectWithManagedObject:(SMManagedObject *)object title:(NSString *)title;
 
-@interface SMStatisticsIssue : SMStatisticsGroup
-
+- (void)addSubentry:(SMStatisticsObject *)subentry;
+- (void)removeSubentry:(SMStatisticsObject *)subentry;
 @end
 
 @interface SMStatisticsTimeEntry : SMStatisticsObject
-+ (instancetype)entryWithTimeEntry:(SMTimeEntry *)entry;
+@property (nonatomic) double hours;
++ (instancetype)objectWithManagedObject:(SMManagedObject *)object title:(NSString *)title hours:(double)hours;
 @end

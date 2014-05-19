@@ -39,6 +39,25 @@
     return (diff <= 2*tolerance);
 }
 
+#pragma mark - Work Day
+- (NSDate *)dayStartDate
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [self timelessComponents];
+    return [calendar dateFromComponents:comps];
+}
+
+- (NSDate *)dayEndDate
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *startDate = self.dayStartDate;
+    NSDateComponents *correction = [[NSDateComponents alloc] init];
+    correction.hour = 23;
+    correction.minute = 59;
+    correction.second = 59;
+    return [calendar dateByAddingComponents:correction toDate:startDate options:kNilOptions];
+}
+
 #pragma mark - Work Week
 - (NSDate *)workWeekStartDate
 {

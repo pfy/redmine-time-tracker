@@ -16,6 +16,20 @@
 #import "ApplicationTrackerWindowController.h"
 #import "PreferencesWindowController.h"
 
+@implementation SMWindowEvent
++ (instancetype)event { return [self eventWithSender:nil]; }
++ (instancetype)eventWithSender:(id)sender { return [[self alloc] initWithSender:sender]; }
+- (instancetype)init { return [self initWithSender:nil]; }
+- (instancetype)initWithSender:(id)sender
+{
+    self = [super init];
+    if (self) {
+        self.sender = sender;
+    }
+    return self;
+}
+@end
+
 @interface SMWindowsManager ()
 @property (nonatomic, strong) TrackingWindowController *trackingWindowController;
 @property (nonatomic, strong) StartTrackingWindowController *startTrackingWindowController;
@@ -55,52 +69,82 @@
 }
 
 #pragma mark - Show Windows
-- (void)showTrackingWindow:(id)sender
+- (void)showTrackingWindowForEvent:(SMWindowEvent *)event
 {
     self.trackingWindowController = [TrackingWindowController windowControllerWithNib];
-    [self.trackingWindowController showWindow:sender];
+    [self.trackingWindowController showWindow:event.sender];
+}
+- (void)showTrackingWindow:(id)sender
+{
+    [self showTrackingWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
-- (void)showStartTrackingWindow:(id)sender
+- (void)showStartTrackingWindowForEvent:(SMWindowEvent *)event
 {
     self.startTrackingWindowController = [StartTrackingWindowController windowControllerWithNib];
-    [self.startTrackingWindowController showWindow:sender];
+    [self.startTrackingWindowController showWindow:event.sender];
+}
+- (void)showStartTrackingWindow:(id)sender
+{
+    [self showStartTrackingWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
-- (void)showNewTimeEntryWindow:(id)sender
+- (void)showNewTimeEntryWindowForEvent:(SMWindowEvent *)event
 {
     self.createNewTimeEntryWindowController = [SMNewTimeEntryWindowController windowControllerWithNib];
-    [self.createNewTimeEntryWindowController showWindow:sender];
+    [self.createNewTimeEntryWindowController showWindow:event.sender];
+}
+- (void)showNewTimeEntryWindow:(id)sender
+{
+    [self showNewTimeEntryWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
-- (void)showNewIssueWindow:(id)sender
+- (void)showNewIssueWindowForEvent:(SMWindowEvent *)event
 {
     self.createNewIssueWindowController = [SMNewIssueWindowController windowControllerWithNib];
-    [self.createNewIssueWindowController showWindow:sender];
+    [self.createNewIssueWindowController showWindow:event.sender];
+}
+- (void)showNewIssueWindow:(id)sender
+{
+    [self showNewIssueWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
+- (void)showStatisticsWindowForEvent:(SMWindowEvent *)event
+{
+    self.statisticsWindowController = [SMStatisticsWindowController windowControllerWithNib];
+    self.statisticsWindowController.statistics = event.statistics;
+    [self.statisticsWindowController showWindow:event.sender];
+}
 - (void)showStatisticsWindow:(id)sender
 {
-//    self.statisticsWindowController = [SMStatisticsWindowController windowControllerWithNib];
-//    [self.statisticsWindowController showWindow:sender];
+    [self showStatisticsWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
-- (void)showApplicationTrackerWindow:(id)sender
+- (void)showApplicationTrackerWindowForEvent:(SMWindowEvent *)event
 {
     self.applicationTrackerWindowController = [ApplicationTrackerWindowController windowControllerWithNib];
-    [self.applicationTrackerWindowController showWindow:sender];
+    [self.applicationTrackerWindowController showWindow:event.sender];
+}
+- (void)showApplicationTrackerWindow:(id)sender
+{
+    [self showApplicationTrackerWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
-- (void)showPreferencesWindow:(id)sender
+- (void)showPreferencesWindowForEvent:(SMWindowEvent *)event
 {
     self.preferencesWindowController = [PreferencesWindowController windowControllerWithNib];
-    [self.preferencesWindowController showWindow:sender];
+    [self.preferencesWindowController showWindow:event.sender];
+}
+- (void)showPreferencesWindow:(id)sender
+{
+    [self showPreferencesWindowForEvent:[SMWindowEvent eventWithSender:sender]];
 }
 
 #pragma mark - Window Will Close
 - (void)windowWillClose:(NSNotification *)notification
 {
-    NSWindowController *windowController = notification.object;
+    NSWindow *window = notification.object;
+    NSWindowController *windowController = window.windowController;
     if (windowController == self.trackingWindowController) {
         self.trackingWindowController = nil;
     }

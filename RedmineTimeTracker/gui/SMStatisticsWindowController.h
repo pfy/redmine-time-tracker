@@ -24,7 +24,10 @@
 @property (weak) IBOutlet NSTextField *missingHoursField;
 @property (weak) IBOutlet NSButton *addTimeButton;
 
+@property (strong) IBOutlet NSTreeController *statisticsTreeController;
 @property (strong) IBOutlet NSArrayController *usersArrayController;
+@property (nonatomic, strong, readonly) NSArray *usersSortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *statisticsSortDescriptors;
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) SMStatistics *statistics;
