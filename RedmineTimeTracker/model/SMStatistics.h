@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, SMStatisticsMode) {
 
 @property (nonatomic, strong) SMRedmineUser *statisticsUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSArrayController *entriesArrayController;
 
 @property (nonatomic, strong, readonly) NSDate *startDate;
 @property (nonatomic, strong, readonly) NSDate *endDate;

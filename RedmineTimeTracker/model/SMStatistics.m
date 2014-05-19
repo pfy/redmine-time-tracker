@@ -8,6 +8,7 @@
 
 #import "SMStatistics.h"
 #import "NSDate+SMAddons.h"
+#import "SMRedmineUser.h"
 
 @interface SMStatistics ()
 @property (nonatomic, strong) SMCurrentUser *user;
@@ -41,6 +42,14 @@
     return self;
 }
 
+- (void)setStatisticsUser:(SMRedmineUser *)statisticsUser
+{
+    if (![_statisticsUser isEqual:statisticsUser]) {
+        _statisticsUser = statisticsUser;
+        [self updateValues];
+    }
+}
+
 - (void)setDate:(NSDate *)date forStatisticsMode:(SMStatisticsMode)mode
 {
     self.mode = mode;
@@ -56,11 +65,27 @@
             self.endDate = date;
             break;
     }
-    [self calculateValues];
+    [self updateValues];
 }
 
-- (void)calculateValues
+- (NSPredicate *)timePredicate
 {
+    NSPredicate *afterDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on >= %@", self.startDate];
+    NSPredicate *beforeDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on <= %@", self.endDate];
+    return [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
+                                       subpredicates:@[afterDatePredicate,
+                                                       beforeDatePredicate]];
+}
+
+- (void)updateValues
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.statisticsUser];
+    NSPredicate *timePredicate = [self timePredicate];
+    fetchRequest.predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
+                                                         subpredicates:@[timePredicate,
+                                                                         userPredicate]];
+    
     [self calculateMissingTime];
 }
 
@@ -68,11 +93,10 @@
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.user.n_user];
-    NSPredicate *afterDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on >= %@", self.startDate];
-    NSPredicate *beforeDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on <= %@", self.endDate];
-    fetchRequest.predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:@[afterDatePredicate,
-                                                                                                          beforeDatePredicate,
-                                                                                                          userPredicate]];
+    NSPredicate *timePredicate = [self timePredicate];
+    fetchRequest.predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
+                                                         subpredicates:@[timePredicate,
+                                                                         userPredicate]];
     
     __autoreleasing NSError *error;
     NSArray *entries = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

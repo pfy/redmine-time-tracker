@@ -79,6 +79,8 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
                        context:nil];
         [self updateStatusText];
         [self configureMenuItemsWithShortcuts];
+        
+        [self registerHotkey];
     }
     return self;
 }
