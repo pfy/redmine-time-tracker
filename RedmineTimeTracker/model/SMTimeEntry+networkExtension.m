@@ -11,30 +11,35 @@
 
 #import "SMActivity.h"
 #import "SMIssue.h"
+#import "SMProjects.h"
 
 @implementation SMTimeEntry (networkExtension)
 
 - (void)createRequest:(AFHTTPRequestOperationManager *)client {
-    if (!self.n_issue.n_id) {
+    if (!self.n_project.n_id) {
         // To delete wrong things
-//        [self.managedObjectContext deleteObject:self];
+        [self.managedObjectContext deleteObject:self];
         return;
     }
-    
-    NSString *path = @"time_entries.json";
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
+    NSMutableDictionary *entryParams = [NSMutableDictionary dictionary];
+    entryParams[@"activity_id"] = self.n_activity.n_id;
+    entryParams[@"spent_on"] = [dateFormatter stringFromDate:self.n_spent_on];
+    entryParams[@"hours"] = self.n_hours;
+    entryParams[@"comments"] = self.n_comments;
     
+    if (self.n_issue.n_id) {
+        entryParams[@"issue_id"] = self.n_issue.n_id;
+    } else {
+        entryParams[@"project_id"] = self.n_project.n_id;
+    }
     
-    NSDictionary *params = @{@"time_entry": @{@"issue_id": self.n_issue.n_id,
-                                              @"spent_on": [dateFormatter stringFromDate:self.n_spent_on],
-                                              @"hours": self.n_hours,
-                                              @"activity_id": self.n_activity.n_id,
-                                              @"comments": self.n_comments}};
+    NSDictionary *params = @{@"time_entry": [entryParams copy]};
     if (self.n_id) {
-        path = [NSString stringWithFormat:@"/time_entries/%@.json",self.n_id];
+        NSString *path = [NSString stringWithFormat:@"/time_entries/%@.json", self.n_id];
         [client PUT:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry updated %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
@@ -44,6 +49,7 @@
             LOG_WARN(@"time entry update failed %@",error);
         }];
     } else {
+        NSString *path = @"time_entries.json";
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {

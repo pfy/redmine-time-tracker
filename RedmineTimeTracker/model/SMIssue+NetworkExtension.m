@@ -17,7 +17,11 @@
 
 - (void)createRequest:(AFHTTPRequestOperationManager *)client
 {
-    NSString *path = @"issues.json";
+    if (!self.n_project.n_id) {
+        // To delete wrong things
+        [self.managedObjectContext deleteObject:self];
+        return;
+    }
     
     NSMutableDictionary *issueParams = [NSMutableDictionary dictionary];
     issueParams[@"project_id"] = self.n_project.n_id;
@@ -40,7 +44,7 @@
     }
     NSDictionary *params = @{@"issue": [issueParams copy]};
     if (self.n_id) {
-        path = [NSString stringWithFormat:@"/issues/%@.json", self.n_id];
+        NSString *path = [NSString stringWithFormat:@"/issues/%@.json", self.n_id];
         [client PUT:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"Issue updated %@", responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
@@ -50,6 +54,7 @@
             LOG_WARN(@"Issue update failed %@", error);
         }];
     } else {
+        NSString *path = @"issues.json";
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"Issue created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
