@@ -68,6 +68,12 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
+- (void)dealloc
+{
+    [self removeObserver:self forKeyPath:@"currentProject"];
+    [self removeObserver:self forKeyPath:@"currentIssue"];
+}
+
 -(void)startTracking:(id)sender {
     if(self.currentIssue && self.commentTextView.string.length > 0){
         __autoreleasing NSError *error;
