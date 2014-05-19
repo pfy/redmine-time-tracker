@@ -70,8 +70,6 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
 
 -(void)startTracking:(id)sender {
     if(self.currentIssue && self.commentTextView.string.length > 0){
-        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
-                                                           inManagedObjectContext:self.context];
         __autoreleasing NSError *error;
         NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
         projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@", self.currentProject];
@@ -81,6 +79,10 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
             error = nil;
         }
         
+        if (!currentProject) {
+            return;
+        }
+        
         NSFetchRequest *issueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
         issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject = %@ AND n_project = %@", self.currentIssue, currentProject];
         SMIssue *currentIssue = [[self.context executeFetchRequest:issueFetchRequest error:&error] firstObject];
@@ -88,7 +90,12 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
             LOG_ERR(@"error happend %@",error);
             error = nil;
         }
-
+        if (!currentIssue) {
+            return;
+        }
+        
+        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
+                                                           inManagedObjectContext:self.context];
         
         entry.n_activity = [self.activityArrayController arrangedObjects][self.activityPopup.indexOfSelectedItem];
         entry.n_issue = currentIssue;

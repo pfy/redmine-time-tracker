@@ -15,8 +15,11 @@
 @implementation SMTimeEntry (networkExtension)
 
 - (void)createRequest:(AFHTTPRequestOperationManager *)client {
-    if(!self.n_issue.n_id)
+    if (!self.n_issue.n_id) {
+        // To delete wrong things
+//        [self.managedObjectContext deleteObject:self];
         return;
+    }
     
     NSString *path = @"time_entries.json";
     

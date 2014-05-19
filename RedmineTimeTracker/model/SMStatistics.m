@@ -79,12 +79,21 @@
 
 - (void)updateValues
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.statisticsUser];
     NSPredicate *timePredicate = [self timePredicate];
-    fetchRequest.predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
+    NSPredicate *predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
                                                          subpredicates:@[timePredicate,
                                                                          userPredicate]];
+    
+    self.entriesArrayController = [[NSArrayController alloc] init];
+    self.entriesArrayController.managedObjectContext = self.managedObjectContext;
+    self.entriesArrayController.entityName = @"SMTimeEntry";
+    self.entriesArrayController.fetchPredicate = predicate;
+    
+    __autoreleasing NSError *error;
+    if (![self.entriesArrayController fetchWithRequest:nil merge:YES error:&error]) {
+        LOG_ERR(@"Failed to fetch entries: %@", error);
+    }
     
     [self calculateMissingTime];
 }

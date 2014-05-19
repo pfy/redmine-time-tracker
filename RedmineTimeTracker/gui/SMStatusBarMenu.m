@@ -73,6 +73,9 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
         self.statusItem.menu = self.statusMenu;
         self.statusItem.highlightMode = YES;
         
+        [self registerHotkeyDefaults];
+        [self registerHotkey];
+        
         [self addShortcutObservers];
         [self.user addObserver:self forKeyPath:@"currentTimeEntry"
                        options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew)
@@ -80,7 +83,6 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
         [self updateStatusText];
         [self configureMenuItemsWithShortcuts];
         
-        [self registerHotkey];
     }
     return self;
 }
@@ -88,7 +90,7 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
 - (void)dealloc
 {
     [self removeShortcutObservers];
-    // TODO: Remove Observer from user
+    [self.user removeObserver:self forKeyPath:@"currentTimeEntry"];
 }
 
 #pragma mark - Shortcuts
@@ -103,6 +105,19 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
                                               SMApplicationTrackerShortcutKey]];
     }
     return _shortcutKeys;
+}
+
+- (void)registerHotkeyDefaults
+{
+    // 18 = Number key 1
+    MASShortcut *startTracking = [MASShortcut shortcutWithKeyCode:18
+                                                    modifierFlags:NSCommandKeyMask | NSAlternateKeyMask];
+    // 18 = Number key 2
+    MASShortcut *stopTracking = [MASShortcut shortcutWithKeyCode:19
+                                                   modifierFlags:NSCommandKeyMask | NSAlternateKeyMask];
+    NSDictionary *defaults = @{SMStartTrackingShortcutKey: startTracking.data,
+                               SMStopTrackingShortcutKey: stopTracking.data};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
 - (void)registerHotkey {
@@ -181,8 +196,8 @@ extern NSString *SMUserDefaultsKeyPathForKey(NSString *userDefaultsKey) {
         self.createNewIssueMenuItem.keyEquivalentModifierMask = modifierMask;
     }
     if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMStatisticsShortcutKey)]) {
-//        self.createNewIssueMenuItem.keyEquivalent = keyEquiv;
-//        self.createNewIssueMenuItem.keyEquivalentModifierMask = modifierMask;
+        self.statisticsMenuItem.keyEquivalent = keyEquiv;
+        self.statisticsMenuItem.keyEquivalentModifierMask = modifierMask;
     }
     if (!keyPath || [keyPath isEqualToString:SMUserDefaultsKeyPathForKey(SMApplicationTrackerShortcutKey)]) {
         self.applicationsTrackerMenuItem.keyEquivalent = keyEquiv;

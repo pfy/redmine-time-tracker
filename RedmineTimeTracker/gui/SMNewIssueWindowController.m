@@ -79,11 +79,8 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
 
 - (void)createIssue:(id)sender {
     BOOL valid = (self.currentProjectName &&
-                  self.titleField.stringValue.length > 0 &&
-                  self.descriptionTextView.string.length > 0);
+                  self.titleField.stringValue.length > 0);
     if (valid) {
-        SMIssue *issue = [NSEntityDescription insertNewObjectForEntityForName:@"SMIssue"
-                                                           inManagedObjectContext:self.managedObjectContext];
         __autoreleasing NSError *error;
         NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
         projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@", self.currentProjectName];
@@ -93,6 +90,12 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
             LOG_ERR(@"Error while fetching project: %@", error);
             error = nil;
         }
+        if (!project) {
+            return;
+        }
+        
+        SMIssue *issue = [NSEntityDescription insertNewObjectForEntityForName:@"SMIssue"
+                                                       inManagedObjectContext:self.managedObjectContext];
         
         if (self.parentIssueCombo.stringValue.length > 0) {
             NSFetchRequest *parentIssueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];

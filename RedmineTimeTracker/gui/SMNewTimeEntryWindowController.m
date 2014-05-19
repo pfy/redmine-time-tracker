@@ -99,24 +99,33 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
 
 - (void)createTimeEntry:(id)sender {
     if (self.timeField.doubleValue > 0.0 && self.selectedIssueSubject && self.commentTextView.string.length > 0) {
-        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
-                                                           inManagedObjectContext:self.managedObjectContext];
         __autoreleasing NSError *error;
         NSFetchRequest *projectFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMProjects"];
         projectFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_name = %@", self.currentProjectName];
-        SMProjects *project = [[self.managedObjectContext executeFetchRequest:projectFetchRequest error:&error] firstObject];
+        SMProjects *project = [[self.managedObjectContext executeFetchRequest:projectFetchRequest
+                                                                        error:&error] firstObject];
         if (error) {
-            LOG_ERR(@"Failed to fetch project: %@",error);
+            LOG_ERR(@"Failed to fetch project: %@", error);
             error = nil;
+        }
+        if (!project) {
+            return;
         }
         
         NSFetchRequest *issueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
-        issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject = %@ AND n_project = %@", self.selectedIssueSubject, project];
-        SMIssue *issue = [[self.managedObjectContext executeFetchRequest:issueFetchRequest error:&error] firstObject];
+        issueFetchRequest.predicate = [NSPredicate predicateWithFormat:@"n_subject = %@ AND n_project = %@",
+                                       self.selectedIssueSubject, project];
+        SMIssue *issue = [[self.managedObjectContext executeFetchRequest:issueFetchRequest
+                                                                   error:&error] firstObject];
         if (error) {
-            LOG_ERR(@"Failed to fetch issue: %@",error);
-            error = nil;
+            LOG_ERR(@"Failed to fetch issue: %@", error);
         }
+        if (!issue) {
+            return;
+        }
+        
+        SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
+                                                           inManagedObjectContext:self.managedObjectContext];
         
         entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.n_activity = [self.activityArrayController arrangedObjects][self.activityPopup.indexOfSelectedItem];
@@ -131,7 +140,6 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
         
         PERFORM_SYNC;
-        
         [self.window close];
     }
 }
