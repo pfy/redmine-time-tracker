@@ -15,10 +15,15 @@
 @implementation SMTimeEntry (networkExtension)
 
 - (void)createRequest:(AFHTTPRequestOperationManager *)client {
+    if(!self.n_issue.n_id)
+        return;
+    
     NSString *path = @"time_entries.json";
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    
     
     NSDictionary *params = @{@"time_entry": @{@"issue_id": self.n_issue.n_id,
                                               @"spent_on": [dateFormatter stringFromDate:self.n_spent_on],
