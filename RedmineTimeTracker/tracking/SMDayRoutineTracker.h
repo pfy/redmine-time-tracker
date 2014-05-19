@@ -13,9 +13,9 @@
 @interface SMDayRoutineTracker : NSObject
 
 @property (nonatomic, strong) SMCurrentUser *user;
-//@property (nonatomic, strong) IdleTime *idleTime;
-//@property (nonatomic) NSTimeInterval idleTimePassed;
-//@property (nonatomic, strong) NSDate *lastUpdate;
+@property (nonatomic, strong) IdleTime *idleTime;
+@property (nonatomic) NSTimeInterval idleTimePassed;
+@property (nonatomic, strong) NSDate *lastUpdate;
 @property (nonatomic, weak) NSTimer *updateTimer;
 
 @end

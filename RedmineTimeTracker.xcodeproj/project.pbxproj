@@ -16,6 +16,7 @@
 		070020ED192691CE00EBE9CF /* NSApplication+Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020EC192691CE00EBE9CF /* NSApplication+Information.m */; };
 		070020F11927376C00EBE9CF /* SMNewTimeEntryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070020EF1927376C00EBE9CF /* SMNewTimeEntryWindowController.m */; };
 		070020F21927376C00EBE9CF /* SMNewTimeEntryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070020F01927376C00EBE9CF /* SMNewTimeEntryWindowController.xib */; };
+		074C25F71929D20E0074B707 /* SMStatisticsObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C25F61929D20E0074B707 /* SMStatisticsObjects.m */; };
 		0775F4BD17BA77BC00F9D18F /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0775F4BC17BA77BC00F9D18F /* Icon.icns */; };
 		07856E1B1928A9A500DD7061 /* NSDate+SMAddons.m in Sources */ = {isa = PBXBuildFile; fileRef = 07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */; };
 		07856E651928B1DE00DD7061 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07856E641928B1DE00DD7061 /* EventKit.framework */; };
@@ -115,6 +116,8 @@
 		070020EE1927376C00EBE9CF /* SMNewTimeEntryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNewTimeEntryWindowController.h; sourceTree = "<group>"; };
 		070020EF1927376C00EBE9CF /* SMNewTimeEntryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNewTimeEntryWindowController.m; sourceTree = "<group>"; };
 		070020F01927376C00EBE9CF /* SMNewTimeEntryWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMNewTimeEntryWindowController.xib; sourceTree = "<group>"; };
+		074C25F51929D20E0074B707 /* SMStatisticsObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatisticsObjects.h; sourceTree = "<group>"; };
+		074C25F61929D20E0074B707 /* SMStatisticsObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatisticsObjects.m; sourceTree = "<group>"; };
 		0775F4BC17BA77BC00F9D18F /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Icon.icns; path = ../Icon.icns; sourceTree = "<group>"; };
 		07856E191928A9A500DD7061 /* NSDate+SMAddons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SMAddons.h"; sourceTree = "<group>"; };
 		07856E1A1928A9A500DD7061 /* NSDate+SMAddons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SMAddons.m"; sourceTree = "<group>"; };
@@ -442,6 +445,8 @@
 				070020EC192691CE00EBE9CF /* NSApplication+Information.m */,
 				07856EA71928D81400DD7061 /* SMStatistics.h */,
 				07856EA81928D81400DD7061 /* SMStatistics.m */,
+				074C25F51929D20E0074B707 /* SMStatisticsObjects.h */,
+				074C25F61929D20E0074B707 /* SMStatisticsObjects.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -781,6 +786,7 @@
 				CF885EF718F5C1F5004ACAE2 /* NSString+Date.m in Sources */,
 				CFBDBB1516BADF0000FD9982 /* CaseIntensitiveComboBoxCell.m in Sources */,
 				CF31D21416BE880100E81902 /* ApplicationTrackerWindowController.m in Sources */,
+				074C25F71929D20E0074B707 /* SMStatisticsObjects.m in Sources */,
 				CF31D22D16BE961000E81902 /* SMApplicationTracker.m in Sources */,
 				CF31D23016BE9ADC00E81902 /* SecondsValueTransformer.m in Sources */,
 			);

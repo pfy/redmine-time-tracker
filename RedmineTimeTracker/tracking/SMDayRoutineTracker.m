@@ -25,8 +25,14 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
 {
     self = [super init];
     if (self) {
+//        self.lastStartDayReminderDate = nil;
+//        self.lastEndDayReminderDate = nil;
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         self.user = [SMCurrentUser findOrCreate];
-        NSTimer *updateTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(timerUpdated:) userInfo:nil repeats:YES];
+        self.idleTime = [[IdleTime alloc] init];
+        NSTimer *updateTimer = [NSTimer scheduledTimerWithTimeInterval:10.0
+                                                                target:self selector:@selector(timerUpdated:)
+                                                              userInfo:nil repeats:YES];
         if ([updateTimer respondsToSelector:@selector(setTolerance:)]) {
             [updateTimer setTolerance:10.0];
         }
@@ -66,15 +72,20 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
 #pragma mark - Reminders
 - (BOOL)showStartDayReminderIfNeeded
 {
+    if (self.user.currentTimeEntry) return NO;
     NSDate *lastRem = self.lastStartDayReminderDate;
-    if (!self.user.currentTimeEntry) {
-        if (![lastRem isSameDay:[NSDate date]]) {
-            [[SMWindowsManager sharedWindowsManager] showStartTrackingWindow:self];
-            self.lastStartDayReminderDate = [NSDate date];
-            return YES;
-        }
+    if ([lastRem isSameDay:[NSDate date]]) return NO;
+    
+    NSUInteger secIdle = self.idleTime.secondsIdle;
+    if (secIdle > self.idleTimePassed) {
+        self.idleTimePassed = (NSTimeInterval)secIdle;
+        return NO;
     }
-    return NO;
+    
+    [[SMWindowsManager sharedWindowsManager] showStartTrackingWindow:self];
+    self.idleTimePassed = (NSTimeInterval)secIdle;
+    self.lastStartDayReminderDate = [NSDate date];
+    return YES;
 }
 
 - (BOOL)showEndDayReminderIfNeeded
@@ -85,7 +96,8 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
     if ([endRem isSameDay:[NSDate date]]) return NO;
     NSTimeInterval dayDurationInterval = self.user.workdayDuration.doubleValue * 3600.0;
     NSTimeInterval tolerance = self.user.workdayDurationTolerance.doubleValue * 3600.0;
-    if ([[startRem dateByAddingTimeInterval:dayDurationInterval] isEqualToDate:[NSDate date] withTolerance:tolerance]) {
+    NSDate *endOfWorkday = [startRem dateByAddingTimeInterval:dayDurationInterval];
+    if ([endOfWorkday isEqualToDate:[NSDate date] withTolerance:tolerance]) {
         SMStatistics *stats = [[SMStatistics alloc] init];
         if (stats.missingTime > 0.0) {
             [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindow:self];
