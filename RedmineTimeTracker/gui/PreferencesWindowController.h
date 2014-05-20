@@ -18,6 +18,7 @@
 @property (weak) IBOutlet MASShortcutView *stopTrackingShortcutView;
 @property (weak) IBOutlet MASShortcutView *createNewTimeEntryShortcutView;
 @property (weak) IBOutlet MASShortcutView *createNewIssueShortcutView;
+@property (weak) IBOutlet MASShortcutView *statisticsShortcutView;
 @property (weak) IBOutlet MASShortcutView *applicationTrackerShortcutView;
 @property (weak) IBOutlet NSTextField *workdayDurationField;
 @property (weak) IBOutlet NSTextField *workdayDurationToleranceField;

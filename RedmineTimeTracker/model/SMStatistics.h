@@ -34,8 +34,8 @@ typedef NS_ENUM(NSUInteger, SMStatisticsMode) {
 
 @property (nonatomic, readonly) double missingTime;
 @property (nonatomic, readonly) double spentHours;
-@property (nonatomic, readonly) double projectCount;
-@property (nonatomic, readonly) double issueCount;
+@property (nonatomic, readonly) NSUInteger projectCount;
+@property (nonatomic, readonly) NSUInteger issueCount;
 
 - (void)setDate:(NSDate *)date forStatisticsMode:(SMStatisticsMode)mode;
 

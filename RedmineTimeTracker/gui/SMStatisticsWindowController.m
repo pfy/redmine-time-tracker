@@ -10,6 +10,7 @@
 #import "SMCurrentUser+trackingExtension.h"
 #import "SMWindowsManager.h"
 #import "SMStatisticsObjects.h"
+#import "NSDate+SMAddons.h"
 
 @interface SMStatisticsWindowController () <SMStatisticsDelegate>
 
@@ -32,6 +33,10 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    self.totalProjectsField.integerValue = 0;
+    self.totalIssuesField.integerValue = 0;
+    self.totalHoursField.doubleValue = 0.0;
+    self.missingHoursField.doubleValue = 0.0;
     
     self.datePicker.dateValue = [NSDate date];
     
@@ -56,15 +61,17 @@
     if (![_statistics isEqual:statistics]) {
         [self.missingHoursField unbind:@"doubleValue"];
         [self.totalHoursField unbind:@"doubleValue"];
-        [self.totalProjectsField unbind:@"doubleValue"];
-        [self.totalIssuesField unbind:@"doubleValue"];
+        [self.totalIssuesField unbind:@"integerValue"];
+        [self.totalProjectsField unbind:@"integerValue"];
         _statistics = statistics;
-        [self.missingHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"missingTime" options:nil];
-        [self.totalHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"spentHours" options:nil];
-        [self.totalProjectsField bind:@"doubleValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
-        [self.totalIssuesField bind:@"doubleValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
-        _statistics.statisticsController = self.statisticsTreeController;
-        _statistics.delegate = self;
+        if (_statistics) {
+            [self.missingHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"missingTime" options:nil];
+            [self.totalHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"spentHours" options:nil];
+            [self.totalIssuesField bind:@"integerValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
+            [self.totalProjectsField bind:@"integerValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
+            _statistics.statisticsController = self.statisticsTreeController;
+            _statistics.delegate = self;
+        }
     }
 }
 
@@ -72,7 +79,9 @@
 - (void)addTime:(id)sender
 {
     SMWindowEvent *event = [SMWindowEvent eventWithSender:sender];
-    event.statistics = self.statistics;
+    if ([self.datePicker.dateValue isSameDay:[NSDate date]]) {
+        event.statistics = self.statistics;
+    }
     [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindowForEvent:event];
 }
 
@@ -80,6 +89,10 @@
 {
     SMStatisticsMode mode = (self.statisticsModeControl.selectedSegment == 0) ? SMDayStatisticsMode : SMWeekStatisticsMode;
     [self.statistics setMode:mode];
+    BOOL missingTimeControlsShown = (mode == SMWeekStatisticsMode);
+    [self.addTimeButton setHidden:missingTimeControlsShown];
+    [self.missingHoursField setHidden:missingTimeControlsShown];
+    [self.missingHoursLabel setHidden:missingTimeControlsShown];
 }
 
 - (void)changeDate:(id)sender

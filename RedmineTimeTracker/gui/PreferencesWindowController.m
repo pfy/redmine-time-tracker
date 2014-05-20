@@ -40,6 +40,7 @@
     self.createNewTimeEntryShortcutView.associatedUserDefaultsKey = SMNewTimeEntryShortcutKey;
     self.createNewIssueShortcutView.associatedUserDefaultsKey = SMNewIssueShortcutKey;
     self.applicationTrackerShortcutView.associatedUserDefaultsKey = SMApplicationTrackerShortcutKey;
+    self.statisticsShortcutView.associatedUserDefaultsKey = SMStatisticsShortcutKey;
     
     if (self.user.serverUrl) {
         [self.hostnameTextField setStringValue:self.user.serverUrl];

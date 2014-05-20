@@ -11,10 +11,6 @@
 #import "SMTimeEntry.h"
 #import "SMCurrentUser+trackingExtension.h"
 
-@interface SMStatisticsObject ()
-
-@end
-
 @implementation SMStatisticsObject {
     @protected
     NSNumber *_hours;
@@ -103,10 +99,6 @@
     }
 }
 
-@end
-
-
-@interface SMStatisticsTimeEntry ()
 @end
 
 @implementation SMStatisticsTimeEntry

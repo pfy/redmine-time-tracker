@@ -19,8 +19,8 @@
 @property (nonatomic, strong) NSDate *endDate;
 @property (nonatomic) double missingTime;
 @property (nonatomic) double spentHours;
-@property (nonatomic) double projectCount;
-@property (nonatomic) double issueCount;
+@property (nonatomic) NSUInteger projectCount;
+@property (nonatomic) NSUInteger issueCount;
 
 @property (nonatomic, strong) NSArrayController *entriesArrayController;
 @property (nonatomic, strong) NSDate *referenceDate;
