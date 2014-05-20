@@ -34,10 +34,7 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     self.statisticsOutlineView.delegate = self;
     
-    self.totalProjectsField.integerValue = 0;
-    self.totalIssuesField.integerValue = 0;
-    self.totalHoursField.doubleValue = 0.0;
-    self.missingHoursField.doubleValue = 0.0;
+    self.datePicker.dateValue = [NSDate date];
     
     self.usersArrayController.managedObjectContext = self.managedObjectContext;
     self.usersArrayController.entityName = @"SMRedmineUser";
@@ -51,14 +48,8 @@
     [self.userPopupButton selectItemAtIndex:myIndex];
     
     if (!self.statistics) self.statistics = [[SMStatistics alloc] init];
-    self.statistics.statisticsController = self.statisticsTreeController;
     [self.statistics setDate:[NSDate date] forStatisticsMode:SMDayStatisticsMode];
     [self.statisticsOutlineView expandItem:nil expandChildren:YES];
-}
-
-- (void)updateFromStatistics
-{
-    
 }
 
 #pragma mark - Properties
@@ -74,6 +65,7 @@
         [self.totalHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"spentHours" options:nil];
         [self.totalProjectsField bind:@"doubleValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
         [self.totalIssuesField bind:@"doubleValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
+        _statistics.statisticsController = self.statisticsTreeController;
     }
 }
 
@@ -94,15 +86,17 @@
     }
 }
 
+- (void)changeDate:(id)sender
+{
+    [self.statistics setDate:self.datePicker.dateValue forStatisticsMode:self.statistics.mode];
+}
+
 - (void)changeUser:(id)sender
 {
     SMRedmineUser *user = [self.usersArrayController.selectedObjects firstObject];
     self.statistics.statisticsUser = user;
     BOOL isMe = (user == [SMCurrentUser findOrCreate].n_user);
     [self.addTimeButton setHidden:!isMe];
-    
-    [self.missingHoursLabel setHidden:!isMe];
-    [self.missingHoursField setHidden:!isMe];
 }
 
 #pragma mark - Sort Descriptors

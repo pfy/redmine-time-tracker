@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SMStatisticsWindowController">
             <connections>
                 <outlet property="addTimeButton" destination="Yas-6O-Ite" id="US1-Co-p07"/>
+                <outlet property="datePicker" destination="1fD-dD-dji" id="BFy-o3-8Jz"/>
                 <outlet property="missingHoursField" destination="sjQ-Z7-iDj" id="Aoi-Z8-VdI"/>
                 <outlet property="missingHoursLabel" destination="dtV-cj-bWD" id="Eb5-sT-FYt"/>
                 <outlet property="statisticsModeControl" destination="fTt-PO-4SF" id="Mgh-bu-XqR"/>
@@ -270,6 +271,42 @@
                             <action selector="changeStatisticsMode:" target="-2" id="9rq-Af-one"/>
                         </connections>
                     </segmentedControl>
+                    <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1fD-dD-dji">
+                        <rect key="frame" x="326" y="409" width="98" height="27"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="hVR-nD-2h4">
+                            <font key="font" metaFont="system"/>
+                            <calendarDate key="date" timeIntervalSinceReferenceDate="-595929600" calendarFormat="%Y-%m-%d %H:%M:%S %z">
+                                <!--1982-02-12 08:00:00 -0800-->
+                                <timeZone key="timeZone" name="US/Pacific">
+                                    <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                                </timeZone>
+                            </calendarDate>
+                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        </datePickerCell>
+                        <connections>
+                            <action selector="changeDate:" target="-2" id="lAs-Y5-bb0"/>
+                        </connections>
+                    </datePicker>
                 </subviews>
                 <constraints>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" secondItem="pTS-dF-vcS" secondAttribute="leading" id="29o-9U-wtT"/>
@@ -277,13 +314,16 @@
                     <constraint firstItem="dtV-cj-bWD" firstAttribute="centerY" secondItem="sjQ-Z7-iDj" secondAttribute="centerY" id="3cm-CM-QEb"/>
                     <constraint firstItem="0Yp-nr-QeF" firstAttribute="top" secondItem="fTt-PO-4SF" secondAttribute="bottom" constant="20" id="5pa-Bj-uFh"/>
                     <constraint firstItem="dtV-cj-bWD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pTS-dF-vcS" secondAttribute="trailing" constant="50" id="7NO-VJ-Xyd"/>
+                    <constraint firstItem="1fD-dD-dji" firstAttribute="centerY" secondItem="zQb-GX-MZT" secondAttribute="centerY" id="7yM-mU-QwP"/>
                     <constraint firstItem="fdu-T2-6ya" firstAttribute="baseline" secondItem="o0h-YI-VPp" secondAttribute="baseline" id="84G-Ig-AEY"/>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" secondItem="fdu-T2-6ya" secondAttribute="leading" id="9S9-OY-Vtr"/>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" secondItem="3jp-Um-Iht" secondAttribute="trailing" priority="200" constant="8" symbolic="YES" id="9s0-Kb-E07"/>
+                    <constraint firstItem="zQb-GX-MZT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1fD-dD-dji" secondAttribute="trailing" constant="20" id="A70-mE-iqr"/>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" secondItem="pTS-dF-vcS" secondAttribute="leading" id="Be6-nJ-rek"/>
                     <constraint firstItem="zio-5H-zcg" firstAttribute="leading" secondItem="3jp-Um-Iht" secondAttribute="leading" id="Cmv-yF-hh6"/>
                     <constraint firstItem="Yas-6O-Ite" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fdu-T2-6ya" secondAttribute="trailing" constant="20" id="DQw-b8-jtR"/>
                     <constraint firstAttribute="trailing" secondItem="sjQ-Z7-iDj" secondAttribute="trailing" constant="20" symbolic="YES" id="Dzj-T9-Prj"/>
+                    <constraint firstItem="1fD-dD-dji" firstAttribute="centerY" secondItem="fTt-PO-4SF" secondAttribute="centerY" id="Eix-ml-pkY"/>
                     <constraint firstItem="pTS-dF-vcS" firstAttribute="leading" secondItem="zio-5H-zcg" secondAttribute="trailing" priority="200" constant="8" symbolic="YES" id="F1G-qd-FVG"/>
                     <constraint firstItem="fdu-T2-6ya" firstAttribute="leading" secondItem="o0h-YI-VPp" secondAttribute="trailing" priority="200" constant="8" symbolic="YES" id="KKo-TY-FwE"/>
                     <constraint firstItem="pTS-dF-vcS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zio-5H-zcg" secondAttribute="trailing" constant="8" symbolic="YES" id="LKK-y8-9L3"/>
@@ -292,8 +332,9 @@
                     <constraint firstAttribute="bottom" secondItem="o0h-YI-VPp" secondAttribute="bottom" constant="20" symbolic="YES" id="S3P-Gx-Xtf"/>
                     <constraint firstItem="fTt-PO-4SF" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="UCw-19-lcN"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V9N-ue-nkN" secondAttribute="trailing" constant="20" symbolic="YES" id="VJ6-Aw-hAq"/>
-                    <constraint firstItem="zQb-GX-MZT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fTt-PO-4SF" secondAttribute="trailing" constant="20" id="WYA-k3-iYL"/>
+                    <constraint firstItem="1fD-dD-dji" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fTt-PO-4SF" secondAttribute="trailing" constant="20" id="VsT-d7-OSu"/>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3jp-Um-Iht" secondAttribute="trailing" constant="8" symbolic="YES" id="WZu-od-B2W"/>
+                    <constraint firstAttribute="centerX" secondItem="1fD-dD-dji" secondAttribute="centerX" id="Wbe-1d-lKK"/>
                     <constraint firstItem="3jp-Um-Iht" firstAttribute="top" secondItem="zio-5H-zcg" secondAttribute="bottom" constant="8" symbolic="YES" id="ZBT-qC-sSo"/>
                     <constraint firstItem="V9N-ue-nkN" firstAttribute="leading" secondItem="fdu-T2-6ya" secondAttribute="leading" id="bQR-VL-0Zo"/>
                     <constraint firstItem="dtV-cj-bWD" firstAttribute="top" secondItem="0Yp-nr-QeF" secondAttribute="bottom" constant="8" symbolic="YES" id="cqA-EY-yc9"/>

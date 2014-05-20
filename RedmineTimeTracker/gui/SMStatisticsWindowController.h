@@ -11,6 +11,7 @@
 
 @interface SMStatisticsWindowController : NSWindowController
 @property (weak) IBOutlet NSSegmentedControl *statisticsModeControl;
+@property (weak) IBOutlet NSDatePicker *datePicker;
 @property (weak) IBOutlet NSPopUpButton *userPopupButton;
 @property (weak) IBOutlet NSScrollView *statisticsScrollView;
 @property (weak) IBOutlet NSOutlineView *statisticsOutlineView;
@@ -34,6 +35,7 @@
 
 - (IBAction)addTime:(id)sender;
 - (IBAction)changeStatisticsMode:(id)sender;
+- (IBAction)changeDate:(id)sender;
 - (IBAction)changeUser:(id)sender;
 
 @end

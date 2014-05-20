@@ -98,26 +98,26 @@
 }
 
 #pragma mark - Helpers
+- (NSPredicate *)statPredicate
+{
+    NSPredicate *timePredicate = [self timePredicate];
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user == %@", self.statisticsUser];
+    return [NSCompoundPredicate andPredicateWithSubpredicates:@[userPredicate, timePredicate]];
+}
+
 - (NSPredicate *)timePredicate
 {
     NSPredicate *afterDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on >= %@", self.startDate];
     NSPredicate *beforeDatePredicate = [NSPredicate predicateWithFormat:@"n_spent_on <= %@", self.endDate];
-    return [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
-                                       subpredicates:@[afterDatePredicate,
-                                                       beforeDatePredicate]];
+    return [NSCompoundPredicate andPredicateWithSubpredicates:@[afterDatePredicate, beforeDatePredicate]];
 }
 
 - (void)setupArrayController
 {
-    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.statisticsUser];
-    NSPredicate *timePredicate = [self timePredicate];
-    NSPredicate *predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
-                                                         subpredicates:@[timePredicate, userPredicate]];
-    
     self.entriesArrayController = [[NSArrayController alloc] init];
     self.entriesArrayController.managedObjectContext = self.managedObjectContext;
     self.entriesArrayController.entityName = @"SMTimeEntry";
-    self.entriesArrayController.fetchPredicate = predicate;
+    self.entriesArrayController.fetchPredicate = [self statPredicate];
     self.entriesArrayController.automaticallyPreparesContent = YES;
     self.entriesArrayController.automaticallyRearrangesObjects = YES;
     
@@ -142,11 +142,7 @@
 - (void)calculateCounts
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
-    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.user.n_user];
-    NSPredicate *timePredicate = [self timePredicate];
-    fetchRequest.predicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType
-                                                         subpredicates:@[timePredicate,
-                                                                         userPredicate]];
+    fetchRequest.predicate = [self statPredicate];
     
     __autoreleasing NSError *error;
     NSArray *entries = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];

@@ -99,10 +99,12 @@ static NSString *const SMLastEndDayReminderDateKey = @"LastEndDayReminderDate";
     NSDate *endOfWorkday = [startRem dateByAddingTimeInterval:dayDurationInterval];
     if ([endOfWorkday isEqualToDate:[NSDate date] withTolerance:tolerance]) {
         SMStatistics *stats = [[SMStatistics alloc] init];
+        SMWindowEvent *event = [SMWindowEvent eventWithSender:self];
+        event.statistics = stats;
         if (stats.missingTime > 0.0) {
-            [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindow:self];
+            [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindowForEvent:event];
         }
-        [[SMWindowsManager sharedWindowsManager] showStatisticsWindow:self];
+        [[SMWindowsManager sharedWindowsManager] showStatisticsWindowForEvent:event];
         self.lastEndDayReminderDate = [NSDate date];
         return YES;
     }
