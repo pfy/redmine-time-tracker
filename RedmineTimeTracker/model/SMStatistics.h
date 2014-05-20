@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "SMCurrentUser+trackingExtension.h"
 
+@protocol SMStatisticsDelegate <NSObject>
+@optional
+- (void)statisticsWillUpdateContents:(SMStatistics *)statistics;
+- (void)statisticsDidUpdateContents:(SMStatistics *)statistics;
+@end
+
 typedef NS_ENUM(NSUInteger, SMStatisticsMode) {
     SMDayStatisticsMode = 1,
     SMWeekStatisticsMode
@@ -19,6 +25,8 @@ typedef NS_ENUM(NSUInteger, SMStatisticsMode) {
 @property (nonatomic, strong) SMRedmineUser *statisticsUser;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSTreeController *statisticsController;
+
+@property (nonatomic, weak) id<SMStatisticsDelegate> delegate;
 
 @property (nonatomic, strong, readonly) NSDate *startDate;
 @property (nonatomic, strong, readonly) NSDate *endDate;

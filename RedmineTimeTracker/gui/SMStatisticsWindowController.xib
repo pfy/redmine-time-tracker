@@ -98,9 +98,9 @@
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Hours" id="WxQ-RX-HKI">
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" alignment="left" title="Hours" id="WxQ-RX-HKI">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="0wU-Hx-1Sq">
-                                                    <real key="minimum" value="0.10000000000000001"/>
+                                                    <real key="minimum" value="0.01"/>
                                                 </numberFormatter>
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -108,12 +108,12 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
-                                                <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.hours" id="MCT-Vd-aph">
+                                                <binding destination="uZ3-w0-VB2" name="editable" keyPath="arrangedObjects.isEditable" id="vSg-Bj-UEc"/>
+                                                <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.hours" id="Yhb-ra-szY">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSConditionallySetsEnabled" value="YES"/>
-                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                                        <string key="NSNullPlaceholder">0.0</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
@@ -145,7 +145,11 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <binding destination="uZ3-w0-VB2" name="content" keyPath="arrangedObjects" id="9rV-ZO-etZ"/>
+                                        <binding destination="uZ3-w0-VB2" name="content" keyPath="arrangedObjects" id="y5C-BP-TR3">
+                                            <dictionary key="options">
+                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                            </dictionary>
+                                        </binding>
                                     </connections>
                                 </outlineView>
                             </subviews>

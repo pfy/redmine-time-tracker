@@ -11,7 +11,7 @@
 #import "SMWindowsManager.h"
 #import "SMStatisticsObjects.h"
 
-@interface SMStatisticsWindowController () <NSOutlineViewDelegate>
+@interface SMStatisticsWindowController () <SMStatisticsDelegate>
 
 @end
 
@@ -32,7 +32,6 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    self.statisticsOutlineView.delegate = self;
     
     self.datePicker.dateValue = [NSDate date];
     
@@ -49,7 +48,6 @@
     
     if (!self.statistics) self.statistics = [[SMStatistics alloc] init];
     [self.statistics setDate:[NSDate date] forStatisticsMode:SMDayStatisticsMode];
-    [self.statisticsOutlineView expandItem:nil expandChildren:YES];
 }
 
 #pragma mark - Properties
@@ -66,6 +64,7 @@
         [self.totalProjectsField bind:@"doubleValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
         [self.totalIssuesField bind:@"doubleValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
         _statistics.statisticsController = self.statisticsTreeController;
+        _statistics.delegate = self;
     }
 }
 
@@ -81,9 +80,6 @@
 {
     SMStatisticsMode mode = (self.statisticsModeControl.selectedSegment == 0) ? SMDayStatisticsMode : SMWeekStatisticsMode;
     [self.statistics setMode:mode];
-    if (mode == SMDayStatisticsMode) {
-        [self.statisticsOutlineView expandItem:nil expandChildren:YES];
-    }
 }
 
 - (void)changeDate:(id)sender
@@ -112,17 +108,12 @@
     return @[[NSSortDescriptor sortDescriptorWithKey:@"hours" ascending:NO]];
 }
 
-#pragma mark - NSOutlineView Delegate
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
+#pragma mark - SMStatisticsDelegate
+- (void)statisticsDidUpdateContents:(SMStatistics *)statistics
 {
-    if ([item isKindOfClass:[NSTreeNode class]]) {
-        NSTreeNode *node = item;
-        if ([node.representedObject isKindOfClass:[SMStatisticsObject class]]) {
-            SMStatisticsObject *statObject = node.representedObject;
-            return statObject.isEditable;
-        }
+    if (statistics.mode == SMDayStatisticsMode) {
+        [self.statisticsOutlineView expandItem:nil expandChildren:YES];
     }
-    return NO;
 }
 
 @end

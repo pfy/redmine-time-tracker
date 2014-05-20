@@ -12,7 +12,7 @@
 @interface SMStatisticsObject : NSObject
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, readonly) double hours;
+@property (nonatomic, readonly) NSNumber *hours;
 @property (nonatomic, readonly) BOOL isEditable;
 
 @property (nonatomic, strong) SMManagedObject *statisticsManagedObject;
@@ -28,6 +28,6 @@
 @end
 
 @interface SMStatisticsTimeEntry : SMStatisticsObject
-@property (nonatomic) double hours;
+@property (nonatomic) NSNumber *hours;
 + (instancetype)objectWithManagedObject:(SMManagedObject *)object title:(NSString *)title hours:(double)hours;
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -163,10 +163,10 @@
                                                                         <constraint firstAttribute="width" constant="20" id="717"/>
                                                                         <constraint firstAttribute="height" constant="17" id="803"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Label" allowsEditingTextAttributes="YES" id="677">
+                                                                    <textFieldCell key="cell" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Label" allowsEditingTextAttributes="YES" id="677">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="189" name="value" keyPath="objectValue.n_issue.n_id" id="715">
@@ -185,7 +185,7 @@
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Label" allowsEditingTextAttributes="YES" id="693">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="189" name="value" keyPath="objectValue.n_project.n_id" id="714">
@@ -204,7 +204,7 @@
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="Label" allowsEditingTextAttributes="YES" id="723">
                                                                         <font key="font" metaFont="miniSystem"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="189" name="value" keyPath="objectValue.n_id" id="735">

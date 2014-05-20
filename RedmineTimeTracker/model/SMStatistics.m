@@ -127,15 +127,23 @@
     }
 }
 
-#pragma mark - Values
+#pragma mark - Update Values
 - (void)updateValues
 {
+    if ([self.delegate respondsToSelector:@selector(statisticsWillUpdateContents:)]) {
+        [self.delegate statisticsWillUpdateContents:self];
+    }
+    
     NSArray *objects = [self.entriesArrayController arrangedObjects];
     
     SMStatisticsTreeFactory *factory = [[SMStatisticsTreeFactory alloc] init];
     [self.statisticsController setContent:[factory projectsForTimeEntries:objects]];
     
     [self calculateCounts];
+    
+    if ([self.delegate respondsToSelector:@selector(statisticsDidUpdateContents:)]) {
+        [self.delegate statisticsDidUpdateContents:self];
+    }
 }
 
 #pragma mark - Missing Time
