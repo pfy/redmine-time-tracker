@@ -52,6 +52,13 @@
     [self.userPopupButton selectItemAtIndex:myIndex];
     
     if (!self.statistics) self.statistics = [[SMStatistics alloc] init];
+    else {
+        [self.missingHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"missingTime" options:nil];
+        [self.totalHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"spentHours" options:nil];
+        [self.totalIssuesField bind:@"integerValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
+        [self.totalProjectsField bind:@"integerValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
+        self.statistics.statisticsController = self.statisticsTreeController;
+    }
     [self.statistics setDate:[NSDate date] forStatisticsMode:SMDayStatisticsMode];
 }
 
