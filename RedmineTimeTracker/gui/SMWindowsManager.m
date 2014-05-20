@@ -92,6 +92,7 @@
 - (void)showNewTimeEntryWindowForEvent:(SMWindowEvent *)event
 {
     self.createNewTimeEntryWindowController = [SMNewTimeEntryWindowController windowControllerWithNib];
+    self.createNewTimeEntryWindowController.statistics = event.statistics;
     [self.createNewTimeEntryWindowController showWindow:event.sender];
 }
 - (void)showNewTimeEntryWindow:(id)sender
@@ -102,6 +103,7 @@
 - (void)showNewIssueWindowForEvent:(SMWindowEvent *)event
 {
     self.createNewIssueWindowController = [SMNewIssueWindowController windowControllerWithNib];
+    self.createNewIssueWindowController.issue = event.issue;
     [self.createNewIssueWindowController showWindow:event.sender];
 }
 - (void)showNewIssueWindow:(id)sender

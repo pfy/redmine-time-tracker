@@ -13,12 +13,17 @@
 #import "SMRedmineUser.h"
 
 @interface SMStatistics ()
+// Make properties readwrite
 @property (nonatomic, strong) SMCurrentUser *user;
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSDate *endDate;
-@property (nonatomic) SMStatisticsMode mode;
 @property (nonatomic) double missingTime;
+@property (nonatomic) double spentHours;
+@property (nonatomic) double projectCount;
+@property (nonatomic) double issueCount;
+
 @property (nonatomic, strong) NSArrayController *entriesArrayController;
+@property (nonatomic, strong) NSDate *referenceDate;
 @end
 
 @implementation SMStatistics
@@ -29,27 +34,19 @@
     if (self) {
         self.user = [SMCurrentUser findOrCreate];
         self.managedObjectContext = SMMainContext();
-        _statisticsUser = self.user.n_user;
         
+        _statisticsUser = self.user.n_user;
         _mode = SMDayStatisticsMode;
-        _startDate = [NSDate date].dayStartDate;
-        _endDate = [NSDate date].dayEndDate;
-        [self calculateMissingTime];
+        
+        self.referenceDate = [NSDate date];
+        self.startDate = self.referenceDate.dayStartDate;
+        self.endDate = self.referenceDate.dayEndDate;
+        [self calculateCounts];
     }
     return self;
 }
 
 #pragma mark - Properties
-- (void)setStatisticsUser:(SMRedmineUser *)statisticsUser
-{
-    if (![_statisticsUser isEqual:statisticsUser]) {
-        _statisticsUser = statisticsUser;
-        [self setupArrayController];
-        // Needed?
-//        [self updateValues];
-    }
-}
-
 - (void)setEntriesArrayController:(NSArrayController *)entriesArrayController
 {
     if (_entriesArrayController != entriesArrayController) {
@@ -61,10 +58,29 @@
     }
 }
 
+- (void)setStatisticsUser:(SMRedmineUser *)statisticsUser
+{
+    if (![_statisticsUser isEqual:statisticsUser]) {
+        _statisticsUser = statisticsUser;
+        [self setupArrayController];
+        // Needed?
+//        [self updateValues];
+    }
+}
+
+- (void)setMode:(SMStatisticsMode)mode
+{
+    if (_mode != mode) {
+        _mode = mode;
+        [self setDate:self.referenceDate forStatisticsMode:mode];
+    }
+}
+
 - (void)setDate:(NSDate *)date forStatisticsMode:(SMStatisticsMode)mode
 {
-    self.mode = mode;
-    switch (self.mode) {
+    self.referenceDate = date;
+    _mode = mode;
+    switch (mode) {
         case SMWeekStatisticsMode:
             self.startDate = date.workWeekStartDate;
             self.endDate = date.workWeekEndDate;
@@ -102,6 +118,8 @@
     self.entriesArrayController.managedObjectContext = self.managedObjectContext;
     self.entriesArrayController.entityName = @"SMTimeEntry";
     self.entriesArrayController.fetchPredicate = predicate;
+    self.entriesArrayController.automaticallyPreparesContent = YES;
+    self.entriesArrayController.automaticallyRearrangesObjects = YES;
     
     __autoreleasing NSError *error;
     if (![self.entriesArrayController fetchWithRequest:nil merge:YES error:&error]) {
@@ -117,11 +135,11 @@
     SMStatisticsTreeFactory *factory = [[SMStatisticsTreeFactory alloc] init];
     [self.statisticsController setContent:[factory projectsForTimeEntries:objects]];
     
-    [self calculateMissingTime];
+    [self calculateCounts];
 }
 
 #pragma mark - Missing Time
-- (void)calculateMissingTime
+- (void)calculateCounts
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMTimeEntry"];
     NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"n_user = %@", self.user.n_user];
@@ -145,6 +163,9 @@
     double diff = (self.user.workdayDuration.doubleValue -
                    self.user.workdayDurationTolerance.doubleValue) - spent;
     self.missingTime = (diff > 0.0) ? diff : 0.0;
+    self.spentHours = spent;
+    self.issueCount = [[NSSet setWithArray:[entries valueForKey:@"n_issue"]] count];
+    self.projectCount = [[NSSet setWithArray:[entries valueForKey:@"n_project"]] count];
 }
 
 #pragma mark - KVO

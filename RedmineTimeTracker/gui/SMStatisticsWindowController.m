@@ -23,7 +23,6 @@
     if (self) {
         // Initialization code here.
         self.managedObjectContext = SMMainContext();
-        self.statistics = [[SMStatistics alloc] init];
     }
     return self;
 }
@@ -34,6 +33,7 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     self.statisticsOutlineView.delegate = self;
+    
     self.totalProjectsField.integerValue = 0;
     self.totalIssuesField.integerValue = 0;
     self.totalHoursField.doubleValue = 0.0;
@@ -50,23 +50,45 @@
     NSUInteger myIndex = [self.usersArrayController.arrangedObjects indexOfObject:[SMCurrentUser findOrCreate].n_user];
     [self.userPopupButton selectItemAtIndex:myIndex];
     
-    self.statistics = [[SMStatistics alloc] init];
+    if (!self.statistics) self.statistics = [[SMStatistics alloc] init];
     self.statistics.statisticsController = self.statisticsTreeController;
     [self.statistics setDate:[NSDate date] forStatisticsMode:SMDayStatisticsMode];
-    if (self.statistics.mode == SMDayStatisticsMode) {
-        [self.statisticsOutlineView expandItem:nil expandChildren:YES];
+    [self.statisticsOutlineView expandItem:nil expandChildren:YES];
+}
+
+- (void)updateFromStatistics
+{
+    
+}
+
+#pragma mark - Properties
+- (void)setStatistics:(SMStatistics *)statistics
+{
+    if (![_statistics isEqual:statistics]) {
+        [self.missingHoursField unbind:@"doubleValue"];
+        [self.totalHoursField unbind:@"doubleValue"];
+        [self.totalProjectsField unbind:@"doubleValue"];
+        [self.totalIssuesField unbind:@"doubleValue"];
+        _statistics = statistics;
+        [self.missingHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"missingTime" options:nil];
+        [self.totalHoursField bind:@"doubleValue" toObject:_statistics withKeyPath:@"spentHours" options:nil];
+        [self.totalProjectsField bind:@"doubleValue" toObject:_statistics withKeyPath:@"projectCount" options:nil];
+        [self.totalIssuesField bind:@"doubleValue" toObject:_statistics withKeyPath:@"issueCount" options:nil];
     }
 }
 
+#pragma mark - Actions
 - (void)addTime:(id)sender
 {
-    [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindow:sender];
+    SMWindowEvent *event = [SMWindowEvent eventWithSender:sender];
+    event.statistics = self.statistics;
+    [[SMWindowsManager sharedWindowsManager] showNewTimeEntryWindowForEvent:event];
 }
 
 - (void)changeStatisticsMode:(id)sender
 {
     SMStatisticsMode mode = (self.statisticsModeControl.selectedSegment == 0) ? SMDayStatisticsMode : SMWeekStatisticsMode;
-    [self.statistics setDate:self.statistics.startDate forStatisticsMode:mode];
+    [self.statistics setMode:mode];
     if (mode == SMDayStatisticsMode) {
         [self.statisticsOutlineView expandItem:nil expandChildren:YES];
     }
@@ -86,12 +108,14 @@
 #pragma mark - Sort Descriptors
 - (NSArray *)usersSortDescriptors
 {
-    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name" ascending:YES]];
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name"
+                                           ascending:YES
+                                            selector:@selector(caseInsensitiveCompare:)]];
 }
 
 - (NSArray *)statisticsSortDescriptors
 {
-    return @[[NSSortDescriptor sortDescriptorWithKey:@"hours" ascending:YES]];
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"hours" ascending:NO]];
 }
 
 #pragma mark - NSOutlineView Delegate

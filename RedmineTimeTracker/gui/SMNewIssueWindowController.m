@@ -7,9 +7,10 @@
 //
 
 #import "SMNewIssueWindowController.h"
-#import "SMIssue.h"
+#import "SMIssue+IssueCreation.h"
 #import "SMCurrentUser+trackingExtension.h"
 #import "AppDelegate.h"
+#import "SMProjects.h"
 
 static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject";
 
@@ -62,8 +63,31 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     self.parentIssueArrayController.entityName = @"SMIssue";
     
     self.currentProjectName = [[NSUserDefaults standardUserDefaults] objectForKey:SMRecentProjectUserDefaultsKey];
+    
+    [self updateFromIssue];
 }
 
+- (void)dealloc
+{
+    // May not be needed.
+//    if (self.issue) {
+//        [self.managedObjectContext deleteObject:self.issue];
+//        self.issue = nil;
+//    }
+}
+
+- (void)updateFromIssue
+{
+    if (self.issue.n_project) {
+        self.currentProjectName = self.issue.n_project.n_name;
+        self.titleField.stringValue = self.issue.n_subject ?: @"";
+        self.window.styleMask &= ~NSClosableWindowMask;
+    } else {
+        self.window.styleMask |= NSClosableWindowMask;
+    }
+}
+
+#pragma mark - Properties
 - (void)setCurrentProjectName:(id)currentProjectName
 {
     if (![_currentProjectName isEqual:currentProjectName]) {
@@ -77,6 +101,15 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     }
 }
 
+- (void)setIssue:(SMIssue *)issue
+{
+    if (![_issue isEqual:issue]) {
+        _issue = issue;
+        [self updateFromIssue];
+    }
+}
+
+#pragma mark - Actions
 - (void)createIssue:(id)sender {
     BOOL valid = (self.currentProjectName &&
                   self.titleField.stringValue.length > 0);
@@ -94,8 +127,7 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
             return;
         }
         
-        SMIssue *issue = [NSEntityDescription insertNewObjectForEntityForName:@"SMIssue"
-                                                       inManagedObjectContext:self.managedObjectContext];
+        SMIssue *issue = (self.issue) ?: [SMIssue newIssueInContext:self.managedObjectContext];
         
         if (self.parentIssueCombo.stringValue.length > 0) {
             NSFetchRequest *parentIssueFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"SMIssue"];
@@ -115,18 +147,17 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         issue.n_subject = self.titleField.stringValue;
         issue.n_description = self.descriptionTextView.string;
         issue.n_estimated_hours = @(self.estimatedTimeField.doubleValue);
-        issue.n_assigned_to = [SMCurrentUser findOrCreate].n_user;
-        issue.n_author = [SMCurrentUser findOrCreate].n_user;
         
         if (self.dueDateEnabledCheckBox.state == NSOnState) {
             issue.n_due_date = self.dueDatePicker.dateValue;
         }
         
         issue.changed = @YES;
+        issue = nil;
         
-        SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
         
+        SAVE_APP_CONTEXT;
         PERFORM_SYNC;
         
         [self.window close];

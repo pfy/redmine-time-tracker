@@ -112,7 +112,7 @@ DQ
                         </constraints>
                         <popUpButtonCell key="cell" type="roundTextured" title="Bug" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="sdc-ut-dbF" id="tLK-R4-miS">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="IQ7-Tn-o6J">
                                 <items>
                                     <menuItem title="Bug" state="on" id="sdc-ut-dbF"/>
@@ -124,6 +124,7 @@ DQ
                         <connections>
                             <binding destination="XYn-gZ-aEQ" name="content" keyPath="arrangedObjects" id="An2-fu-Wym"/>
                             <binding destination="XYn-gZ-aEQ" name="contentValues" keyPath="arrangedObjects.n_name" previousBinding="An2-fu-Wym" id="3Fx-m4-gqh"/>
+                            <binding destination="XYn-gZ-aEQ" name="selectedIndex" keyPath="selectionIndex" previousBinding="3Fx-m4-gqh" id="BJl-uh-eZH"/>
                         </connections>
                     </popUpButton>
                     <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kIy-Hb-Ztz">

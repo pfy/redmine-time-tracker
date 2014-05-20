@@ -39,6 +39,8 @@
 
 @property (strong) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic, strong) SMIssue *issue;
+
 - (IBAction)createIssue:(id)sender;
 
 @end

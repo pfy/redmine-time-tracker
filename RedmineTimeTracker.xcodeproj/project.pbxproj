@@ -25,6 +25,7 @@
 		079C1EE1192616C900F61B4B /* SMUpdateTrackersCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE0192616C900F61B4B /* SMUpdateTrackersCommand.m */; };
 		079C1EE4192641C700F61B4B /* SMUpdateActivitiesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */; };
 		07A0EF1E192A2E0200D6A904 /* SMStatisticsTreeFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A0EF1D192A2E0200D6A904 /* SMStatisticsTreeFactory.m */; };
+		07A0EF23192B21D100D6A904 /* SMIssue+IssueCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A0EF22192B21D100D6A904 /* SMIssue+IssueCreation.m */; };
 		07C8C3F919278E3900BD6AC6 /* SMWindowsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8C3F819278E3900BD6AC6 /* SMWindowsManager.m */; };
 		07C8C3FC1927949F00BD6AC6 /* NSWindowController+ClassNibName.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C8C3FB1927949F00BD6AC6 /* NSWindowController+ClassNibName.m */; };
 		07D098321928A3D400F2FC28 /* SMDayRoutineTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D098311928A3D400F2FC28 /* SMDayRoutineTracker.m */; };
@@ -132,6 +133,8 @@
 		079C1EE3192641C700F61B4B /* SMUpdateActivitiesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUpdateActivitiesCommand.m; sourceTree = "<group>"; };
 		07A0EF1C192A2E0200D6A904 /* SMStatisticsTreeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMStatisticsTreeFactory.h; sourceTree = "<group>"; };
 		07A0EF1D192A2E0200D6A904 /* SMStatisticsTreeFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMStatisticsTreeFactory.m; sourceTree = "<group>"; };
+		07A0EF21192B21D100D6A904 /* SMIssue+IssueCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SMIssue+IssueCreation.h"; sourceTree = "<group>"; };
+		07A0EF22192B21D100D6A904 /* SMIssue+IssueCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SMIssue+IssueCreation.m"; sourceTree = "<group>"; };
 		07C8C3F719278E3900BD6AC6 /* SMWindowsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMWindowsManager.h; sourceTree = "<group>"; };
 		07C8C3F819278E3900BD6AC6 /* SMWindowsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMWindowsManager.m; sourceTree = "<group>"; };
 		07C8C3FA1927949F00BD6AC6 /* NSWindowController+ClassNibName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+ClassNibName.h"; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 		070020CB1926511B00EBE9CF /* CoreData+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				07A0EF21192B21D100D6A904 /* SMIssue+IssueCreation.h */,
+				07A0EF22192B21D100D6A904 /* SMIssue+IssueCreation.m */,
 				CF10AEF416B179EF008F9741 /* SMManagedObject+networkExtension.h */,
 				CF10AEF516B179EF008F9741 /* SMManagedObject+networkExtension.m */,
 				CF114BC116B6D36D0033346D /* SMCurrentUser+trackingExtension.h */,
@@ -792,6 +797,7 @@
 				070020E0192651E500EBE9CF /* MASShortcutView.m in Sources */,
 				CF885F0F18F6949F004ACAE2 /* AFHTTPSessionManager.m in Sources */,
 				070020DE192651E500EBE9CF /* MASShortcut.m in Sources */,
+				07A0EF23192B21D100D6A904 /* SMIssue+IssueCreation.m in Sources */,
 				CF885EF418F5A80D004ACAE2 /* SMCoreDataSingleton.m in Sources */,
 				CF885F1518F6949F004ACAE2 /* AFURLSessionManager.m in Sources */,
 				CF885F1218F6949F004ACAE2 /* AFURLConnectionOperation.m in Sources */,

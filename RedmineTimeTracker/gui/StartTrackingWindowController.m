@@ -9,6 +9,7 @@
 #import "StartTrackingWindowController.h"
 #import "SMTimeEntry.h"
 #import "SMCurrentUser+trackingExtension.h"
+#import "SMIssue+IssueCreation.h"
 
 static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
 
@@ -94,26 +95,32 @@ static NSString *recentProjectDefaultsKey = @"defaultsRecentProject";
         SMIssue *currentIssue = [[self.context executeFetchRequest:issueFetchRequest error:&error] firstObject];
         if (error) {
             LOG_ERR(@"error happend %@",error);
-            error = nil;
         }
         if (!currentIssue) {
-            return;
+            currentIssue = [SMIssue newIssueInContext:self.context];
+            currentIssue.n_project = currentProject;
+            currentIssue.n_subject = self.currentIssue;
+            SMWindowEvent *event = [SMWindowEvent eventWithSender:self.issuesField];
+            event.issue = currentIssue;
+            [[SMWindowsManager sharedWindowsManager] showNewIssueWindowForEvent:event];
         }
         
         SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
                                                            inManagedObjectContext:self.context];
         
         entry.n_activity = [self.activityArrayController arrangedObjects][self.activityPopup.indexOfSelectedItem];
+        entry.n_project = currentProject;
         entry.n_issue = currentIssue;
         entry.n_spent_on = [NSDate date];
-        entry.n_project = currentProject;
         entry.n_comments = [self.commentTextView string];
         entry.n_user = [SMCurrentUser findOrCreate].n_user;
         entry.changed = @YES;
+        
         [SMCurrentUser findOrCreate].currentTimeEntry = entry;
         
-        SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProject forKey:recentProjectDefaultsKey];
+        
+        SAVE_APP_CONTEXT;
         
         [self.window close];
     }

@@ -33,7 +33,13 @@
 @property (nonatomic) id currentProjectName;
 @property (nonatomic) id selectedIssueSubject;
 
+@property (nonatomic, strong, readonly) NSArray *activitySortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *projectSortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *issueSortDescriptors;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic, strong) SMStatistics *statistics;
 
 - (IBAction)createTimeEntry:(id)sender;
 - (IBAction)cancelTimeEntry:(id)sender;

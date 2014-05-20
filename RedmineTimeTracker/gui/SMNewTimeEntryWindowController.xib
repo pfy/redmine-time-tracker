@@ -68,6 +68,7 @@
                         <connections>
                             <binding destination="JJF-aV-ko4" name="content" keyPath="arrangedObjects" id="8sv-Z5-jr9"/>
                             <binding destination="JJF-aV-ko4" name="contentValues" keyPath="arrangedObjects.n_name" previousBinding="8sv-Z5-jr9" id="3pW-vH-gMt"/>
+                            <binding destination="JJF-aV-ko4" name="selectedIndex" keyPath="selectionIndex" previousBinding="3pW-vH-gMt" id="xng-iG-EDm"/>
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MWY-cv-61r">
@@ -310,8 +311,20 @@ Gw
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
         </window>
-        <arrayController id="JJF-aV-ko4" userLabel="ActivityArrayController"/>
-        <arrayController id="4Gw-QB-7lE" userLabel="ProjectArrayController"/>
-        <arrayController id="QVG-SU-CBN" userLabel="IssueArrayController"/>
+        <arrayController id="JJF-aV-ko4" userLabel="ActivityArrayController">
+            <connections>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.activitySortDescriptors" id="wcI-ts-bdR"/>
+            </connections>
+        </arrayController>
+        <arrayController id="4Gw-QB-7lE" userLabel="ProjectArrayController">
+            <connections>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.projectSortDescriptors" id="EwE-mK-dk3"/>
+            </connections>
+        </arrayController>
+        <arrayController id="QVG-SU-CBN" userLabel="IssueArrayController">
+            <connections>
+                <binding destination="-2" name="sortDescriptors" keyPath="self.issueSortDescriptors" id="FeU-hP-V8T"/>
+            </connections>
+        </arrayController>
     </objects>
 </document>

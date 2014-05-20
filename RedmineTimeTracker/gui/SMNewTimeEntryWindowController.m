@@ -9,6 +9,9 @@
 #import "SMNewTimeEntryWindowController.h"
 #import "SMTimeEntry.h"
 #import "SMCurrentUser+trackingExtension.h"
+#import "SMStatistics.h"
+#import "SMWindowsManager.h"
+#import "SMIssue+IssueCreation.h"
 
 static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject";
 
@@ -37,8 +40,6 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     [[self window] makeKeyWindow];
     [NSApp activateIgnoringOtherApps:YES];
     
-    self.descriptionField.stringValue = @"";
-    
     self.datePicker.dateValue = [NSDate date];
     self.datePicker.maxDate = [NSDate date];
     
@@ -63,6 +64,8 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     self.issueArrayController.entityName = @"SMIssue";
     
     self.currentProjectName = [[NSUserDefaults standardUserDefaults] objectForKey:SMRecentProjectUserDefaultsKey];
+
+    [self updateWithStatistics];
 }
 
 - (void)cancelOperation:(id)sender
@@ -70,6 +73,18 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     [self.window performClose:sender];
 }
 
+- (void)updateWithStatistics
+{
+    if (self.statistics.missingTime > 0.0) {
+        self.descriptionField.stringValue = [NSString stringWithFormat:@"There are %.3f hours missing.",
+                                             self.statistics.missingTime];
+        self.timeField.doubleValue = self.statistics.missingTime;
+    } else {
+        self.descriptionField.stringValue = @"";
+    }
+}
+
+#pragma mark - Properties
 - (void)setCurrentProjectName:(id)currentProjectName
 {
     if (![_currentProjectName isEqual:currentProjectName]) {
@@ -82,21 +97,15 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     }
 }
 
-#pragma mark - NSTextViewDelegate
-- (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
+- (void)setStatistics:(SMStatistics *)statistics
 {
-    if (commandSelector == @selector(insertTab:)) {
-        [self.window selectNextKeyView:textView];
-        return YES;
+    if (![_statistics isEqual:statistics]) {
+        _statistics = statistics;
+        [self updateWithStatistics];
     }
-    if (commandSelector == @selector(insertBacktab:)) {
-        [self.window selectPreviousKeyView:textView];
-        return YES;
-    }
-    return NO;
 }
 
-
+#pragma mark - Actions
 - (void)createTimeEntry:(id)sender {
     if (self.timeField.doubleValue > 0.0 && self.selectedIssueSubject && self.commentTextView.string.length > 0) {
         __autoreleasing NSError *error;
@@ -120,8 +129,15 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         if (error) {
             LOG_ERR(@"Failed to fetch issue: %@", error);
         }
+        BOOL sync = YES;
         if (!issue) {
-            return;
+            sync = NO;
+            issue = [SMIssue newIssueInContext:self.managedObjectContext];
+            issue.n_project = project;
+            issue.n_subject = self.selectedIssueSubject;
+            SMWindowEvent *event = [SMWindowEvent eventWithSender:self.issueComboBox];
+            event.issue = issue;
+            [[SMWindowsManager sharedWindowsManager] showNewIssueWindowForEvent:event];
         }
         
         SMTimeEntry *entry = [NSEntityDescription insertNewObjectForEntityForName:@"SMTimeEntry"
@@ -136,16 +152,53 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         entry.n_comments = [self.commentTextView string];
         entry.changed = @YES;
         
-        SAVE_APP_CONTEXT;
         [[NSUserDefaults standardUserDefaults] setValue:self.currentProjectName forKey:SMRecentProjectUserDefaultsKey];
-        
-        PERFORM_SYNC;
+        if (sync) {
+            SAVE_APP_CONTEXT;
+            PERFORM_SYNC;
+        }
         [self.window close];
     }
 }
 
 - (void)cancelTimeEntry:(id)sender {
     [self cancelOperation:sender];
+}
+
+#pragma mark - Sort Descriptors
+- (NSArray *)activitySortDescriptors
+{
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name"
+                                           ascending:YES
+                                            selector:@selector(caseInsensitiveCompare:)]];
+}
+
+- (NSArray *)projectSortDescriptors
+{
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_name"
+                                           ascending:YES
+                                            selector:@selector(caseInsensitiveCompare:)]];
+}
+
+- (NSArray *)issueSortDescriptors
+{
+    return @[[NSSortDescriptor sortDescriptorWithKey:@"n_subject"
+                                           ascending:YES
+                                            selector:@selector(caseInsensitiveCompare:)]];
+}
+
+#pragma mark - NSTextViewDelegate
+- (BOOL)textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector
+{
+    if (commandSelector == @selector(insertTab:)) {
+        [self.window selectNextKeyView:textView];
+        return YES;
+    }
+    if (commandSelector == @selector(insertBacktab:)) {
+        [self.window selectPreviousKeyView:textView];
+        return YES;
+    }
+    return NO;
 }
 
 @end
