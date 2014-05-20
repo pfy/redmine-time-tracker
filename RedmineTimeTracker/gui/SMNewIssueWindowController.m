@@ -43,18 +43,19 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
     self.dueDatePicker.minDate = [NSDate date];
     self.dueDatePicker.dateValue = [NSDate date];
     
-    self.trackerArrayController.managedObjectContext = self.managedObjectContext;
-    self.trackerArrayController.entityName = @"SMTrackers";
+//    self.trackerArrayController.managedObjectContext = self.managedObjectContext;
+//    self.trackerArrayController.entityName = @"SMTrackers";
     
-    __autoreleasing NSError *error;
-    if (![self.trackerArrayController fetchWithRequest:nil merge:YES error:&error]) {
-        LOG_ERR(@"Tracker Array Controller failed to fetch: %@", error);
-        error = nil;
-    }
+//    __autoreleasing NSError *error;
+//    if (![self.trackerArrayController fetchWithRequest:nil merge:YES error:&error]) {
+//        LOG_ERR(@"Tracker Array Controller failed to fetch: %@", error);
+//        error = nil;
+//    }
     
     self.projectArrayController.managedObjectContext = self.managedObjectContext;
     self.projectArrayController.entityName = @"SMProjects";
     
+    __autoreleasing NSError *error;
     if (![self.projectArrayController fetchWithRequest:nil merge:YES error:&error]) {
         LOG_ERR(@"Project Array Controller failed to fetch: %@", error);
     }
@@ -143,7 +144,7 @@ static NSString *const SMRecentProjectUserDefaultsKey = @"defaultsRecentProject"
         }
         
         issue.n_project = project;
-        issue.n_tracker = self.trackerArrayController.arrangedObjects[self.trackerPopUp.indexOfSelectedItem];
+//        issue.n_tracker = self.trackerArrayController.arrangedObjects[self.trackerPopUp.indexOfSelectedItem];
         issue.n_subject = self.titleField.stringValue;
         issue.n_description = self.descriptionTextView.string;
         issue.n_estimated_hours = @(self.estimatedTimeField.doubleValue);

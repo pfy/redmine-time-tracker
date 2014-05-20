@@ -25,7 +25,6 @@
     
     NSMutableDictionary *issueParams = [NSMutableDictionary dictionary];
     issueParams[@"project_id"] = self.n_project.n_id;
-    issueParams[@"tracker_id"] = self.n_tracker.n_id;
     issueParams[@"subject"] = self.n_subject;
     issueParams[@"description"] = self.n_description;
     if (self.n_due_date) {
@@ -41,6 +40,9 @@
     }
     if (self.n_parent) {
         issueParams[@"parent_issue_id"] = self.n_parent.n_id;
+    }
+    if (self.n_tracker) {
+        issueParams[@"tracker_id"] = self.n_tracker.n_id;
     }
     NSDictionary *params = @{@"issue": [issueParams copy]};
     if (self.n_id) {
