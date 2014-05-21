@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         self.subentriesController = [[NSArrayController alloc] init];
-        self.subentriesController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hours" ascending:NO]];
+//        self.subentriesController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"hours" ascending:NO]];
     }
     return self;
 }

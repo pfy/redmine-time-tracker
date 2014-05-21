@@ -76,7 +76,7 @@
                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="277" minWidth="100" maxWidth="300" id="cre-pM-EpN">
+                                        <tableColumn editable="NO" width="275" minWidth="100" maxWidth="500" id="cre-pM-EpN">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -92,7 +92,7 @@
                                                 <binding destination="uZ3-w0-VB2" name="value" keyPath="arrangedObjects.title" id="mrD-xl-C9p"/>
                                             </connections>
                                         </tableColumn>
-                                        <tableColumn width="58" minWidth="40" maxWidth="100" id="DAx-2v-xtD">
+                                        <tableColumn width="55" minWidth="40" maxWidth="100" id="DAx-2v-xtD">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Hours">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +118,7 @@
                                                 </binding>
                                             </connections>
                                         </tableColumn>
-                                        <tableColumn editable="NO" width="100" minWidth="50" maxWidth="100" id="zJN-S0-Alm">
+                                        <tableColumn editable="NO" width="70" minWidth="50" maxWidth="100" id="zJN-S0-Alm">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Nr. of Issues">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
