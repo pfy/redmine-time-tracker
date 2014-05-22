@@ -53,8 +53,8 @@
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"time entry created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
-                self.changed = @NO;
-                [self updateWithDict:responseObject[@"time_entry"]];
+                newSelf.changed = @NO;
+                [newSelf updateWithDict:responseObject[@"time_entry"]];
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             LOG_WARN(@"time entry creation failed %@ %@",error,params);

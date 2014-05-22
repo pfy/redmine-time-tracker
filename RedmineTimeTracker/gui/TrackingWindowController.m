@@ -26,6 +26,7 @@
 
 -(void)updateFetcher{
     self.currentDateString = [self.formatter stringFromDate:self.currentDate];
+    
     NSCalendar *calendar = [NSCalendar currentCalendar]; // gets default calendar
     NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:self.currentDate]; // gets the year, month, and day for today's date
     NSDate *firstDate = [calendar dateFromComponents:components]; // makes a new NSDate keeping only the year, month, and day
@@ -35,12 +36,10 @@
     NSPredicate *secondPredicate = [NSPredicate predicateWithFormat:@"n_spent_on < %@", secondDate];
     
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[firstPredicate,secondPredicate]];
-    
-
     self.timeEntryArrayController.fetchPredicate = predicate;
+    
     __autoreleasing NSError *error;
     [self.timeEntryArrayController fetchWithRequest:nil merge:YES error:&error];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 - (void)windowDidLoad
@@ -55,14 +54,14 @@
     [self.formatter setDateStyle:NSDateFormatterMediumStyle];
     
     [self addObserver:self forKeyPath:@"currentDate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-    
     self.currentDate = [NSDate date];
     
-    AppDelegate *app = [NSApplication sharedApplication].delegate;
+    AppDelegate *app = [NSApp delegate];
     [app.updateCenter addObserver:self forKeyPath:@"running" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         
     [self updateSpinner];
 }
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     if (object == self) {
         if([keyPath isEqualToString:@"currentDate"]){
@@ -78,6 +77,7 @@
     }
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
+
 -(void)updateSpinner{
     AppDelegate *app = [NSApplication sharedApplication].delegate;
     if(app.updateCenter.running){

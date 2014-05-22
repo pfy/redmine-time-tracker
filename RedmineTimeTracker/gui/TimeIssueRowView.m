@@ -37,17 +37,17 @@
     [self.user addObserver:self forKeyPath:@"currentTimeEntry" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void)dealloc {
+    [self.user removeObserver:self forKeyPath:@"currentTimeEntry"];
+}
+
 - (void)setObjectValue:(id)objectValue {
     [super setObjectValue:objectValue];
     [self updateState];
 }
 
-- (void)dealloc {
-    [self.user removeObserver:self forKeyPath:@"currentTimeEntry"];
-}
-
 - (void)updateState {
-    SMRedmineUser *user = [self.user n_user];
+    SMRedmineUser *user = self.user.n_user;
     if ([[self.objectValue n_user] isEqual:user]) {
         [self.pauseButton setHidden:NO];
         if ([self.objectValue currentUser]) {

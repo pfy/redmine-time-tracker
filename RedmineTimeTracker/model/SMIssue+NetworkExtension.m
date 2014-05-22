@@ -60,8 +60,8 @@
         [client POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             LOG_INFO(@"Issue created %@",responseObject);
             [self scheduleOperationWithBlock:^(SMManagedObject *newSelf) {
-                self.changed = @NO;
-                [self updateWithDict:responseObject[@"issue"]];
+                newSelf.changed = @NO;
+                [newSelf updateWithDict:responseObject[@"issue"]];
             }];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             LOG_WARN(@"Issue creation failed %@ %@", error, params);

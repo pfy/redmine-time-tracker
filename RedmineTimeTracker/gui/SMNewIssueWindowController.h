@@ -27,17 +27,18 @@
 @property (weak) IBOutlet NSTextField *estimatedTimeLabel;
 @property (weak) IBOutlet NSTextField *estimatedTimeField;
 @property (weak) IBOutlet NSButton *createButton;
+
 @property (strong) IBOutlet NSArrayController *trackerArrayController;
 @property (strong) IBOutlet NSArrayController *projectArrayController;
 @property (strong) IBOutlet NSArrayController *parentIssueArrayController;
 
 @property (strong, nonatomic) id currentProjectName;
 
-@property (readonly) NSArray *trackersSortDescriptors;
-@property (readonly) NSArray *projectSortDescriptors;
-@property (readonly) NSArray *parentIssueSortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *trackersSortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *projectSortDescriptors;
+@property (nonatomic, strong, readonly) NSArray *parentIssueSortDescriptors;
 
-@property (strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) SMIssue *issue;
 

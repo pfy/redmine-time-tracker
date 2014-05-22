@@ -11,10 +11,10 @@
 @interface TrackingWindowController : NSWindowController
 @property (nonatomic,weak) IBOutlet NSProgressIndicator *progressIndicator;
 
-@property (nonatomic,weak) IBOutlet NSArrayController *timeEntryArrayController;
-@property (nonatomic,strong)  NSManagedObjectContext *context;
-@property (nonatomic,strong)  NSDate *currentDate;
-@property (nonatomic,strong)  NSString *currentDateString;
+@property (nonatomic,strong) IBOutlet NSArrayController *timeEntryArrayController;
+@property (nonatomic,strong) NSManagedObjectContext *context;
+@property (nonatomic,strong) NSDate *currentDate;
+@property (nonatomic,strong) NSString *currentDateString;
 @property (nonatomic,strong) NSDateFormatter *formatter;
 
 -(IBAction)nextDay:(id)sender;
